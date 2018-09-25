@@ -1,4 +1,5 @@
 import os, sys, time
+from Naked.toolshed.shell import execute_js, muterun_js
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/NotebookGenerator')
 sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)) + '/Page generator')
@@ -17,6 +18,7 @@ def __main__():
 	dirname  = os.path.dirname
 
 	_dirpath = dirname(dirname(os.path.realpath(__file__))) + '/www/'
+	_apppath = dirname(dirname(os.path.realpath(__file__))) + '/app/'
 	_libpath = dirname(os.path.realpath(__file__)) + '/lib/'
 
 	_html = _dirpath + 'html/'
@@ -44,13 +46,21 @@ def __main__():
 	print('All pages written [{0}ms]'.format(int((end-start) * 1000)))
 
 	# Upload all files to the wiki
-	username = input('Enter your iGEM username: ')
-	uploader = iGEMWIKI(2018, 'Rotterdam_HR', username)
+	
+	# username = input('Enter your iGEM username: ')
+	# uploader = iGEMWIKI(2018, 'Rotterdam_HR', username)
 
-	for page in os.listdir(_outputhtml):
-		with open(_outputhtml + page) as f:
-			data = f.read()
-			uploader.updatePage('team', page.replace('.html', ''), data)
+	# for page in os.listdir(_outputhtml):
+	# 	with open(_outputhtml + page) as f:
+	# 		data = f.read()
+	# 		uploader.updatePage('team', page.replace('.html', ''), data)
+
+	# jsuploader = _apppath + 'Page-uploader-master/uploader.js'
+	# response = muterun_js(jsuploader)
+	# if response.exitcode == 0:
+	# 	print(response.stdout)
+	# else:
+	# 	print(response.stderr)
 
 # init
 if __name__ == '__main__':

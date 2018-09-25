@@ -1,14 +1,57 @@
-<form name="myForm">
-	Team name:
-	<input type="text" name="teamName" id="teamName">
-	Subpage name:
-	<input type="text" name="pageName" id="pageName">
-	Search limit:
-	<input type="number" name="limit" id="formLimit">
-	<input type="submit" value="Submit">
-</form>
+<style>
+	.title {
+		color: white;
+		background: var(--color-software);
+		padding: 10px 20px;
+	}
 
-<div id="rankings"></div>
+	.filters {
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		padding: 5px;
+		width: 200px;
+		background: var(--color-software);
+		color: white;
+		z-index: 100;
+	}
 
-<script src="http://2018.igem.org/Template:Rotterdam_HR/js/topPages?action=raw&ctype=text/javascript"></script>
-<script>getData()</script>
+	table {
+		font-family: "Century Gothic";
+		border-collapse: collapse;
+	}
+
+	td, th {
+		border: 1px solid #dddddd;
+		text-align: left;
+	}
+
+	td {
+		padding: 8px;
+	}
+
+	tr:nth-child(even) {
+		background-color: #dddddd;
+	}
+	tr:ntd-child(1) {  
+  	text-emphasis: bold;
+	}
+</style>
+
+<div id="pagestats">
+	<h1 class="title">Team page statistics</h1>
+	<form class="filters" name="myForm">
+		<b>Team name:</b>
+		<input type="text" name="teamName" id="teamName">
+		<b>Subpage name:</b>
+		<input type="text" name="pageName" id="pageName">
+		<b>Search limit:</b>
+		<input type="number" name="limit" id="formLimit">
+		<input type="submit" value="Submit">
+	</form>
+
+	<div id="rankings"></div>
+
+	<script src="http://2018.igem.org/Template:Rotterdam_HR/js/topPages?action=raw&ctype=text/javascript"></script>
+	<script>getData()</script>
+</div>
