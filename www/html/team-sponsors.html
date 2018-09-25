@@ -1,0 +1,73 @@
+<style>
+	.sponsors {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.sponsor {
+		width: 240px;
+		background: var(--main-color);
+		color: white;
+		margin: 20px;
+		padding: 20px;
+		box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+	}
+
+	.sponsor img {
+		width: 100%;
+		background: gray;
+		border: white solid 4px;
+		box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+	}
+
+	.sponsor h1 {
+		margin: 0;
+		padding: 5px;
+		position: relative;
+		color: white;
+		text-align: center;
+	}
+
+	.sponsor h1::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 2px;
+		background: black;
+	}
+
+	.sponsor p {
+		margin: 0;
+		padding: 5px;
+		text-align: center;
+	}
+
+	.title {
+		background: var(--main-color);
+    color: white;
+    padding: 10px;
+	}
+
+</style>
+
+<div style="text-align: center;">
+	<h1 class="title">Thanks sponsors!</h1>
+	<h2>We would like to thank all our sponsors listed below for helping out!</h2>
+</div>
+
+<div class="sponsors">
+	
+	<div class="sponsor">
+    <a href="https://www.bio-itech.nl/en/home/"><img src="http://2018.igem.org/wiki/images/9/93/T--Rotterdam_HR--bio-itech.png" alt="company logo"></a>
+    <div class="bio">
+      <a href="https://www.bio-itech.nl/en/home/"><h1>BIO-ITECH</h1></a>
+      <p>Bio-ITech is a Life Science IT company that provides software solutions to manage information in the workflow of laboratories worldwide.</p>
+    </div>
+	</div>
+	
+</div>

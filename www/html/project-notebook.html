@@ -1,0 +1,3633 @@
+<style> 
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 1200px;
+	margin: 20px auto;
+}
+
+.month {
+	text-align: center;
+	font-size: 30px;
+}
+
+.card {
+	width: 220px;
+	height: 220px;
+	margin: 10px;
+	position: relative;
+	text-align: center;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+	border-radius: 3px;
+	color: white;
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+	display: none;
+}
+
+.hardware-card {
+	background: var(--color-hardware);
+}
+
+.wetlab-card {
+	background: var(--color-wetlab);
+}
+.software-card {
+	background: var(--color-software);
+}
+
+.card::before,
+.card::after {
+	content: "";
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	right: 5px;
+	bottom: 5px;
+	transition: transform 400ms;
+	z-index: 0;
+}
+
+.card::before {
+	border-top: rgba(255, 255, 255, 0.5) solid 1px;
+	border-bottom: rgba(255, 255, 255, 0.5) solid 1px;
+	transform: scale(0, 1);
+}
+
+.card::after {
+	border-left: rgba(255, 255, 255, 0.5) solid 1px;
+	border-right: rgba(255, 255, 255, 0.5) solid 1px;
+	transform: scale(1, 0);
+}
+
+.card .entryform {
+	display: none;
+}
+
+.card .titlebar {
+	position: relative;
+	display: flex;
+	background: rgba(255, 255, 255, 0.1);
+	color: white;
+	align-items: center;
+	padding-bottom: 5px;
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+	flex-direction: column;
+	min-height: 50px;
+}
+
+.card .titlebar svg {
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.card .titlebar .title,
+.card .titlebar .date,
+.card .titlebar .back {
+	margin: 0;
+	color: white;
+}
+
+.card .titlebar .title {
+	background: none;
+}
+
+.card .titlebar .date {
+	padding: 5px;
+}
+
+.card .titlebar .back {
+	font-size: 60px;
+	position: absolute;
+	top: 15px;
+	right: 10px;
+}
+
+.card .attendees {
+	background: rgba(255, 255, 255, 0.2);
+	color: white;
+	padding: 2px 2px 2px 10px;
+}
+
+.card .description {
+	padding: 10px;
+}
+
+.card .number {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 30px;
+	height: 45px;
+	padding: 2px;
+	background: linear-gradient(
+		to bottom right,
+		rgba(255, 255, 255, 0.1) 0%,
+		rgba(0, 0, 0, 0.1) 50%,
+		rgba(255, 255, 255, 0) 50%
+	);
+	text-align: left;
+}
+
+.card .title {
+	margin: 0;
+	background: rgba(255, 255, 255, 0.1);
+	height: auto;
+	min-height: 45px;
+}
+
+.card .more-info {
+	transform: scale(0, 0);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 10px;
+	padding: 5px;
+	border-radius: 2px;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+	text-transform: uppercase;
+	text-decoration: none;
+	color: white;
+	background: rgba(255, 255, 255, 0.5);
+	transition: transform 400ms;
+	z-index: 1;
+}
+
+.card .titlebar .back:hover, .card .more-info:hover {
+	cursor: pointer;
+}
+
+.card .more-info:after {
+	content: "";
+	display: block;
+	width: 70%;
+	height: 1px;
+	margin: 0 auto;
+	background: white;
+	transform: scale(0, 0);
+	transform-origin: left;
+	transition: transform 250ms;
+}
+
+.card svg {
+	position: absolute;
+	top: 80px;
+	left: 70px;
+	right: 70px;
+	bottom: 60px;
+	width: 80px;
+	height: 80px;
+	fill: currentColor;
+}
+
+.card .cardform .date {
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	right: 0;
+	margin-top: 5px;
+	transform: scale(1, 1);
+	transition: transform 400ms;
+}
+
+.card:hover .cardform .date {
+	transform: scale(0, 0);
+	transition: transform 200ms;
+}
+
+.card:hover::before {
+	transform: scale(1, 1);
+}
+
+.card:hover::after {
+	transform: scale(1, 1);
+}
+
+.card:hover .title::after {
+	transform: scale(1, 0.5);
+}
+
+.card:hover .more-info {
+	transform: scale(1, 1);
+	transition: transform 400ms 200ms;
+}
+
+.card .more-info:hover {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.card .more-info:hover::after {
+	transform: scale(1, 1);
+}
+
+.wetlab-filter:checked ~ .cards .wetlab-card { display: block; }
+.hardware-filter:checked ~ .cards .hardware-card { display: block; }
+.software-filter:checked ~ .cards .software-card { display: block; }
+
+.switch {
+	display: none;
+}
+
+@media screen and (max-width: 1000px) {
+	.cards {
+		justify-content: center;
+	}
+}
+
+</style>
+	<input type="checkbox" class="wetlab-filter" checked><span>show wetlab entries<br></span></input>
+	<input type="checkbox" class="hardware-filter" checked><span>show hardware entries<br></span></input>
+	<input type="checkbox" class="software-filter"><span>show software entries<br></span></input>
+	<div class="cards">
+
+		<style>
+	#switch-30329123:checked ~ #card-30329123 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-30329123:checked ~ #card-30329123 .entryform {
+		display: block;
+	}
+	#switch-30329123:checked ~ #card-30329123 .cardform,
+	#switch-30329123:checked ~ #card-30329123::before,
+	#switch-30329123:checked ~ #card-30329123::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-30329123" class="switch"></input>
+<div class="card software-card" id="card-30329123">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Team page</h1>
+			<h3 class="date">May 10</h3>
+			<label class="back" for="switch-30329123">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Created the first prototype for the team page</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Team page</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-30329123" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">May 10</h2>
+	</div>
+
+</div><style>
+	#switch-38308747:checked ~ #card-38308747 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-38308747:checked ~ #card-38308747 .entryform {
+		display: block;
+	}
+	#switch-38308747:checked ~ #card-38308747 .cardform,
+	#switch-38308747:checked ~ #card-38308747::before,
+	#switch-38308747:checked ~ #card-38308747::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-38308747" class="switch"></input>
+<div class="card software-card" id="card-38308747">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Footer</h1>
+			<h3 class="date">May 20</h3>
+			<label class="back" for="switch-38308747">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Social media created</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Footer</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-38308747" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">May 20</h2>
+	</div>
+
+</div><style>
+	#switch-11669014:checked ~ #card-11669014 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-11669014:checked ~ #card-11669014 .entryform {
+		display: block;
+	}
+	#switch-11669014:checked ~ #card-11669014 .cardform,
+	#switch-11669014:checked ~ #card-11669014::before,
+	#switch-11669014:checked ~ #card-11669014::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-11669014" class="switch"></input>
+<div class="card software-card" id="card-11669014">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Footer</h1>
+			<h3 class="date">May 21</h3>
+			<label class="back" for="switch-11669014">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Social media buttons same color and fixed iGEM style issues</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Footer</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-11669014" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">May 21</h2>
+	</div>
+
+</div><style>
+	#switch-80951837:checked ~ #card-80951837 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-80951837:checked ~ #card-80951837 .entryform {
+		display: block;
+	}
+	#switch-80951837:checked ~ #card-80951837 .cardform,
+	#switch-80951837:checked ~ #card-80951837::before,
+	#switch-80951837:checked ~ #card-80951837::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-80951837" class="switch"></input>
+<div class="card software-card" id="card-80951837">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Notebook</h1>
+			<h3 class="date">May 24</h3>
+			<label class="back" for="switch-80951837">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Multiple week summary styles created for the notes</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Notebook</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-80951837" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">May 24</h2>
+	</div>
+
+</div><style>
+	#switch-17282444:checked ~ #card-17282444 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-17282444:checked ~ #card-17282444 .entryform {
+		display: block;
+	}
+	#switch-17282444:checked ~ #card-17282444 .cardform,
+	#switch-17282444:checked ~ #card-17282444::before,
+	#switch-17282444:checked ~ #card-17282444::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-17282444" class="switch"></input>
+<div class="card software-card" id="card-17282444">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Header</h1>
+			<h3 class="date">May 27</h3>
+			<label class="back" for="switch-17282444">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Added the header with mobile compatibility als resized logos and readded them to the header</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Header</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-17282444" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">May 27</h2>
+	</div>
+
+</div><style>
+	#switch-65041475:checked ~ #card-65041475 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-65041475:checked ~ #card-65041475 .entryform {
+		display: block;
+	}
+	#switch-65041475:checked ~ #card-65041475 .cardform,
+	#switch-65041475:checked ~ #card-65041475::before,
+	#switch-65041475:checked ~ #card-65041475::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-65041475" class="switch"></input>
+<div class="card software-card" id="card-65041475">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Main template</h1>
+			<h3 class="date">May 28</h3>
+			<label class="back" for="switch-65041475">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Added template header and footer with 'under construction' content</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Main template</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-65041475" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">May 28</h2>
+	</div>
+
+</div><style>
+	#switch-82304858:checked ~ #card-82304858 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-82304858:checked ~ #card-82304858 .entryform {
+		display: block;
+	}
+	#switch-82304858:checked ~ #card-82304858 .cardform,
+	#switch-82304858:checked ~ #card-82304858::before,
+	#switch-82304858:checked ~ #card-82304858::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-82304858" class="switch"></input>
+<div class="card software-card" id="card-82304858">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Header</h1>
+			<h3 class="date">May 28</h3>
+			<label class="back" for="switch-82304858">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Small fixes and menu adjustments</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Header</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-82304858" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">May 28</h2>
+	</div>
+
+</div><style>
+	#switch-82463697:checked ~ #card-82463697 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-82463697:checked ~ #card-82463697 .entryform {
+		display: block;
+	}
+	#switch-82463697:checked ~ #card-82463697 .cardform,
+	#switch-82463697:checked ~ #card-82463697::before,
+	#switch-82463697:checked ~ #card-82463697::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-82463697" class="switch"></input>
+<div class="card software-card" id="card-82463697">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Team</h1>
+			<h3 class="date">May 29</h3>
+			<label class="back" for="switch-82463697">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Added a PI list with the secondary PI</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Team</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-82463697" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">May 29</h2>
+	</div>
+
+</div><style>
+	#switch-54827922:checked ~ #card-54827922 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-54827922:checked ~ #card-54827922 .entryform {
+		display: block;
+	}
+	#switch-54827922:checked ~ #card-54827922 .cardform,
+	#switch-54827922:checked ~ #card-54827922::before,
+	#switch-54827922:checked ~ #card-54827922::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-54827922" class="switch"></input>
+<div class="card software-card" id="card-54827922">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Main page</h1>
+			<h3 class="date">June 7</h3>
+			<label class="back" for="switch-54827922">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Designed and added content holders to the index Page</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Main page</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-54827922" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 7</h2>
+	</div>
+
+</div><style>
+	#switch-33561510:checked ~ #card-33561510 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-33561510:checked ~ #card-33561510 .entryform {
+		display: block;
+	}
+	#switch-33561510:checked ~ #card-33561510 .cardform,
+	#switch-33561510:checked ~ #card-33561510::before,
+	#switch-33561510:checked ~ #card-33561510::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-33561510" class="switch"></input>
+<div class="card software-card" id="card-33561510">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Team</h1>
+			<h3 class="date">June 9</h3>
+			<label class="back" for="switch-33561510">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Added myself to the teammember Page and did some bugfixing</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>03</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Team</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-33561510" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 9</h2>
+	</div>
+
+</div><style>
+	#switch-18272304:checked ~ #card-18272304 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-18272304:checked ~ #card-18272304 .entryform {
+		display: block;
+	}
+	#switch-18272304:checked ~ #card-18272304 .cardform,
+	#switch-18272304:checked ~ #card-18272304::before,
+	#switch-18272304:checked ~ #card-18272304::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-18272304" class="switch"></input>
+<div class="card software-card" id="card-18272304">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Header</h1>
+			<h3 class="date">June 9</h3>
+			<label class="back" for="switch-18272304">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Started working on a better looking menubar</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>03</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Header</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-18272304" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 9</h2>
+	</div>
+
+</div><style>
+	#switch-53261940:checked ~ #card-53261940 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-53261940:checked ~ #card-53261940 .entryform {
+		display: block;
+	}
+	#switch-53261940:checked ~ #card-53261940 .cardform,
+	#switch-53261940:checked ~ #card-53261940::before,
+	#switch-53261940:checked ~ #card-53261940::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-53261940" class="switch"></input>
+<div class="card software-card" id="card-53261940">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Header</h1>
+			<h3 class="date">June 10</h3>
+			<label class="back" for="switch-53261940">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Added the ability to add sub-menus to items in the menu bar. Integration into the website and added indication for which Page you are on</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>04</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Header</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-53261940" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 10</h2>
+	</div>
+
+</div><style>
+	#switch-76672083:checked ~ #card-76672083 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-76672083:checked ~ #card-76672083 .entryform {
+		display: block;
+	}
+	#switch-76672083:checked ~ #card-76672083 .cardform,
+	#switch-76672083:checked ~ #card-76672083::before,
+	#switch-76672083:checked ~ #card-76672083::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-76672083" class="switch"></input>
+<div class="card software-card" id="card-76672083">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Construction pages</h1>
+			<h3 class="date">June 13</h3>
+			<label class="back" for="switch-76672083">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Updated all Pages to the new style with an under construction sign</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Construction pages</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-76672083" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 13</h2>
+	</div>
+
+</div><style>
+	#switch-91263087:checked ~ #card-91263087 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-91263087:checked ~ #card-91263087 .entryform {
+		display: block;
+	}
+	#switch-91263087:checked ~ #card-91263087 .cardform,
+	#switch-91263087:checked ~ #card-91263087::before,
+	#switch-91263087:checked ~ #card-91263087::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-91263087" class="switch"></input>
+<div class="card software-card" id="card-91263087">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Header</h1>
+			<h3 class="date">June 14</h3>
+			<label class="back" for="switch-91263087">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Added a way to recognise Pages under construction using the menubar</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>05</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Header</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-91263087" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 14</h2>
+	</div>
+
+</div><style>
+	#switch-83033308:checked ~ #card-83033308 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-83033308:checked ~ #card-83033308 .entryform {
+		display: block;
+	}
+	#switch-83033308:checked ~ #card-83033308 .cardform,
+	#switch-83033308:checked ~ #card-83033308::before,
+	#switch-83033308:checked ~ #card-83033308::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-83033308" class="switch"></input>
+<div class="card software-card" id="card-83033308">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Main page</h1>
+			<h3 class="date">June 14</h3>
+			<label class="back" for="switch-83033308">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Updated the content containers so that they are responsive</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Main page</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-83033308" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 14</h2>
+	</div>
+
+</div><style>
+	#switch-11007228:checked ~ #card-11007228 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-11007228:checked ~ #card-11007228 .entryform {
+		display: block;
+	}
+	#switch-11007228:checked ~ #card-11007228 .cardform,
+	#switch-11007228:checked ~ #card-11007228::before,
+	#switch-11007228:checked ~ #card-11007228::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-11007228" class="switch"></input>
+<div class="card hardware-card" id="card-11007228">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Architecture design [TC]</h1>
+			<h3 class="date">June 18</h3>
+			<label class="back" for="switch-11007228">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">The first draft of the architecture design for the temperature controller was made.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Architecture design [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-11007228" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 18</h2>
+	</div>
+
+</div><style>
+	#switch-21046112:checked ~ #card-21046112 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-21046112:checked ~ #card-21046112 .entryform {
+		display: block;
+	}
+	#switch-21046112:checked ~ #card-21046112 .cardform,
+	#switch-21046112:checked ~ #card-21046112::before,
+	#switch-21046112:checked ~ #card-21046112::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-21046112" class="switch"></input>
+<div class="card software-card" id="card-21046112">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Human Practices page</h1>
+			<h3 class="date">June 22</h3>
+			<label class="back" for="switch-21046112">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Content added to the human practices page</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Human Practices page</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-21046112" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 22</h2>
+	</div>
+
+</div><style>
+	#switch-6550739:checked ~ #card-6550739 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-6550739:checked ~ #card-6550739 .entryform {
+		display: block;
+	}
+	#switch-6550739:checked ~ #card-6550739 .cardform,
+	#switch-6550739:checked ~ #card-6550739::before,
+	#switch-6550739:checked ~ #card-6550739::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-6550739" class="switch"></input>
+<div class="card software-card" id="card-6550739">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Main page</h1>
+			<h3 class="date">June 23</h3>
+			<label class="back" for="switch-6550739">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Content created and added to the main page</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>03</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Main page</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-6550739" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 23</h2>
+	</div>
+
+</div><style>
+	#switch-28460958:checked ~ #card-28460958 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-28460958:checked ~ #card-28460958 .entryform {
+		display: block;
+	}
+	#switch-28460958:checked ~ #card-28460958 .cardform,
+	#switch-28460958:checked ~ #card-28460958::before,
+	#switch-28460958:checked ~ #card-28460958::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-28460958" class="switch"></input>
+<div class="card hardware-card" id="card-28460958">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Architecture design [TC]</h1>
+			<h3 class="date">June 24</h3>
+			<label class="back" for="switch-28460958">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">Today a few changes have been made to the architecture design of the temperature controller. The choice was made to use a premade power supply as opposed to a self-made one, because this was considering the time left to finish this device the best choice. A few alterations were made to make the architecture design better readable.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Architecture design [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-28460958" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 24</h2>
+	</div>
+
+</div><style>
+	#switch-44496227:checked ~ #card-44496227 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-44496227:checked ~ #card-44496227 .entryform {
+		display: block;
+	}
+	#switch-44496227:checked ~ #card-44496227 .cardform,
+	#switch-44496227:checked ~ #card-44496227::before,
+	#switch-44496227:checked ~ #card-44496227::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-44496227" class="switch"></input>
+<div class="card hardware-card" id="card-44496227">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">First prototype [TC]</h1>
+			<h3 class="date">June 25</h3>
+			<label class="back" for="switch-44496227">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">A 3d drawing was made for the casing that will hold the temperature controller. The first prototype was printed, but was determent to be inadequate due to the lack of enough space for the cooler block.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">First prototype [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-44496227" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 25</h2>
+	</div>
+
+</div><style>
+	#switch-44273865:checked ~ #card-44273865 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-44273865:checked ~ #card-44273865 .entryform {
+		display: block;
+	}
+	#switch-44273865:checked ~ #card-44273865 .cardform,
+	#switch-44273865:checked ~ #card-44273865::before,
+	#switch-44273865:checked ~ #card-44273865::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-44273865" class="switch"></input>
+<div class="card software-card" id="card-44273865">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Team</h1>
+			<h3 class="date">June 26</h3>
+			<label class="back" for="switch-44273865">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Added the remaining instructors to the team</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>04</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Team</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-44273865" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 26</h2>
+	</div>
+
+</div><style>
+	#switch-77190621:checked ~ #card-77190621 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-77190621:checked ~ #card-77190621 .entryform {
+		display: block;
+	}
+	#switch-77190621:checked ~ #card-77190621 .cardform,
+	#switch-77190621:checked ~ #card-77190621::before,
+	#switch-77190621:checked ~ #card-77190621::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-77190621" class="switch"></input>
+<div class="card hardware-card" id="card-77190621">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Second prototype [TC]</h1>
+			<h3 class="date">June 26</h3>
+			<label class="back" for="switch-77190621">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">In the drawing space was added to fit the cooler block for the temperature controller. Slits were added to the drawing for the nuts to slide into. The altered drawing was printed. The newly printed parts, cooler block, fan and Peltier element were assembled. Everything fit together.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Second prototype [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-77190621" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 26</h2>
+	</div>
+
+</div><style>
+	#switch-74979371:checked ~ #card-74979371 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-74979371:checked ~ #card-74979371 .entryform {
+		display: block;
+	}
+	#switch-74979371:checked ~ #card-74979371 .cardform,
+	#switch-74979371:checked ~ #card-74979371::before,
+	#switch-74979371:checked ~ #card-74979371::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-74979371" class="switch"></input>
+<div class="card hardware-card" id="card-74979371">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Testrun [TC]</h1>
+			<h3 class="date">June 27</h3>
+			<label class="back" for="switch-74979371">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">A short test run was done with the newly assembled cooler. The test concluded that the temperature controller could cool a water droplet to the point of freezing and heat it back up to its boiling point.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>03</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Testrun [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-74979371" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">June 27</h2>
+	</div>
+
+</div><style>
+	#switch-91416657:checked ~ #card-91416657 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-91416657:checked ~ #card-91416657 .entryform {
+		display: block;
+	}
+	#switch-91416657:checked ~ #card-91416657 .cardform,
+	#switch-91416657:checked ~ #card-91416657::before,
+	#switch-91416657:checked ~ #card-91416657::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-91416657" class="switch"></input>
+<div class="card hardware-card" id="card-91416657">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Draft decision</h1>
+			<h3 class="date">July 2</h3>
+			<label class="back" for="switch-91416657">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">The choice to use a computer PSU as a power supply was made. The choice was made on the grounds, that computer PSU have a standard 12, 5 and 3.3V output. This is beneficial because these are the voltages necessary for the selected components.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Draft decision</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-91416657" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 2</h2>
+	</div>
+
+</div><style>
+	#switch-34596361:checked ~ #card-34596361 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-34596361:checked ~ #card-34596361 .entryform {
+		display: block;
+	}
+	#switch-34596361:checked ~ #card-34596361 .cardform,
+	#switch-34596361:checked ~ #card-34596361::before,
+	#switch-34596361:checked ~ #card-34596361::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-34596361" class="switch"></input>
+<div class="card hardware-card" id="card-34596361">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Architecture design [TC]</h1>
+			<h3 class="date">July 5</h3>
+			<label class="back" for="switch-34596361">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">Changes were made to the architecture design of the temperature controller. Different voltage regulators were selected to fit the newly chosen power supply. To better readability of the architecture design a legend was added.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>03</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Architecture design [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-34596361" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 5</h2>
+	</div>
+
+</div><style>
+	#switch-28464923:checked ~ #card-28464923 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-28464923:checked ~ #card-28464923 .entryform {
+		display: block;
+	}
+	#switch-28464923:checked ~ #card-28464923 .cardform,
+	#switch-28464923:checked ~ #card-28464923::before,
+	#switch-28464923:checked ~ #card-28464923::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-28464923" class="switch"></input>
+<div class="card hardware-card" id="card-28464923">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Electrical circuit design [TC]</h1>
+			<h3 class="date">July 8</h3>
+			<label class="back" for="switch-28464923">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">Custom footprints were made for multiple components and added to the parts library in the PCB design software.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Electrical circuit design [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-28464923" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 8</h2>
+	</div>
+
+</div><style>
+	#switch-95158586:checked ~ #card-95158586 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-95158586:checked ~ #card-95158586 .entryform {
+		display: block;
+	}
+	#switch-95158586:checked ~ #card-95158586 .cardform,
+	#switch-95158586:checked ~ #card-95158586::before,
+	#switch-95158586:checked ~ #card-95158586::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-95158586" class="switch"></input>
+<div class="card hardware-card" id="card-95158586">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Electrical circuit design [TC]</h1>
+			<h3 class="date">July 9</h3>
+			<label class="back" for="switch-95158586">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">The provisional electronic circuit design for the temperature controller was made.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Electrical circuit design [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-95158586" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 9</h2>
+	</div>
+
+</div><style>
+	#switch-58259632:checked ~ #card-58259632 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-58259632:checked ~ #card-58259632 .entryform {
+		display: block;
+	}
+	#switch-58259632:checked ~ #card-58259632 .cardform,
+	#switch-58259632:checked ~ #card-58259632::before,
+	#switch-58259632:checked ~ #card-58259632::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-58259632" class="switch"></input>
+<div class="card hardware-card" id="card-58259632">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Electrical circuit design [TC]</h1>
+			<h3 class="date">July 11</h3>
+			<label class="back" for="switch-58259632">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">The electronic circuit design for the temperature controller was finished. Measuring point were added to the electronic circuit design.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>03</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Electrical circuit design [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-58259632" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 11</h2>
+	</div>
+
+</div><style>
+	#switch-86500185:checked ~ #card-86500185 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-86500185:checked ~ #card-86500185 .entryform {
+		display: block;
+	}
+	#switch-86500185:checked ~ #card-86500185 .cardform,
+	#switch-86500185:checked ~ #card-86500185::before,
+	#switch-86500185:checked ~ #card-86500185::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-86500185" class="switch"></input>
+<div class="card wetlab-card" id="card-86500185">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Stock up</h1>
+			<h3 class="date">July 11</h3>
+			<label class="back" for="switch-86500185">&times;</label>
+		</div>
+		<div class="attendees">Elise Grootscholten | Loraine Nelson | Paul Reusink</div>
+		<div class="description">To have some basic biobricks ready, we stocked them by doing a plasmid isolation and freeze the DNA. </div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Stock up</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-86500185" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 11</h2>
+	</div>
+
+</div><style>
+	#switch-70825401:checked ~ #card-70825401 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-70825401:checked ~ #card-70825401 .entryform {
+		display: block;
+	}
+	#switch-70825401:checked ~ #card-70825401 .cardform,
+	#switch-70825401:checked ~ #card-70825401::before,
+	#switch-70825401:checked ~ #card-70825401::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-70825401" class="switch"></input>
+<div class="card wetlab-card" id="card-70825401">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Basic parts</h1>
+			<h3 class="date">July 11</h3>
+			<label class="back" for="switch-70825401">&times;</label>
+		</div>
+		<div class="attendees">Elise Grootscholten | Loraine Nelson | Paul Reusink</div>
+		<div class="description">To start on a basic construct we did a digestion and ligation with the parts we isolated earlier. To prevent original constructs we did a defosphorylation after the digestion. We controlled the digestion by doing a gelelktroforeses. </div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Basic parts</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-70825401" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 11</h2>
+	</div>
+
+</div><style>
+	#switch-66607595:checked ~ #card-66607595 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-66607595:checked ~ #card-66607595 .entryform {
+		display: block;
+	}
+	#switch-66607595:checked ~ #card-66607595 .cardform,
+	#switch-66607595:checked ~ #card-66607595::before,
+	#switch-66607595:checked ~ #card-66607595::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-66607595" class="switch"></input>
+<div class="card hardware-card" id="card-66607595">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Board layout [TC]</h1>
+			<h3 class="date">July 12</h3>
+			<label class="back" for="switch-66607595">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">Started working on the board layout for the PCB of the temperature controller.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Board layout [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-66607595" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 12</h2>
+	</div>
+
+</div><style>
+	#switch-65786561:checked ~ #card-65786561 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-65786561:checked ~ #card-65786561 .entryform {
+		display: block;
+	}
+	#switch-65786561:checked ~ #card-65786561 .cardform,
+	#switch-65786561:checked ~ #card-65786561::before,
+	#switch-65786561:checked ~ #card-65786561::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-65786561" class="switch"></input>
+<div class="card wetlab-card" id="card-65786561">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Basic parts</h1>
+			<h3 class="date">July 12</h3>
+			<label class="back" for="switch-65786561">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Randall de Waard</div>
+		<div class="description">We continued with the ligated DNA by transformating it to Neb10Beta. This was plated onto agarplates and incubated for 1 day. </div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Basic parts</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-65786561" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 12</h2>
+	</div>
+
+</div><style>
+	#switch-54504388:checked ~ #card-54504388 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-54504388:checked ~ #card-54504388 .entryform {
+		display: block;
+	}
+	#switch-54504388:checked ~ #card-54504388 .cardform,
+	#switch-54504388:checked ~ #card-54504388::before,
+	#switch-54504388:checked ~ #card-54504388::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-54504388" class="switch"></input>
+<div class="card hardware-card" id="card-54504388">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Board layout [TC]</h1>
+			<h3 class="date">July 13</h3>
+			<label class="back" for="switch-54504388">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">Further work was done to the board layout for the temperature controller.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Board layout [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-54504388" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 13</h2>
+	</div>
+
+</div><style>
+	#switch-70526480:checked ~ #card-70526480 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-70526480:checked ~ #card-70526480 .entryform {
+		display: block;
+	}
+	#switch-70526480:checked ~ #card-70526480 .cardform,
+	#switch-70526480:checked ~ #card-70526480::before,
+	#switch-70526480:checked ~ #card-70526480::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-70526480" class="switch"></input>
+<div class="card wetlab-card" id="card-70526480">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Basic parts</h1>
+			<h3 class="date">July 13</h3>
+			<label class="back" for="switch-70526480">&times;</label>
+		</div>
+		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
+		<div class="description">The results of 7/12/2018 were collected, in action of this we decided to plate some ligated and transferred DNA from 7/12/2018 again. This we did because there wasn't a clear grow of colonies on the plates.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>03</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Basic parts</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-70526480" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 13</h2>
+	</div>
+
+</div><style>
+	#switch-52723469:checked ~ #card-52723469 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-52723469:checked ~ #card-52723469 .entryform {
+		display: block;
+	}
+	#switch-52723469:checked ~ #card-52723469 .cardform,
+	#switch-52723469:checked ~ #card-52723469::before,
+	#switch-52723469:checked ~ #card-52723469::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-52723469" class="switch"></input>
+<div class="card wetlab-card" id="card-52723469">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Blue White screening on paper</h1>
+			<h3 class="date">July 13</h3>
+			<label class="back" for="switch-52723469">&times;</label>
+		</div>
+		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
+		<div class="description">We tried to let bacteria grow on paper, therefore we used our own buisnesscards. We let the buisnesscards absorb some LB-medium and put them inside petridishes. </div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Blue White screening on paper</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-52723469" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 13</h2>
+	</div>
+
+</div><style>
+	#switch-27678783:checked ~ #card-27678783 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-27678783:checked ~ #card-27678783 .entryform {
+		display: block;
+	}
+	#switch-27678783:checked ~ #card-27678783 .cardform,
+	#switch-27678783:checked ~ #card-27678783::before,
+	#switch-27678783:checked ~ #card-27678783::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-27678783" class="switch"></input>
+<div class="card hardware-card" id="card-27678783">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+			<h1 class="title">Board layout [TC]</h1>
+			<h3 class="date">July 15</h3>
+			<label class="back" for="switch-27678783">&times;</label>
+		</div>
+		<div class="attendees">Tom van Dijk | Mike Vrieswijk</div>
+		<div class="description">Work has been done on the board layout for the temperature controller. The board layout is now finished.</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>03</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Board layout [TC]</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+</svg>
+		<label for="switch-27678783" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 15</h2>
+	</div>
+
+</div><style>
+	#switch-67996386:checked ~ #card-67996386 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-67996386:checked ~ #card-67996386 .entryform {
+		display: block;
+	}
+	#switch-67996386:checked ~ #card-67996386 .cardform,
+	#switch-67996386:checked ~ #card-67996386::before,
+	#switch-67996386:checked ~ #card-67996386::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-67996386" class="switch"></input>
+<div class="card wetlab-card" id="card-67996386">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Basic parts</h1>
+			<h3 class="date">July 16</h3>
+			<label class="back" for="switch-67996386">&times;</label>
+		</div>
+		<div class="attendees">Mei Ju Goemans | Elise Grootscholten | Dustin van der Meulen | Randall de Waard</div>
+		<div class="description">To know if the ligation was succesfull we will controll the DNA, therefor we ented the bacteria's with DNA in LB-medium to grow overnight. We also plated the used bacteria's onto new plates to use for further experiments. </div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>04</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Basic parts</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-67996386" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 16</h2>
+	</div>
+
+</div><style>
+	#switch-74118645:checked ~ #card-74118645 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-74118645:checked ~ #card-74118645 .entryform {
+		display: block;
+	}
+	#switch-74118645:checked ~ #card-74118645 .cardform,
+	#switch-74118645:checked ~ #card-74118645::before,
+	#switch-74118645:checked ~ #card-74118645::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-74118645" class="switch"></input>
+<div class="card wetlab-card" id="card-74118645">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Blue White screening on paper</h1>
+			<h3 class="date">July 16</h3>
+			<label class="back" for="switch-74118645">&times;</label>
+		</div>
+		<div class="attendees">Mei Ju Goemans | Elise Grootscholten | Dustin van der Meulen | Randall de Waard</div>
+		<div class="description">We did a blue white screening on our buisnesscards to see if bacteria had grew on them. We transferred the buisnesscards to new petrydishes and added ITPG and X-gal to the petrydishes. </div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Blue White screening on paper</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-74118645" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 16</h2>
+	</div>
+
+</div><style>
+	#switch-67070829:checked ~ #card-67070829 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-67070829:checked ~ #card-67070829 .entryform {
+		display: block;
+	}
+	#switch-67070829:checked ~ #card-67070829 .cardform,
+	#switch-67070829:checked ~ #card-67070829::before,
+	#switch-67070829:checked ~ #card-67070829::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-67070829" class="switch"></input>
+<div class="card software-card" id="card-67070829">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Notebook</h1>
+			<h3 class="date">July 17</h3>
+			<label class="back" for="switch-67070829">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Frontend design for the notebook</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Notebook</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-67070829" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 17</h2>
+	</div>
+
+</div><style>
+	#switch-87750611:checked ~ #card-87750611 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-87750611:checked ~ #card-87750611 .entryform {
+		display: block;
+	}
+	#switch-87750611:checked ~ #card-87750611 .cardform,
+	#switch-87750611:checked ~ #card-87750611::before,
+	#switch-87750611:checked ~ #card-87750611::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-87750611" class="switch"></input>
+<div class="card wetlab-card" id="card-87750611">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Basic parts</h1>
+			<h3 class="date">July 17</h3>
+			<label class="back" for="switch-87750611">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser | Dustin van der Meulen | Loraine Nelson  | Suzanne Romeijn | Randall de Waard</div>
+		<div class="description">The resulst of 7/16/2018 showed that the DNA didnt ligate as planned.  To be able to digest enough DNA we did a plasmid isolation again. We digested this DNA and froze it for further use. </div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>05</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Basic parts</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-87750611" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 17</h2>
+	</div>
+
+</div><style>
+	#switch-44101895:checked ~ #card-44101895 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-44101895:checked ~ #card-44101895 .entryform {
+		display: block;
+	}
+	#switch-44101895:checked ~ #card-44101895 .cardform,
+	#switch-44101895:checked ~ #card-44101895::before,
+	#switch-44101895:checked ~ #card-44101895::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-44101895" class="switch"></input>
+<div class="card wetlab-card" id="card-44101895">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Stock up</h1>
+			<h3 class="date">July 18</h3>
+			<label class="back" for="switch-44101895">&times;</label>
+		</div>
+		<div class="attendees">Dustin van der Meulen | Loraine Nelson | Suzanne Romeijn | Mike Vrieswijk | Randall de Waard</div>
+		<div class="description">We did another round of plasmid isolation for stocking. </div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Stock up</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-44101895" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 18</h2>
+	</div>
+
+</div><style>
+	#switch-74540193:checked ~ #card-74540193 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-74540193:checked ~ #card-74540193 .entryform {
+		display: block;
+	}
+	#switch-74540193:checked ~ #card-74540193 .cardform,
+	#switch-74540193:checked ~ #card-74540193::before,
+	#switch-74540193:checked ~ #card-74540193::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-74540193" class="switch"></input>
+<div class="card software-card" id="card-74540193">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Notebook</h1>
+			<h3 class="date">July 19</h3>
+			<label class="back" for="switch-74540193">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Designed a way to follow experiments that take up multiple days and eventually designed a notebook entry page and made it a responsive page</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>03</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Notebook</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-74540193" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 19</h2>
+	</div>
+
+</div><style>
+	#switch-18405618:checked ~ #card-18405618 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-18405618:checked ~ #card-18405618 .entryform {
+		display: block;
+	}
+	#switch-18405618:checked ~ #card-18405618 .cardform,
+	#switch-18405618:checked ~ #card-18405618::before,
+	#switch-18405618:checked ~ #card-18405618::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-18405618" class="switch"></input>
+<div class="card wetlab-card" id="card-18405618">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Basic parts</h1>
+			<h3 class="date">July 19</h3>
+			<label class="back" for="switch-18405618">&times;</label>
+		</div>
+		<div class="attendees">Dustin van der Meulen | Mei Ju Goemans| Randall de Waard </div>
+		<div class="description">We digested all DNA we have in stock to test for our basic construct. We tested the DNA by doing a gelelktroforeses. </div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>06</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Basic parts</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-18405618" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 19</h2>
+	</div>
+
+</div><style>
+	#switch-85873618:checked ~ #card-85873618 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-85873618:checked ~ #card-85873618 .entryform {
+		display: block;
+	}
+	#switch-85873618:checked ~ #card-85873618 .cardform,
+	#switch-85873618:checked ~ #card-85873618::before,
+	#switch-85873618:checked ~ #card-85873618::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-85873618" class="switch"></input>
+<div class="card software-card" id="card-85873618">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Notebook</h1>
+			<h3 class="date">July 21</h3>
+			<label class="back" for="switch-85873618">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Created a one page notebook. Made the notebook entry page more suited for the entry length</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>04</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Notebook</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-85873618" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 21</h2>
+	</div>
+
+</div><style>
+	#switch-71724835:checked ~ #card-71724835 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-71724835:checked ~ #card-71724835 .entryform {
+		display: block;
+	}
+	#switch-71724835:checked ~ #card-71724835 .cardform,
+	#switch-71724835:checked ~ #card-71724835::before,
+	#switch-71724835:checked ~ #card-71724835::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-71724835" class="switch"></input>
+<div class="card wetlab-card" id="card-71724835">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">July 23</h3>
+			<label class="back" for="switch-71724835">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Transformations of the&nbsp;biobricks K133071, K173003 and I13453 are performed. K133071 will produce CO2 if there's pyruvate present and K173003 will produce CO2 if urea is present. I13453 is a promotor which will work if there's arabinose present.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br>
+The biobricks were transformed first into electrocometent cells and later&nbsp;into chemical&nbsp;competent cells from the strain NEb10Beta. After transformations the culture was plated on agar plates with&nbsp;antibiotics. The first transformations didn't work out, but the second did, because then the right competent cells were used.&nbsp;</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>1</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-71724835" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 23</h2>
+	</div>
+
+</div><style>
+	#switch-65040069:checked ~ #card-65040069 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-65040069:checked ~ #card-65040069 .entryform {
+		display: block;
+	}
+	#switch-65040069:checked ~ #card-65040069 .cardform,
+	#switch-65040069:checked ~ #card-65040069::before,
+	#switch-65040069:checked ~ #card-65040069::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-65040069" class="switch"></input>
+<div class="card wetlab-card" id="card-65040069">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">ATP sensor</h1>
+			<h3 class="date">July 24</h3>
+			<label class="back" for="switch-65040069">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser | Mei Ju Goemans | Elise Grootscholten | Dustin van der Meulen | Loraine Nelson | Suzanne Romeijn | Randall de Waard</div>
+		<div class="description">New biobricks, used to make an ATP sensor, were transformed into NEB10Beta. The culture was than plated onto agar and incubated for 1 day.  </div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">ATP sensor</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-65040069" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 24</h2>
+	</div>
+
+</div><style>
+	#switch-12280121:checked ~ #card-12280121 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-12280121:checked ~ #card-12280121 .entryform {
+		display: block;
+	}
+	#switch-12280121:checked ~ #card-12280121 .cardform,
+	#switch-12280121:checked ~ #card-12280121::before,
+	#switch-12280121:checked ~ #card-12280121::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-12280121" class="switch"></input>
+<div class="card wetlab-card" id="card-12280121">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Gas output</h1>
+			<h3 class="date">July 24</h3>
+			<label class="back" for="switch-12280121">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser | Mei Ju Goemans | Elise Grootscholten | Dustin van der Meulen | Loraine Nelson | Suzanne Romeijn | Randall de Waard</div>
+		<div class="description">New biobricks, which produces gasses, were transformed into NEB10Beta. The culture was than plated onto agar and incubated for 1 day.  </div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Gas output</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-12280121" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 24</h2>
+	</div>
+
+</div><style>
+	#switch-80608261:checked ~ #card-80608261 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-80608261:checked ~ #card-80608261 .entryform {
+		display: block;
+	}
+	#switch-80608261:checked ~ #card-80608261 .cardform,
+	#switch-80608261:checked ~ #card-80608261::before,
+	#switch-80608261:checked ~ #card-80608261::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-80608261" class="switch"></input>
+<div class="card software-card" id="card-80608261">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Notebook generator</h1>
+			<h3 class="date">July 24</h3>
+			<label class="back" for="switch-80608261">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Started working on an automatic notebook creator</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Notebook generator</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-80608261" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 24</h2>
+	</div>
+
+</div><style>
+	#switch-54795388:checked ~ #card-54795388 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-54795388:checked ~ #card-54795388 .entryform {
+		display: block;
+	}
+	#switch-54795388:checked ~ #card-54795388 .cardform,
+	#switch-54795388:checked ~ #card-54795388::before,
+	#switch-54795388:checked ~ #card-54795388::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-54795388" class="switch"></input>
+<div class="card wetlab-card" id="card-54795388">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Transformation</h1>
+			<h3 class="date">July 24</h3>
+			<label class="back" for="switch-54795388">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Today we did a transformation with&nbsp;new biobricks. The biobricks were built into chemically competent cells from the strain NEb10Beta. After transformation the culture was plated on agar plates with&nbsp;antibiotics. The results were checked the next day.&nbsp;</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>1</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Transformation</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-54795388" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 24</h2>
+	</div>
+
+</div><style>
+	#switch-32467523:checked ~ #card-32467523 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-32467523:checked ~ #card-32467523 .entryform {
+		display: block;
+	}
+	#switch-32467523:checked ~ #card-32467523 .cardform,
+	#switch-32467523:checked ~ #card-32467523::before,
+	#switch-32467523:checked ~ #card-32467523::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-32467523" class="switch"></input>
+<div class="card wetlab-card" id="card-32467523">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">July 24</h3>
+			<label class="back" for="switch-32467523">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>To be able to always get the necessary biobricks, there have been&nbsp;made&nbsp;glycerolstocks of the transformed biobricks K133071, K173003 and I13453. The glycerolstocks are stored at -80 degrees Celsius. If needed, they can be retrieved from this storage to use for experiments.&nbsp;</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>2</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-32467523" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 24</h2>
+	</div>
+
+</div><style>
+	#switch-26331028:checked ~ #card-26331028 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-26331028:checked ~ #card-26331028 .entryform {
+		display: block;
+	}
+	#switch-26331028:checked ~ #card-26331028 .cardform,
+	#switch-26331028:checked ~ #card-26331028::before,
+	#switch-26331028:checked ~ #card-26331028::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-26331028" class="switch"></input>
+<div class="card software-card" id="card-26331028">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Notebook generator</h1>
+			<h3 class="date">July 25</h3>
+			<label class="back" for="switch-26331028">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Automatic generation of entries completed</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Notebook generator</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-26331028" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 25</h2>
+	</div>
+
+</div><style>
+	#switch-79523546:checked ~ #card-79523546 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-79523546:checked ~ #card-79523546 .entryform {
+		display: block;
+	}
+	#switch-79523546:checked ~ #card-79523546 .cardform,
+	#switch-79523546:checked ~ #card-79523546::before,
+	#switch-79523546:checked ~ #card-79523546::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-79523546" class="switch"></input>
+<div class="card software-card" id="card-79523546">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Google Drive API</h1>
+			<h3 class="date">July 25</h3>
+			<label class="back" for="switch-79523546">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Used the Google drive REST API to download the entries from drive</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Google Drive API</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-79523546" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 25</h2>
+	</div>
+
+</div><style>
+	#switch-78363885:checked ~ #card-78363885 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-78363885:checked ~ #card-78363885 .entryform {
+		display: block;
+	}
+	#switch-78363885:checked ~ #card-78363885 .cardform,
+	#switch-78363885:checked ~ #card-78363885::before,
+	#switch-78363885:checked ~ #card-78363885::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-78363885" class="switch"></input>
+<div class="card software-card" id="card-78363885">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Automatic uploader</h1>
+			<h3 class="date">July 25</h3>
+			<label class="back" for="switch-78363885">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Used the igemwiki API to update pages using software</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Automatic uploader</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-78363885" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 25</h2>
+	</div>
+
+</div><style>
+	#switch-92615747:checked ~ #card-92615747 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-92615747:checked ~ #card-92615747 .entryform {
+		display: block;
+	}
+	#switch-92615747:checked ~ #card-92615747 .cardform,
+	#switch-92615747:checked ~ #card-92615747::before,
+	#switch-92615747:checked ~ #card-92615747::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-92615747" class="switch"></input>
+<div class="card wetlab-card" id="card-92615747">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Transformation</h1>
+			<h3 class="date">July 27</h3>
+			<label class="back" for="switch-92615747">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>To be able to always get the necessary biobricks, we made an glycerol stock after every transformation. The glycerol stocks are stored at -80 degrees Celsius. If needed, they can retrieved from this storage to use for experiments.&nbsp;</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>2</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Transformation</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-92615747" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 27</h2>
+	</div>
+
+</div><style>
+	#switch-17024298:checked ~ #card-17024298 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-17024298:checked ~ #card-17024298 .entryform {
+		display: block;
+	}
+	#switch-17024298:checked ~ #card-17024298 .cardform,
+	#switch-17024298:checked ~ #card-17024298::before,
+	#switch-17024298:checked ~ #card-17024298::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-17024298" class="switch"></input>
+<div class="card wetlab-card" id="card-17024298">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">July 27</h3>
+			<label class="back" for="switch-17024298">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>For further experiments there is&nbsp;isolated DNA needed of the biobricks J23100, K133071, K173003 and I134353. The DNA is isolated out of the bacteria with the help of a plasmid purifaction kit. After isolation this DNA can be used for digestion and ligation or other experiments.&nbsp;<span style="font-size:12px;">J23100 (from the glycerolstock): 325,59 ng/ul, K173003: 217,06 ng/ul, K133071: 186,79 ng/ul,&nbsp;</span>I13453: 88,18 ng/ul</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>3</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-17024298" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 27</h2>
+	</div>
+
+</div><style>
+	#switch-95822568:checked ~ #card-95822568 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-95822568:checked ~ #card-95822568 .entryform {
+		display: block;
+	}
+	#switch-95822568:checked ~ #card-95822568 .cardform,
+	#switch-95822568:checked ~ #card-95822568::before,
+	#switch-95822568:checked ~ #card-95822568::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-95822568" class="switch"></input>
+<div class="card software-card" id="card-95822568">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Automation program</h1>
+			<h3 class="date">July 29</h3>
+			<label class="back" for="switch-95822568">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Connected the page uploader to the notebook generator</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Automation program</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-95822568" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 29</h2>
+	</div>
+
+</div><style>
+	#switch-18424262:checked ~ #card-18424262 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-18424262:checked ~ #card-18424262 .entryform {
+		display: block;
+	}
+	#switch-18424262:checked ~ #card-18424262 .cardform,
+	#switch-18424262:checked ~ #card-18424262::before,
+	#switch-18424262:checked ~ #card-18424262::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-18424262" class="switch"></input>
+<div class="card software-card" id="card-18424262">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Automatic uploader</h1>
+			<h3 class="date">July 29</h3>
+			<label class="back" for="switch-18424262">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Created a program that uploads all updated pages</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Automatic uploader</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-18424262" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 29</h2>
+	</div>
+
+</div><style>
+	#switch-58337153:checked ~ #card-58337153 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-58337153:checked ~ #card-58337153 .entryform {
+		display: block;
+	}
+	#switch-58337153:checked ~ #card-58337153 .cardform,
+	#switch-58337153:checked ~ #card-58337153::before,
+	#switch-58337153:checked ~ #card-58337153::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-58337153" class="switch"></input>
+<div class="card software-card" id="card-58337153">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Page generator</h1>
+			<h3 class="date">July 31</h3>
+			<label class="back" for="switch-58337153">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Built a page builder that automatically adds the header and footer before uploading</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Page generator</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-58337153" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 31</h2>
+	</div>
+
+</div><style>
+	#switch-4126747:checked ~ #card-4126747 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-4126747:checked ~ #card-4126747 .entryform {
+		display: block;
+	}
+	#switch-4126747:checked ~ #card-4126747 .cardform,
+	#switch-4126747:checked ~ #card-4126747::before,
+	#switch-4126747:checked ~ #card-4126747::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-4126747" class="switch"></input>
+<div class="card software-card" id="card-4126747">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Google Drive API</h1>
+			<h3 class="date">July 31</h3>
+			<label class="back" for="switch-4126747">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Redone the google API handler for reusability and readability and made the google API handler generic</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Google Drive API</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-4126747" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 31</h2>
+	</div>
+
+</div><style>
+	#switch-73679129:checked ~ #card-73679129 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-73679129:checked ~ #card-73679129 .entryform {
+		display: block;
+	}
+	#switch-73679129:checked ~ #card-73679129 .cardform,
+	#switch-73679129:checked ~ #card-73679129::before,
+	#switch-73679129:checked ~ #card-73679129::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-73679129" class="switch"></input>
+<div class="card software-card" id="card-73679129">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Automation program</h1>
+			<h3 class="date">July 31</h3>
+			<label class="back" for="switch-73679129">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">revamped the main program</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>02</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Automation program</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-73679129" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">July 31</h2>
+	</div>
+
+</div><style>
+	#switch-52265841:checked ~ #card-52265841 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-52265841:checked ~ #card-52265841 .entryform {
+		display: block;
+	}
+	#switch-52265841:checked ~ #card-52265841 .cardform,
+	#switch-52265841:checked ~ #card-52265841::before,
+	#switch-52265841:checked ~ #card-52265841::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-52265841" class="switch"></input>
+<div class="card software-card" id="card-52265841">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Automation program</h1>
+			<h3 class="date">August 1</h3>
+			<label class="back" for="switch-52265841">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Finished redoing the application for generating and uploading pages</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>03</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Automation program</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-52265841" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 1</h2>
+	</div>
+
+</div><style>
+	#switch-50675987:checked ~ #card-50675987 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-50675987:checked ~ #card-50675987 .entryform {
+		display: block;
+	}
+	#switch-50675987:checked ~ #card-50675987 .cardform,
+	#switch-50675987:checked ~ #card-50675987::before,
+	#switch-50675987:checked ~ #card-50675987::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-50675987" class="switch"></input>
+<div class="card software-card" id="card-50675987">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+			<h1 class="title">Notebook</h1>
+			<h3 class="date">August 2</h3>
+			<label class="back" for="switch-50675987">&times;</label>
+		</div>
+		<div class="attendees">Rens Boeser</div>
+		<div class="description">Added month categorization to the page</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>05</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Notebook</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"></path>
+</svg>
+		<label for="switch-50675987" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 2</h2>
+	</div>
+
+</div><style>
+	#switch-23335235:checked ~ #card-23335235 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-23335235:checked ~ #card-23335235 .entryform {
+		display: block;
+	}
+	#switch-23335235:checked ~ #card-23335235 .cardform,
+	#switch-23335235:checked ~ #card-23335235::before,
+	#switch-23335235:checked ~ #card-23335235::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-23335235" class="switch"></input>
+<div class="card wetlab-card" id="card-23335235">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Transformation</h1>
+			<h3 class="date">August 9</h3>
+			<label class="back" for="switch-23335235">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>For further experiments we needed isolated DNA. The DNA is isolated out of the bacteria with the help of a plasmid purifaction kit. After isolation this DNA can be used for digestion and ligation or other experiments.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>3</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Transformation</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-23335235" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 9</h2>
+	</div>
+
+</div><style>
+	#switch-72597425:checked ~ #card-72597425 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-72597425:checked ~ #card-72597425 .entryform {
+		display: block;
+	}
+	#switch-72597425:checked ~ #card-72597425 .cardform,
+	#switch-72597425:checked ~ #card-72597425::before,
+	#switch-72597425:checked ~ #card-72597425::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-72597425" class="switch"></input>
+<div class="card wetlab-card" id="card-72597425">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">August 10</h3>
+			<label class="back" for="switch-72597425">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>The biobricks&nbsp;J23100, K133071, K173003 and I134353 were&nbsp;sucessfully digested after the second time. After the&nbsp;digestions the&nbsp;biobricks K133071 and K173003&nbsp;were dephosphorylated and ligated with the inserts J23100 and I13453. This was done in the original backbone of K133071 and K173003, and not another control backbone. To know&nbsp;if the biobricks were right ligated this was done by testing practically.&nbsp;See the experiments:&nbsp;<em>Testing gas production.</em>&nbsp;</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>4</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-72597425" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 10</h2>
+	</div>
+
+</div><style>
+	#switch-13763347:checked ~ #card-13763347 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-13763347:checked ~ #card-13763347 .entryform {
+		display: block;
+	}
+	#switch-13763347:checked ~ #card-13763347 .cardform,
+	#switch-13763347:checked ~ #card-13763347::before,
+	#switch-13763347:checked ~ #card-13763347::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-13763347" class="switch"></input>
+<div class="card wetlab-card" id="card-13763347">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Urea and sodium pyruvate test for resistence E.coli</h1>
+			<h3 class="date">August 10</h3>
+			<label class="back" for="switch-13763347">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p><span style="font-size:14px;">Testing different amounts of urea and sodiumpyruvate to know which concentrations the bacteria survive.</span></p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>1</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Urea and sodium pyruvate test for resistence E.coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-13763347" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 10</h2>
+	</div>
+
+</div><style>
+	#switch-23103907:checked ~ #card-23103907 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-23103907:checked ~ #card-23103907 .entryform {
+		display: block;
+	}
+	#switch-23103907:checked ~ #card-23103907 .cardform,
+	#switch-23103907:checked ~ #card-23103907::before,
+	#switch-23103907:checked ~ #card-23103907::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-23103907" class="switch"></input>
+<div class="card wetlab-card" id="card-23103907">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">August 13</h3>
+			<label class="back" for="switch-23103907">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Transformations of the biobricks (K133071 + J23100), (K13071 + I1345), (K173003 + J23100) and (K173003 + I13453) in NEB10Bèta.&nbsp;There was no grow except for the biobrick combination K133071 + J23100.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>5</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-23103907" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 13</h2>
+	</div>
+
+</div><style>
+	#switch-398549:checked ~ #card-398549 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-398549:checked ~ #card-398549 .entryform {
+		display: block;
+	}
+	#switch-398549:checked ~ #card-398549 .cardform,
+	#switch-398549:checked ~ #card-398549::before,
+	#switch-398549:checked ~ #card-398549::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-398549" class="switch"></input>
+<div class="card wetlab-card" id="card-398549">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">August 13</h3>
+			<label class="back" for="switch-398549">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>A colony PCR is done for the NEB10Bèta E.coli cells with expected&nbsp;the biobrick combination of K133071 with J23100. Nevertheless, on a gel the difference with and without promotor couldn't be seen. So there must be another way of proving the right biobricks are there.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>6</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-398549" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 13</h2>
+	</div>
+
+</div><style>
+	#switch-50279861:checked ~ #card-50279861 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-50279861:checked ~ #card-50279861 .entryform {
+		display: block;
+	}
+	#switch-50279861:checked ~ #card-50279861 .cardform,
+	#switch-50279861:checked ~ #card-50279861::before,
+	#switch-50279861:checked ~ #card-50279861::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-50279861" class="switch"></input>
+<div class="card wetlab-card" id="card-50279861">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">August 13</h3>
+			<label class="back" for="switch-50279861">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description">The ligations and transformations of the biobricks K173003 + J23100, K173003 + I13453, and K133071 + I13453 has been performed again.&nbsp;There was a lot of grow on the agar plates. To know&nbsp;if the biobricks were right ligated this was done by testing practically.&nbsp;See the experiments:&nbsp;<em>Testing gas production.</em>&nbsp;</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>7</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-50279861" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 13</h2>
+	</div>
+
+</div><style>
+	#switch-33749191:checked ~ #card-33749191 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-33749191:checked ~ #card-33749191 .entryform {
+		display: block;
+	}
+	#switch-33749191:checked ~ #card-33749191 .cardform,
+	#switch-33749191:checked ~ #card-33749191::before,
+	#switch-33749191:checked ~ #card-33749191::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-33749191" class="switch"></input>
+<div class="card wetlab-card" id="card-33749191">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Testing gas production</h1>
+			<h3 class="date">August 16</h3>
+			<label class="back" for="switch-33749191">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Making a set up for the gas production testing and testing it with NEB10Bèta with the expected biobricks in it (K133071 + J23100) and a negative control.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>1</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Testing gas production</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-33749191" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 16</h2>
+	</div>
+
+</div><style>
+	#switch-69969807:checked ~ #card-69969807 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-69969807:checked ~ #card-69969807 .entryform {
+		display: block;
+	}
+	#switch-69969807:checked ~ #card-69969807 .cardform,
+	#switch-69969807:checked ~ #card-69969807::before,
+	#switch-69969807:checked ~ #card-69969807::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-69969807" class="switch"></input>
+<div class="card wetlab-card" id="card-69969807">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Testing gas production</h1>
+			<h3 class="date">August 23</h3>
+			<label class="back" for="switch-69969807">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Making a set up for the gas production testing and testing it with NEB10Bèta with the expected biobricks in it (K133071 + I13453), (K173003 + J23100), (K173003 + I13453)&nbsp;and a negative control.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>2</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Testing gas production</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-69969807" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 23</h2>
+	</div>
+
+</div><style>
+	#switch-61168541:checked ~ #card-61168541 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-61168541:checked ~ #card-61168541 .entryform {
+		display: block;
+	}
+	#switch-61168541:checked ~ #card-61168541 .cardform,
+	#switch-61168541:checked ~ #card-61168541::before,
+	#switch-61168541:checked ~ #card-61168541::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-61168541" class="switch"></input>
+<div class="card wetlab-card" id="card-61168541">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Testing gas production</h1>
+			<h3 class="date">August 23</h3>
+			<label class="back" for="switch-61168541">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Gasproduction testing for the biobricks (K173003 + I13453), (K133071 + I13453) and negative controls (B0015 and K133071 without urea and arabinose).<br>
+K173003 + I13453 is tested with sodiumpyruvate and arabinose for gasproduction and&nbsp;K133071 + I13453&nbsp;is tested with urea and arabinose for gasproduction.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>3</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Testing gas production</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-61168541" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 23</h2>
+	</div>
+
+</div><style>
+	#switch-68583991:checked ~ #card-68583991 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-68583991:checked ~ #card-68583991 .entryform {
+		display: block;
+	}
+	#switch-68583991:checked ~ #card-68583991 .cardform,
+	#switch-68583991:checked ~ #card-68583991::before,
+	#switch-68583991:checked ~ #card-68583991::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-68583991" class="switch"></input>
+<div class="card wetlab-card" id="card-68583991">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Testing gas production</h1>
+			<h3 class="date">August 23</h3>
+			<label class="back" for="switch-68583991">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Testing the gasproduction&nbsp;of the colonies&nbsp;9 and 10 of biobricks (K173003 + J23100), colonies 5 and 7 of biobricks (K173003 + I13453) and colony 4 of&nbsp;biobricks (K133071 + I13453) with and without centrifuging the bacteria. There is also a negative control&nbsp;(J04450 pSB1K3) with Kanamycine.&nbsp;</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>4</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Testing gas production</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-68583991" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 23</h2>
+	</div>
+
+</div><style>
+	#switch-13342347:checked ~ #card-13342347 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-13342347:checked ~ #card-13342347 .entryform {
+		display: block;
+	}
+	#switch-13342347:checked ~ #card-13342347 .cardform,
+	#switch-13342347:checked ~ #card-13342347::before,
+	#switch-13342347:checked ~ #card-13342347::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-13342347" class="switch"></input>
+<div class="card wetlab-card" id="card-13342347">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">August 27</h3>
+			<label class="back" for="switch-13342347">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Minipreps are made of colonies 11 and 19 of biobrick combination&nbsp;K133071 + J23100.&nbsp;Results: 11. 270,57 ng/ul&nbsp;19. 253,59 ng/ul.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>8</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-13342347" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 27</h2>
+	</div>
+
+</div><style>
+	#switch-12359811:checked ~ #card-12359811 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-12359811:checked ~ #card-12359811 .entryform {
+		display: block;
+	}
+	#switch-12359811:checked ~ #card-12359811 .cardform,
+	#switch-12359811:checked ~ #card-12359811::before,
+	#switch-12359811:checked ~ #card-12359811::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-12359811" class="switch"></input>
+<div class="card wetlab-card" id="card-12359811">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">August 27</h3>
+			<label class="back" for="switch-12359811">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>A miniprep of the biobrick K352002 is made. The concentration is 69,77 ng/ul.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>9</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-12359811" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 27</h2>
+	</div>
+
+</div><style>
+	#switch-54000721:checked ~ #card-54000721 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-54000721:checked ~ #card-54000721 .entryform {
+		display: block;
+	}
+	#switch-54000721:checked ~ #card-54000721 .cardform,
+	#switch-54000721:checked ~ #card-54000721::before,
+	#switch-54000721:checked ~ #card-54000721::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-54000721" class="switch"></input>
+<div class="card wetlab-card" id="card-54000721">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Urea and sodium pyruvate test for resistence E.coli</h1>
+			<h3 class="date">August 28</h3>
+			<label class="back" for="switch-54000721">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p><span style="font-size:14px;">Testing different amounts of urea and sodiumpyruvate to know which concentrations the bacteria survive.</span></p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>2</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Urea and sodium pyruvate test for resistence E.coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-54000721" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 28</h2>
+	</div>
+
+</div><style>
+	#switch-11080274:checked ~ #card-11080274 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-11080274:checked ~ #card-11080274 .entryform {
+		display: block;
+	}
+	#switch-11080274:checked ~ #card-11080274 .cardform,
+	#switch-11080274:checked ~ #card-11080274::before,
+	#switch-11080274:checked ~ #card-11080274::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-11080274" class="switch"></input>
+<div class="card wetlab-card" id="card-11080274">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">September 7</h3>
+			<label class="back" for="switch-11080274">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Digestions, gelelectrophoresis, dephosphorylations and ligations of different biobrick combinations. These biobrick combinations are 4 different promotors (J23100, I13453, K352002, K352003)&nbsp; with 4 different gasproduction biobricks (k173003, K173013, K133071, K133116). J23100 is about 1 kb to long. The rest seems likely to be right digested. The ligations will be transformed in NEB10bèta and digested again as control.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>10</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-11080274" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">September 7</h2>
+	</div>
+
+</div><style>
+	#switch-79275264:checked ~ #card-79275264 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-79275264:checked ~ #card-79275264 .entryform {
+		display: block;
+	}
+	#switch-79275264:checked ~ #card-79275264 .cardform,
+	#switch-79275264:checked ~ #card-79275264::before,
+	#switch-79275264:checked ~ #card-79275264::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-79275264" class="switch"></input>
+<div class="card wetlab-card" id="card-79275264">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">September 7</h3>
+			<label class="back" for="switch-79275264">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Transformations of the biobrick&nbsp;combinations in NEB10bèta. The transformations are plated on kanamycine agar plates, because all the ligations were done in pSB1K3 (kanamycine resistence) backbone. Pink and with colonies appeared after incubation by 37 degrees Celcius for about 12h. The white colonies will be used for further experiments.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>11</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-79275264" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">September 7</h2>
+	</div>
+
+</div><style>
+	#switch-96553096:checked ~ #card-96553096 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-96553096:checked ~ #card-96553096 .entryform {
+		display: block;
+	}
+	#switch-96553096:checked ~ #card-96553096 .cardform,
+	#switch-96553096:checked ~ #card-96553096::before,
+	#switch-96553096:checked ~ #card-96553096::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-96553096" class="switch"></input>
+<div class="card wetlab-card" id="card-96553096">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">September 11</h3>
+			<label class="back" for="switch-96553096">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Plasmid DNA was isolated of 20 different colonies. The first time something went wrong. The second time we had good concentrations of isolated plasmid DNA. After this we will digest the DNA to see if the plasmids all have the required biobricks.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>12</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-96553096" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">September 11</h2>
+	</div>
+
+</div><style>
+	#switch-58704764:checked ~ #card-58704764 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-58704764:checked ~ #card-58704764 .entryform {
+		display: block;
+	}
+	#switch-58704764:checked ~ #card-58704764 .cardform,
+	#switch-58704764:checked ~ #card-58704764::before,
+	#switch-58704764:checked ~ #card-58704764::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-58704764" class="switch"></input>
+<div class="card wetlab-card" id="card-58704764">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">September 11</h3>
+			<label class="back" for="switch-58704764">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>The minipreps of experiment 12 are digested with the restriction enzymes: SmaI and ScaI.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>13</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-58704764" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">September 11</h2>
+	</div>
+
+</div><style>
+	#switch-33350561:checked ~ #card-33350561 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-33350561:checked ~ #card-33350561 .entryform {
+		display: block;
+	}
+	#switch-33350561:checked ~ #card-33350561 .cardform,
+	#switch-33350561:checked ~ #card-33350561::before,
+	#switch-33350561:checked ~ #card-33350561::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-33350561" class="switch"></input>
+<div class="card wetlab-card" id="card-33350561">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">September 17</h3>
+			<label class="back" for="switch-33350561">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Minipreps of the biobrick combinations:&nbsp;K352002+K133116+pSB1K3 (1) and&nbsp;K352003+K133116+pSB1K3 (2) are done. The DNA concentration is for 1:189,3 ng/µl and for 2: 355,3&nbsp;ng/µl.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>14</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-33350561" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">September 17</h2>
+	</div>
+
+</div><style>
+	#switch-47808113:checked ~ #card-47808113 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-47808113:checked ~ #card-47808113 .entryform {
+		display: block;
+	}
+	#switch-47808113:checked ~ #card-47808113 .cardform,
+	#switch-47808113:checked ~ #card-47808113::before,
+	#switch-47808113:checked ~ #card-47808113::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-47808113" class="switch"></input>
+<div class="card wetlab-card" id="card-47808113">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">September 17</h3>
+			<label class="back" for="switch-47808113">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p></p></div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>15</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Cloning Multiple BioBricks to Assess Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-47808113" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">September 17</h2>
+	</div>
+
+</div><style>
+	#switch-28067280:checked ~ #card-28067280 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-28067280:checked ~ #card-28067280 .entryform {
+		display: block;
+	}
+	#switch-28067280:checked ~ #card-28067280 .cardform,
+	#switch-28067280:checked ~ #card-28067280::before,
+	#switch-28067280:checked ~ #card-28067280::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-28067280" class="switch"></input>
+<div class="card wetlab-card" id="card-28067280">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Testing gas production</h1>
+			<h3 class="date">September 17</h3>
+			<label class="back" for="switch-28067280">&times;</label>
+		</div>
+		<div class="attendees">UNKNOWN</div>
+		<div class="description"><p>Different species/tribes? of E.coli are tested as negative control. Those spacies/tribes? were:&nbsp;NEB10Bèta, BL21 (DE3), BL21, HB101, DH5alpha and&nbsp;JM109. NEB10Bèta produced the most gas. BL21, HB101 and JM101 produced none/almost none gas. Because BL21 isn't a K12 tribe? we can not use that one. That is why we will test further gasproduction in HB101 and JM109. And maybe those will be our final E.coli tribes.</p>
+</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>5</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Testing gas production</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-28067280" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">September 17</h2>
+	</div>
+
+</div></div>
