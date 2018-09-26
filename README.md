@@ -1,5 +1,4 @@
-# iGEM-RotterdamHR-2018
-iGEM team Rotterdam 2018 wiki environment.
+# iGEM team Rotterdam 2018 wiki environment.
 This repository contains modules to automate a large part of our wiki.
 These modules (apart from Page-uploader) were written by our own team members.
 Note that the module Page-uploader will be replaced by the iGEM-wiki-api-python module when it is fully operational.
