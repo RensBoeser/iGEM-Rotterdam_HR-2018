@@ -15,10 +15,10 @@
 }
 
 /* ------ PAGE ------ */
-.page.index {
+.page-index {
 	background: var(--color-secondary);
 }
-.page.software {
+.page-software {
 	background: var(--color-software-secondary);
 }
 
