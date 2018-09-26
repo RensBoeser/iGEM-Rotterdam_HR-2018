@@ -5,7 +5,6 @@ Note that the module Page-uploader will be replaced by the iGEM-wiki-api-python 
 ## Usage
 1. Put all authentication JSON files in the lib folder
 2. Make sure you fetch all module updates
-
 ## Modules
 * tevd/iGEM-wiki-api-python
 * RensBoeser/Page-viewdata-analyser
