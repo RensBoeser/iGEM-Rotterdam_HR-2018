@@ -1,10 +1,10 @@
 import os, sys, time
 from Naked.toolshed.shell import execute_js, muterun_js
 
-sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/NotebookGenerator')
-sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)) + '/Page generator')
-sys.path.insert(2, os.path.dirname(os.path.realpath(__file__)) + '/ELabJournal entry receiver')
-sys.path.insert(3, os.path.dirname(os.path.realpath(__file__)) + '/GoogleDrive entry receiver')
+sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/Notebook-generator')
+sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)) + '/Page-generator')
+sys.path.insert(2, os.path.dirname(os.path.realpath(__file__)) + '/ELabJournal-entry-receiver')
+sys.path.insert(3, os.path.dirname(os.path.realpath(__file__)) + '/GoogleDrive-entry-receiver')
 sys.path.insert(4, os.path.dirname(os.path.realpath(__file__)) + '/iGEM-wiki-api-python')
 
 from notebookGenerator import NotebookGenerator

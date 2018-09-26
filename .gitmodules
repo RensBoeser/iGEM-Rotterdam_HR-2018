@@ -1,0 +1,21 @@
+[submodule "app/Page-uploader"]
+	path = app/Page-uploader
+	url = https://github.com/RensBoeser/Page-uploader
+[submodule "app/Page-generator"]
+	path = app/Page-generator
+	url = https://github.com/RensBoeser/Page-generator
+[submodule "app/Notebook-generator"]
+	path = app/Notebook-generator
+	url = https://github.com/RensBoeser/Notebook-generator
+[submodule "app/ELabJournal-entry-receiver"]
+	path = app/ELabJournal-entry-receiver
+	url = https://github.com/RensBoeser/ELabJournal-entry-receiver
+[submodule "app/GoogleDrive-entry-receiver"]
+	path = app/GoogleDrive-entry-receiver
+	url = https://github.com/RensBoeser/GoogleDrive-entry-receiver
+[submodule "app/iGEM-wiki-api-python"]
+	path = app/iGEM-wiki-api-python
+	url = https://github.com/tevd/iGEM-wiki-api-python
+[submodule "app/Page-viewdata-analyser"]
+	path = app/Page-viewdata-analyser
+	url = https://github.com/RensBoeser/Page-viewdata-analyser
