@@ -1,0 +1,61 @@
+<style>
+  h1.title::after {
+    left: -10%;
+    right: -10%;
+  }
+</style>
+
+<div>
+  <div class="text-container">
+    <a name="abstract"></a>
+    <h1 class="title" style="font-size: 50px;">Selective Carbon Monoxide Detection</h1>
+    <p>This project is focussed on manufacturing a carbon monoxide detection system. Despite the fact that there are already detection systems for carbon monoxide on the market. There is nothing wrong with the sensitivity of the present-day detection systems. However, carbon monoxide detectors that are used in various industries experience complications to differentiate between carbon monoxide and hydrogen gas. Because hydrogen gas is a by-product in many industries, this interference problem can result in many false alarms. </p>
+  </div>
+  <div class="text-container">
+    <a name="CooA"></a>
+    <h1>The CooA Protein</h1>
+    <p>In order to create a device that can selectively detect carbon monoxide in a biological pathway, it is crucial to have a protein that can sense carbon monoxide molecules. The receptor protein CooA, a member of the cAMP receptor protein (CRP) family, is such a protein. In nature this heme-containing CooA protein is synthesised by the bacteria Rhodospirillum rubrum and functions in a similar way as haemoglobin. Besides its capacity to bind to CO, the CooA protein also functions as a transcription factor. When a CooA protein binds to a carbon monoxide molecule it alters its own structure. Due to this change in structure the CooA receptor can bind to a specific DNA sequence: a CooA-dependent promotor. In the R. rubrum bacteria the location of the CooA-binding site on the DNA forms the foundation for the transcription of the cooFSCTJ and cooMKLXUH operons, which code for the synthesis of proteins that oxidize CO to CO2. Thus, in R. rubrum bacteria CooA regulates the rate of the transcription of the genetic information that encodes for proteins that allow growth of this organism on CO as a sole energy source.</p>
+  </div>
+  <div class="text-container">
+    <a name="Gas detection"></a>
+    <h1>Gas Detection and Gas Production</h1>
+    <p>For a CO detection system the binding of CO to the CooA protein has to initiate the transcription of proteins that can deliver an output signal, instead of the original mechanism where proteins are synthesised that can oxidize CO to CO2. As a replacement for the original operons, a gene was ligated into the DNA sequence that enables the synthesis of the enzyme urease. Accordingly, urease can convert the urea that is present in the medium into CO2. The released CO2 gas in the medium will be collected in a compartment where a constant electrical current goes through. As a result, the medium in the compartment will be replaced by the produced CO2 gas. When a certain threshold is reached in the amount of produced gas a change in the resistance will occur, which can be detected by the hardware. Minimal concentrations of carbon monoxide in unpolluted air already result in the production of CO2 gas that can add up and eventually reach the threshold. Therefore it was also necessary to design a constant draining system.</p>
+    <p>Other output signal molecules were taken into consideration as well. For instance, producing an electrical signal by bacteria that release electrons which subsequently can be detected by the hardware. However, oxygen molecules in the medium can capture these released electrons. Designing an anaerobic environment to counter this problem resulted in additional complications.</p>
+  </div>
+  <!-- <div>
+    <h1>Hardware</h1>
+  </div> -->
+  <!-- <div>
+    <h1>Safety</h1>
+  </div> -->
+</div>
+
+<div class="text-container">
+  <h1>Relevant pages</h1>
+  <div class="nav-cards">
+    <a href="http://2018.igem.org/Team:Rotterdam_HR/Notebook" class="nav-card">
+      <h2>Project Notebook</h2>
+      <svg viewBox="0 0 24 24">
+        <path d="M21,5C19.89,4.65 18.67,4.5 17.5,4.5C15.55,4.5 13.45,4.9 12,6C10.55,4.9 8.45,4.5 6.5,4.5C4.55,4.5 2.45,4.9 1,6V20.65C1,20.9 1.25,21.15 1.5,21.15C1.6,21.15 1.65,21.1 1.75,21.1C3.1,20.45 5.05,20 6.5,20C8.45,20 10.55,20.4 12,21.5C13.35,20.65 15.8,20 17.5,20C19.15,20 20.85,20.3 22.25,21.05C22.35,21.1 22.4,21.1 22.5,21.1C22.75,21.1 23,20.85 23,20.6V6C22.4,5.55 21.75,5.25 21,5M21,18.5C19.9,18.15 18.7,18 17.5,18C15.8,18 13.35,18.65 12,19.5V8C13.35,7.15 15.8,6.5 17.5,6.5C18.7,6.5 19.9,6.65 21,7V18.5Z" />
+      </svg>
+    </a>
+    <a href="http://2018.igem.org/Team:Rotterdam_HR/Experiments" class="nav-card">
+      <h2>Experiments</h2>
+      <svg viewBox="0 0 24 24">
+        <path d="M7,2V4H8V18A4,4 0 0,0 12,22A4,4 0 0,0 16,18V4H17V2H7M11,16C10.4,16 10,15.6 10,15C10,14.4 10.4,14 11,14C11.6,14 12,14.4 12,15C12,15.6 11.6,16 11,16M13,12C12.4,12 12,11.6 12,11C12,10.4 12.4,10 13,10C13.6,10 14,10.4 14,11C14,11.6 13.6,12 13,12M14,7H10V4H14V7Z" />
+      </svg>
+    </a>
+    <a href="http://2018.igem.org/Team:Rotterdam_HR/Results" class="nav-card">
+      <h2>Results</h2>
+      <svg viewBox="0 0 24 24">
+        <path d="M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M7,7H17V5H19V19H5V5H7V7M7.5,13.5L9,12L11,14L15.5,9.5L17,11L11,17L7.5,13.5Z" />
+      </svg>
+    </a>
+    <a href="http://2018.igem.org/Team:Rotterdam_HR/Team" class="nav-card">
+      <h2>Team Rotterdam</h2>
+      <svg viewBox="0 0 24 24">
+        <path d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z" />
+      </svg>
+    </a>	
+  </div>
+</div>

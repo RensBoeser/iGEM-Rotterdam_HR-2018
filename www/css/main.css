@@ -11,11 +11,11 @@
 	--color-hardware: #3949AB;
 
 	--color-software: #424242;
-	--color-software-secondary: #6a6a6a;
+	--color-software-secondary: #a1a1a1;
 }
 
 /* ------ PAGE ------ */
-.page-index {
+.page-index, .page-description {
 	background: var(--color-secondary);
 }
 .page-software {
@@ -41,7 +41,7 @@ ul {
 }
 
 #HQ_page h1, #HQ_page h2, #HQ_page h3, #HQ_page p, #HQ_page span, #HQ_page a{
-	font-family: "Century Gothic";
+	font-family: candara;
 	line-height: initial;
 }
 
@@ -69,17 +69,13 @@ ul {
 }
 
 body {
-	font-family: "Century Gothic";
+	font-family: candara;
 	background: white;
   font-size: 13px;
 }
 
 /* ----- NAVBAR ----- */
 .menu {
-  /*   position: absolute; */
-  /*   top: 0; */
-  /*   left: 0; */
-  /*   right: 0; */
 	display: flex;
 }
 
@@ -338,11 +334,21 @@ body {
   transform: none;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1230px) {
+  .main-item {
+    font-size: smaller;
+  }
+
+}
+
+@media only screen and (max-width: 1060px) {
 	.home-button {
 		display: none;
 	}
-  
+
+}
+
+@media only screen and (max-width: 900px) {
   .menu {
     height: 50px;
     width: 100%;
@@ -355,14 +361,15 @@ body {
 	
 	#menuToggle {
 		display: block;
-	}
+  }
+  
 }
 
 /* ------ HEADER ------ */
 
 .header {
   position: relative;
-  height: 400px;
+  height: 40vh;
   width: 100%;
   background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.5), rgba(255,255,255,0.3));
   display: flex;
@@ -425,7 +432,7 @@ body {
 	background: rgb(50, 50, 50);
 	text-align: center;
 	color: white;
-	font-size: 18px;
+	font-size: 20px;
 }
 
 /* ------ CONTAINERS ------ */
@@ -506,6 +513,7 @@ body {
 }
 
 .text-container h1 {
+  font-size: 40px;
   position: relative;
   color: var(--color-primary);
 }
@@ -523,15 +531,18 @@ body {
 
 .text-container p {
   margin-bottom: 20px;
+  font-size: 24px !important;
+  text-align: center !important;
 }
 
 .nav-button {
 	position: relative;
   padding: 10px 20px;
   background: var(--color-primary);
-  color: white;
-  text-decoration: none;
+  color: white !important;
+  text-decoration: none !important;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  font-size: 20px !important;
 }
 
 .nav-button::before {

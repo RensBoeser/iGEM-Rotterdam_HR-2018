@@ -1,0 +1,117 @@
+<style>
+  .title {
+    color: white;
+    background: var(--color-software);
+    padding: 10px 20px;
+    margin: auto;
+    text-align: center;
+    font-size: 54px;
+  }
+
+  .dual-text {
+    display: flex;
+  }
+
+  .dual-text div {
+    flex: 1;
+    padding: 10px 20px;
+  }
+
+  .text-container p {
+    color: white;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .dual-text {
+      flex-direction: column;
+    }
+  }
+
+</style>
+
+<h1 class="title">Software</h1>
+
+<div class="text-container">
+  <h1>Wiki Statistics</h1>
+  <p>
+    As a team interested in building a good wiki we liked to know which iGEM team pages were the most popular.
+    To get the best data for inspiration, we made a web application for ranking all teampages by views.
+    Using this application we can search for the current best pages.
+    There is even an option to filter for a certain team and/or subpage.
+    Of course, this application is now publically available on our wiki!
+    We find this application helpful and we hope other iGEM teams will use it to better their own wiki.
+  </p>
+  <p>
+    We are currently storing all viewdata of the day on a remote server.
+    In a future update, we want to use this gathered data to show graphs and other analytics.
+    All if we have the time to build such a program. 
+    If you are interested, you can find the raw viewdata <a href="http://www.tevd.nl:81/">here (JSON format)</a>.
+  </p>
+  <a class="nav-button" href="http://2018.igem.org/Team:Rotterdam_HR/Wikistat">To the Wikistat Page</a>
+</div>
+
+<div class="text-container">
+  <h1>Notebook Generator</h1>
+  <p>
+    As a team with only one computer scientist, we wanted a notebook that automatically updates whenever someone adds something to our lab journal.
+    Luckily, we gained a sponsor that gave use an electronic lab journal as sponsorship.
+    With this, we can use their API to download specific sections from our lab journal and display them on or wiki.
+    But, as a multidisciplinary team we have multiple kinds of notebook entries: Software, Hardware and Wetlab.
+    Therefore we also used google sheets for filling in software and hardware entries.
+    <br>
+    For gathering all our entries we used the following programs:
+  </p>
+
+  <div class="dual-text">
+    <div class="text-container">
+      <h1>Google Drive Entries</h1>
+      <p>
+        For our software and hardware notebook entries we built a program using the Google RESTful API.
+        It downloads excel sheets from our Google Drive containing notebook entries and turns them into JSON files.
+      </p>
+    
+    </div>
+    
+    <div class="text-container">
+      <h1>eLabJournal Entries</h1>
+      <p>
+        For our wetlab notebook entries we built a program using the eLabJournal API.
+        This API allows for downloading sections from our electronic lab journal as JSON files.
+      </p>
+    </div>
+  </div>
+  <div class="text-container">
+    <h1>Notebook Builder</h1>
+    <p>
+      After downloading all the entries as JSON files, they need to be converted into actual HTML code for our wiki page.
+      This is done by the Notebook Generator program.
+    </p>
+    <p>
+      First, the program needs to take the entries and turn them into html code individually.
+      This is done by filling a template with the right data.
+      Afterwards the individual entries are put inside a page with the additional content like specific filters.
+    </p>
+  </div>
+</div>
+
+<div class="text-container">
+  <h1>Page Builder</h1>
+  <p>
+    To make it easier for us to develop our wiki, we built a program that takes naked html code and adds a dynamic header and footer to it.
+    This way we have files only containing content for the page, which are then transformed into a full webpage.
+  </p>
+</div>
+
+<!-- <div class="text-container">
+  <h1>Wiki API</h1>
+  <p>
+    
+  </p>
+</div> -->
+
+<!-- <div class="text-container">
+  <h1>Timelapse Software</h1>
+  <p>
+    
+  </p>
+</div> -->
