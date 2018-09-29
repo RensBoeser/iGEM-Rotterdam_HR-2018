@@ -1,5 +1,4 @@
 import os, sys, time
-from Naked.toolshed.shell import execute_js, muterun_js
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/Notebook-generator')
 sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)) + '/Page-generator')
@@ -25,18 +24,18 @@ def __main__():
 	_outputhtml = _dirpath + 'generated html/'
 	_notebookfiles = _libpath + 'notebook files/'
 	
-	# Get entries
-	entries = []
-	entries.append(hardwareEntries(_libpath))
-	entries.append(labEntries(_libpath))
+	# # Get entries
+	# entries = []
+	# entries.append(hardwareEntries(_libpath))
+	# entries.append(labEntries(_libpath))
 
-	# Generate notebook
+	# # Generate notebook
 	
-	start = time.time()
-	print('Generating notebook page...')
-	NotebookGenerator(entries, _html, _notebookfiles).GeneratePage()
-	end = time.time()
-	print('Generated notebook page [{0}ms]'.format(int((end-start) * 1000)))
+	# start = time.time()
+	# print('Generating notebook page...')
+	# NotebookGenerator(entries, _html, _notebookfiles).GeneratePage()
+	# end = time.time()
+	# print('Generated notebook page [{0}ms]'.format(int((end-start) * 1000)))
 	
 	# Generate pages
 	start = time.time()
