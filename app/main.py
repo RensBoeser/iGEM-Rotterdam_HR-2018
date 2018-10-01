@@ -10,7 +10,7 @@ from notebookGenerator import NotebookGenerator
 from pageGenerator import PageGenerator
 from getHardwareEntries import GetHardwareEntries as hardwareEntries
 from receiver import GetELabEntries as labEntries
-from iGEMAPI import iGEMWIKI
+# from iGEMAPI import iGEMWIKI
 
 def __main__():
 	# Get working directories
