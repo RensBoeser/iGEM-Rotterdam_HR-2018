@@ -1,57 +1,47 @@
 <style>
-	.sponsors {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-	}
+.sponsors {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
 
-	.sponsor {
-		width: 240px;
-		background: var(--color-secondary);
-		color: black;
-		margin: 20px;
-		padding: 20px;
-		box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
-	}
+.title {
+	background: var(--color-secondary);
+	color: white;
+	padding: 10px;
+}
 
-	.sponsor img {
-		width: 100%;
-		background: white;
-		border: white solid 4px;
-		box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-	}
+.person {
+  width: fit-content;
+  max-width: 400px;
+  padding: 2rem;
+  margin: 2rem;
+}
 
-	.sponsor h1 {
-		margin: 0;
-		padding: 5px;
-		position: relative;
-		color: white;
-		text-align: center;
-	}
+.person .picture {
+  background-repeat: no-repeat;
+	background-position: center;
+  background-size: 100%;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
 
-	.sponsor h1::after {
-		content: '';
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		height: 2px;
-		background: black;
-	}
+.person ul {
+  background: whitesmoke;
+  padding: .5rem 2rem;
+  list-style: none;
+}
 
-	.sponsor p {
-		margin: 0;
-		padding: 5px;
-		text-align: center;
-	}
+.person ul li h3 {
+  margin: .5rem;
+}
 
-	.title {
-		background: var(--color-secondary);
-    color: white;
-    padding: 10px;
-	}
+.person p {
+  padding: 1rem;
+  font-size: 1.4rem !important;
+  text-align: justify;
+}
 
 </style>
 
@@ -62,55 +52,46 @@
 
 <div class="sponsors">
 	
-	<div class="sponsor">
-        <div style="width: 100%;">
-					<a href="https://www.bio-itech.nl/en/home/">
-						<img src="http://2018.igem.org/wiki/images/9/93/T--Rotterdam_HR--bio-itech.png" alt="company logo">
-					</a>
-				</div>
-        <div class="bio">
-            <a href="https://www.bio-itech.nl/en/home/"><h1>BIO-ITECH</h1></a>
-            <p>Bio-ITech is a Life Science IT company that provides software solutions to manage information in the workflow of laboratories worldwide.</p>
-        </div>
-	</div>
-    
-	<div class="sponsor">
-			<a href="http://buveco.com/"><img src="http://2018.igem.org/wiki/images/1/17/T--Rotterdam_HR--Buvecologo.jpeg" alt="company logo"></a>
-			<div class="bio">
-					<a href="http://buveco.com/"><h1>Buveco gasdetection</h1></a>
-					<p>Buveco Gasdetection BV is a small company active in gasdetection sequipment since 1978.</p>
-			</div>
+	<div class="person">
+		<!-- <a href="https://www.bio-itech.nl/en/home/"> -->
+		<div class="picture" style="background-image: url('http://2018.igem.org/wiki/images/9/93/T--Rotterdam_HR--bio-itech.png');"></div>
+		<!-- </a> -->
+		<p>Bio-ITech is a Life Science IT company that provides software solutions to manage information in the workflow of laboratories worldwide.</p>
 	</div>
 
-	<div class="sponsor">
-			<a href="https://www.rivm.nl/"><img src="http://2018.igem.org/wiki/images/9/90/T--Rotterdam_HR--RIVMlogo.png" alt="company logo"></a>
-			<div class="bio">
-					<a href="https://www.rivm.nl/"><h1> the RIVM</h1></a>
-					<p>The Rijksinstituut voor Volksgezondheid en Milieu (RIVM) is a national institute for public health and the enviroment in the Netherlands.</p>
-			</div>
+	<div class="person">
+		<!-- <a href="http://buveco.com/"> -->
+		<div class="picture" style="background-image: url('http://2018.igem.org/wiki/images/1/17/T--Rotterdam_HR--Buvecologo.jpeg');"></div>
+		<!-- </a> -->
+		<p>Buveco Gasdetection BV is a small company active in gasdetection sequipment since 1978.</p>
 	</div>
 
-	<div class="sponsor">
-			<a href="https://www.hogeschoolrotterdam.nl/samenwerking/instituten/instituut-voor-engineering-en-applied-science/introductie/"><img src="http://2018.igem.org/wiki/images/f/f0/T--Rotterdam_HR--HREASlogo.png" alt="company logo"></a>
-			<div class="bio">
-					<a href="https://www.hogeschoolrotterdam.nl/samenwerking/instituten/instituut-voor-engineering-en-applied-science/introductie/"><h1> Rotterdam University of Applied Sciences</h1></a>
-					<p>The Rotterdam University of Applied Sciences is an university with fifteen different locations spread all over Rotterdam. They offer a lot of different studies from business school to mechanical engineering.</p>
-			</div>
+	<div class="person">
+		<!-- <a href="https://www.rivm.nl/"> -->
+		<div class="picture" style="background-image: url('http://2018.igem.org/wiki/images/9/90/T--Rotterdam_HR--RIVMlogo.png');"></div>
+		<!-- </a> -->
+		<p>The Rijksinstituut voor Volksgezondheid en Milieu (RIVM) is a national institute for public health and the enviroment in the Netherlands.</p>
 	</div>
 
-	<div class="sponsor">
-			<a href="https://nl.farnell.com/"><img src="http://2018.igem.org/wiki/images/9/98/T--Rotterdam_HR--Farnelllogo.png" alt="company logo"></a>
-			<div class="bio">
-					<a href="https://nl.farnell.com/"><h1> Farnell</h1></a>
-					<p>Farnell is a company that provides a lot of electronic products for our hardware. The company is known for a very fast delivery of one day.</p>
-			</div>
+	<div class="person">
+		<!-- <a href="https://www.hogeschoolrotterdam.nl/samenwerking/instituten/instituut-voor-engineering-en-applied-science/introductie/"> -->
+		<div class="picture" style="background-image: url('http://2018.igem.org/wiki/images/f/f0/T--Rotterdam_HR--HREASlogo.png');"></div>
+		<!-- </a> -->
+		<p>The Rotterdam University of Applied Sciences is an university with fifteen different locations spread all over Rotterdam. They offer a lot of different studies from business school to mechanical engineering.</p>
 	</div>
 
-	<div class="sponsor">
-		<a href="http://www.resolutie.nl/"><img src="http://2018.igem.org/wiki/images/2/2c/T--Rotterdam_HR--Resolutievanzijderveld.png" alt="company logo"></a>
-		<div class="bio">
-			<a href="http://www.resolutie.nl/"><h1> De Resolutie van Zijderveld</h1></a>
-			<p>De Resolutie van Zijderveld is a company with a lot of different services for customers. They offer things like digital printing, large format printing, buildig exhibitions, milling, creasig and cutting.</p>
-		</div>
+	<div class="person">
+		<!-- <a href="https://nl.farnell.com/"> -->
+		<div class="picture" style="background-image: url('http://2018.igem.org/wiki/images/9/98/T--Rotterdam_HR--Farnelllogo.png');"></div>
+		<!-- </a> -->
+		<p>Farnell is a company that provides a lot of electronic products for our hardware. The company is known for a very fast delivery of one day.</p>
 	</div>
+
+	<div class="person">
+		<!-- <a href="http://www.resolutie.nl/"> -->
+		<div class="picture" style="background-image: url('http://2018.igem.org/wiki/images/2/2c/T--Rotterdam_HR--Resolutievanzijderveld.png');"></div>
+		<!-- </a> -->
+		<p>De Resolutie van Zijderveld is a company with a lot of different services for customers. They offer things like digital printing, large format printing, buildig exhibitions, milling, creasig and cutting.</p>
+	</div>
+	
 </div>

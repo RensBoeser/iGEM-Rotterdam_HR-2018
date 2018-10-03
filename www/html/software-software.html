@@ -36,6 +36,18 @@
 <h1 class="title">Software</h1>
 
 <div class="text-container">
+  <h1>Wiki environment</h1>
+  <p>
+      When we started building our wiki, it soon became clear that we needed some software to help us speed up the process.
+      We built some handy Software applications for generating as much content for pages as possible.
+      This boosted our efficiency and will possibly boost the efficiency of future iGEM teams.
+      Our main setup contains most of the software projects listed below.
+      Please, have a look.
+  </p>
+  <a class="nav-button" href="https://github.com/RensBoeser/iGEM-Rotterdam_HR-2018">Github page</a>
+</div>
+
+<div class="text-container">
   <h1>Wiki Statistics</h1>
   <p>
     As a team interested in building a good wiki we liked to know which iGEM team pages were the most popular.
@@ -73,6 +85,7 @@
         For our software and hardware notebook entries we built a program using the Google RESTful API.
         It downloads excel sheets from our Google Drive containing notebook entries and turns them into JSON files.
       </p>
+      <a class="nav-button" href="https://github.com/RensBoeser/GoogleDrive-entry-receiver">Github page</a>
     
     </div>
     
@@ -82,6 +95,7 @@
         For our wetlab notebook entries we built a program using the eLabJournal API.
         This API allows for downloading sections from our electronic lab journal as JSON files.
       </p>
+      <a class="nav-button" href="https://github.com/RensBoeser/ELabJournal-entry-receiver">Github page</a>
     </div>
   </div>
   <div class="text-container">
@@ -95,6 +109,7 @@
       This is done by filling a template with the right data.
       Afterwards the individual entries are put inside a page with the additional content like specific filters.
     </p>
+    <a class="nav-button" href="https://github.com/RensBoeser/Notebook-generator">Github page</a>
   </div>
 </div>
 
@@ -104,7 +119,10 @@
     To make it easier for us to develop our wiki, we built a program that takes naked html code and adds a dynamic header and footer to it.
     This way we have files only containing content for the page, which are then transformed into a full webpage.
   </p>
+  <a class="nav-button" href="https://github.com/RensBoeser/Page-generator">Github page</a>
 </div>
+
+
 
 <!-- <div class="text-container">
   <h1>Wiki API</h1>
@@ -113,9 +131,12 @@
   </p>
 </div> -->
 
-<!-- <div class="text-container">
-  <h1>Timelapse Software</h1>
+<div class="text-container">
+  <h1>Bio-rad Zoe - Timelapse Software</h1>
   <p>
-    
+    We wanted to monitor the progress of our cells, but there was just one problem. Our fluorescence microscope (a Bio-Rad Zoe) can only take single images, and no timelapses. But there was still hope, it had a service port and uses android as it’s operating system (OS). Upon connecting to this port, windows recognized it as a FT232 usb-serial adapter. After trying to connect to it with a few common settings and a program called PuTTY, we saw a command prompt. And best of all, it was unsecured. There was no password required for the "root" user, who has access to everything.
+  </p><p>Now that we have access to the OS, we have to find a way to make a timelapse. The most non-intrusive way we could think of was to emulate the events the touch screen produced. So first, we needed to get the event data. For this we used the built-in android command "getevent" which helpfully lists all events in real time. The only problem is that it gave us event names instead of ids, so we had to do some research to find out which names were used for which ids. After we figured that out, we used the "sendevent" command to "touch" the screen automatically. This way, we can just press the button to make a picture, and afterwards press another button export it to a usb drive, rename it using the "input text" command, and delete it from the internal memory.
+  </p><p>Now that the software is complete, we wanted to have a standalone device for making timelapses. This way, your laptop can still be used wherever you need it, instead of being tethered to the microscope. To do this, we put our python code on a raspberry pi zero. This is a small and affordable (five dollar) computer. And made our code run when it starts. To prevent the OS on the raspberry pi from getting corrupted from random unplugging among other things, we made the SD card where everything is stored on read-only, using the instructions <a href="https://learn.adafruit.com/read-only-raspberry-pi/overview" style="background: none;">here</a>.    
+  </p><p>As a result of all this, we have a standalone device. Which can be plugged into the service port of the microscope and will automatically start making timelapses.      
   </p>
-</div> -->
+</div>
