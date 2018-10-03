@@ -537,12 +537,12 @@ body {
 }
 
 .nav-button {
-	position: relative;
-  padding: 10px 20px;
-  background: var(--color-primary);
+	position: relative !important;
+  padding: 10px 20px !important;
+  background: var(--color-primary) !important;
   color: white !important;
   text-decoration: none !important;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1) !important;
   font-size: 20px !important;
 }
 
