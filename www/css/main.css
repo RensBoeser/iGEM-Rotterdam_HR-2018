@@ -3,13 +3,10 @@
 :root {
 	--color-primary: #1B5E20;
 	--color-secondary: #C8E6C9;
-
 	--color-dark: rgb(50, 50, 50);
 
 	--color-wetlab: #1B5E20;
-	
 	--color-hardware: #3949AB;
-
 	--color-software: #424242;
 	--color-software-secondary: #a1a1a1;
 }
@@ -23,6 +20,10 @@
 }
 
 /* ----- iGEM STYLE FIXES ----- */
+
+#globalWrapper {
+  padding: 0 !important;
+}
 
 ul {
 	list-style-image: none;
@@ -66,6 +67,10 @@ ul {
 #top_menu_inside {
 	margin: 0 auto;
 	width: 90%;
+}
+
+#mw-content-text > p {
+  margin: 0 !important;
 }
 
 body {
