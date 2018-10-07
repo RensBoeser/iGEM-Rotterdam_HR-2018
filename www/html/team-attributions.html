@@ -150,10 +150,23 @@
     top: 48%;
   }
 
+  .factory-holder + div .text-container {
+    min-width: 700px;
+  }
+
+  @media screen and (max-width: 700px) {
+    .factory-holder {
+      display: none !important;
+    }
+    .factory-holder + div .text-container {
+      min-width: 300px;
+    }
+  }
+
 </style>
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-  <div style="flex: 1; display: flex; justify-content: center;">
+  <div class="factory-holder" style="flex: 1; display: flex; justify-content: center;">
     <div class="factory-canvas">
       <a href="http://2018.igem.org/Team:Rotterdam_HR/Team" id="factory" class="canvas-item">
         <img src="http://2018.igem.org/wiki/images/3/35/T--Rotterdam_HR--factory.png" alt="factory">
@@ -182,15 +195,15 @@
   </div>
 
   <div style="flex: 1; display: flex; justify-content: center;">
-    <div class="text-container">
+    <div class="text-container" style="flex-basis: 700px;">
       <h1 style="background: none;">What we have accomplished</h1>
       <p>We met each other for the first time at an introduction meeting on the 5th of February. Our PI’s and instructor gave us a presentation about iGEM and what we could expect for the next eight months. This is also the day when we distributed the team in managements and started brainstorming. We had one, and sometimes two, brainstorm session of three hours a week. We started with 80 ideas so we made a top 10 out of it. After a presentation in front of experts and professors from our school we reduced it to a top 3. The brainstorm sessions were over when we chose CO detection as our project at the 17th of May! Our first lab day was the 27th of June and from then we worked five days a week at the lab during the summer but it was worth it. Since the start of iGEM we invested our time in a lot of meetings, lab work and visiting experts. As the first team from Rotterdam we can say that we achieved a lot since february and we would like to thank all the people listed below and more who helped us to get so far!</p>
     </div>
   </div>
 </div>
 
-<h1>General Support</h1>
 <a name="general"></a>
+<h1>General Support</h1>
 <div class="attribution-people">
   <div class="item">
     <div class="profile-picture" style="background-image: url('http://2018.igem.org/wiki/images/0/01/T--Rotterdam_HR--HRlogo.png')">
@@ -290,8 +303,8 @@
   </div>
 
 </div>
-<h1>Lab Support</h1>
 <a name="lab"></a>
+<h1>Lab Support</h1>
 <div class="attribution-people">
   <div class="item">
     <div class="profile-picture" style="background-image: url('http://2018.igem.org/wiki/images/0/01/T--Rotterdam_HR--HRlogo.png')">
@@ -325,8 +338,8 @@
     </div>
   </div>
 </div>
-<h1>Project Support</h1>
 <a name="project"></a>
+<h1>Project Support</h1>
 <div class="attribution-people">
   <div class="item">
     <div class="profile-picture" style="background-image: url('http://2018.igem.org/wiki/images/1/17/T--Rotterdam_HR--Buvecologo.jpeg')">
@@ -344,8 +357,8 @@
     </div>
   </div>
 </div>
-<h1>Human practices</h1>
 <a name="human"></a>
+<h1>Human practices</h1>
 <div class="attribution-people">
   <div class="item">
     <div class="profile-picture" style="background-image: url('http://2018.igem.org/wiki/images/2/25/T--Rotterdam_HR--Korienke_Smit.jpeg')">
