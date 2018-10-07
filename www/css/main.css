@@ -37,8 +37,8 @@ ul {
 }
 
 #bodyContent a[href ^="https://"], .link-https {
-    background: whitesmoke;
-    padding: 5px 0;
+  background: whitesmoke;
+  padding: 5px 0;
 }
 
 #HQ_page h1, #HQ_page h2, #HQ_page h3, #HQ_page p, #HQ_page span, #HQ_page a{
