@@ -12,7 +12,7 @@
 }
 
 /* ------ PAGE ------ */
-.page-index, .page-description {
+.page-index, .page-description, .page-sponsors {
 	background: var(--color-secondary);
 }
 .page-software {
