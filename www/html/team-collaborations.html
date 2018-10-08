@@ -1,0 +1,124 @@
+<style>
+.carousel__slide:nth-of-type(1),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(1) {
+  background-image: url("http://2018.igem.org/wiki/images/1/16/T--Rotterdam_HR--teamHRenLeiden.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+.carousel__slide:nth-of-type(2),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(2) {
+  background-image: url("http://2018.igem.org/wiki/images/c/cd/T--Rotterdam_HR--MeetinLeidenHandshake.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+.carousel__slide:nth-of-type(3),
+.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(3) {
+  background-image: url("http://2018.igem.org/wiki/images/0/0e/T--Rotterdam_HR--MeetingLeiden.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.my-carousel {
+	width: 100% !important;
+}
+
+div.dual {
+	display: flex;
+  flex-wrap: wrap;
+  margin: 60px 20px;
+  
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+div.dual > div {
+  flex: 1;
+  padding: 40px;
+}
+
+.collaboration-text {
+  max-width: 1000px;
+	margin: auto;
+}
+
+.collaboration-text h1 {
+  margin-bottom: 0 !important;
+  color: var(--color-primary);
+}
+
+.collaboration-text h3 {
+  margin-top: 0 !important;
+  padding-left: 40px !important;
+  color: var(--color-software-secondary);
+}
+
+.collaboration-text p {
+  text-align: justify;
+  color: var(--color-dark) !important;
+  font-size: large !important;
+}
+
+@media screen and (max-width: 1276px) {
+  .my-carousel {
+    width: 86vw !important;
+  }
+
+  .carousel-holder {
+    order: 1;
+  }
+
+}
+
+</style>
+
+<div class="dual">
+	<div>
+		<ul class="carousel my-carousel carousel--thumb">
+			<input class="carousel__activator" type="radio" id="K" name="thumb" checked="checked"/>
+			<input class="carousel__activator" type="radio" id="L" name="thumb"/>
+			<input class="carousel__activator" type="radio" id="M" name="thumb"/>
+			<div class="carousel__controls">
+				<label class="carousel__control carousel__control--backward" for="O"></label>
+				<label class="carousel__control carousel__control--forward" for="L"></label>
+			</div>
+			<div class="carousel__controls">
+				<label class="carousel__control carousel__control--backward" for="K"></label>
+				<label class="carousel__control carousel__control--forward" for="M"></label>
+			</div>
+			<div class="carousel__controls">
+				<label class="carousel__control carousel__control--backward" for="L"></label>
+				<label class="carousel__control carousel__control--forward" for="N"></label>
+			</div>
+			<li class="carousel__slide">
+			</li>
+			<li class="carousel__slide">
+			</li>
+			<li class="carousel__slide">
+			</li>
+			<div class="carousel__indicators">
+				<label class="carousel__indicator" for="K"></label>
+				<label class="carousel__indicator" for="L"></label>
+				<label class="carousel__indicator" for="M"></label>
+			</div>
+		</ul>
+	</div>
+	<div style="order: 1;">
+		<div class="collaboration-text">
+			<h1>Mentored by iGEM team Leiden</h1>
+			<h3><i>April 25th 2018, August 15th 2018 and September 27th 2018</i></h3>
+			<p>
+				As a new team into the iGEM competition we wanted some coaching from another team so we contacted iGEM team Leiden early in the competition. Team Leiden has participated the competition in 2014 with TU-Delft and in 2016. So Leiden is also a team with less experience than other Dutch teams.
+			</p>
+			<p>
+				During the competition we met each other three times, two of them where actual mentoring sessions. Our first meeting was at a bar in Leiden on April 25th 2018. We met each other for the first time and talked a lot about the iGEM competition. They had already chosen a project and gave us some tips about how to choose a project. It was a very nice evening and we learned a lot about iGEM and each other.
+			</p>
+			<p>
+				The first real mentor session was in Leiden on August 15th 2018. We started the meeting with a small presentation of both teams about the laboratory progress, human practices, PR, wiki, budget and fundraising. After the presentations the teams were divided in management groups, here we discussed the progress and problems in more detail. We told them about how we divided the tasks between the team, how we reached out to companies and media and about some laboratory work. They gave us a lot of tips and tricks about crowdfunding campaigns, social media and labwork. The team leaders remained in close contact during the contest so they could help each other with problems as quickly and efficiently as possible. The succes of the mentoring session led to a second one on September 27th 2018.
+			</p>
+			<p>
+				It was an honour to be mentored by team Leiden. We know that they will succeed because of their amazing individuals at the Giant Jamboree in Boston!
+			</p>
+		</div>
+	</div>
+</div>
+
