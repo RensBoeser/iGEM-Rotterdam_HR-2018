@@ -12,7 +12,7 @@
 }
 
 /* ------ PAGE ------ */
-.page-index, .page-description, .page-sponsors, .page-collaborations {
+.page-index, .page-description, .page-sponsors, .page-collaborations, .page-notebook {
 	background: var(--color-secondary);
 }
 .page-software {
