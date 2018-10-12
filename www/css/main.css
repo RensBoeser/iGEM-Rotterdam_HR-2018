@@ -12,7 +12,21 @@
 }
 
 /* ------ PAGE ------ */
-.page-index, .page-description, .page-sponsors, .page-collaborations, .page-notebook {
+.page > .title {
+  color: white;
+  background: var(--color-primary);
+  padding: 10px 20px;
+  margin: auto;
+  text-align: center;
+  font-size: 46px;
+}
+
+.page-index,
+.page-description,
+.page-sponsors,
+.page-collaborations,
+.page-notebook,
+.page-public_engagement {
 	background: var(--color-secondary);
 }
 .page-software {

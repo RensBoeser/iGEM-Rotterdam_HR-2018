@@ -102,20 +102,39 @@ background-image: url("http://2018.igem.org/wiki/images/3/31/T--Rotterdam_HR--Wi
 }
 
 @media screen and (max-width: 1276px) {
-  .my-carousel, .image {
-    width: 86vw !important;
+	.image-holder {
+		order: 1;
 	}
 
-  .carousel-holder {
-    order: 1;
-  }
+	.dual .my-carousel, .dual .image {
+		min-width: 80vw !important;
+		margin: 20px auto 0 auto !important;
+	}
 
 }
 
+@media screen and (max-width: 700px) {
+	.dual .my-carousel, .dual .image {
+		min-width: 70vw !important;
+	}
+}
+
+@media screen and (max-width: 510px) {
+
+	div.dual {
+		margin: 60px 0;
+	}
+
+	div.dual > div {
+		padding: 20px;
+	}
+}
 </style>
 
+<h1 class="title">Collaborations</h1>
+
 <div class="dual">
-	<div>
+	<div class="image-holder">
 		<form action="">
 			<ul class="carousel my-carousel carousel--thumb" id="c1">
 				<input class="carousel__activator" type="radio" id="K" name="thumb" checked="checked"/>
@@ -167,7 +186,7 @@ background-image: url("http://2018.igem.org/wiki/images/3/31/T--Rotterdam_HR--Wi
 </div>
 
 <div class="dual">
-	<div style="order: 1;">
+	<div class="image-holder" style="order: 1;">
 		<form action="">
 			<ul class="carousel my-carousel carousel--thumb" id="c2">
 				<input class="carousel__activator" type="radio" id="N" name="thumb" checked="checked"/>
@@ -210,7 +229,7 @@ background-image: url("http://2018.igem.org/wiki/images/3/31/T--Rotterdam_HR--Wi
 </div>
 
 <div class="dual">
-		<div>
+		<div class="image-holder">
 			<div class="image" id="chiel"></div>
 		</div>
 		<div style="order: 1;">
@@ -226,7 +245,7 @@ background-image: url("http://2018.igem.org/wiki/images/3/31/T--Rotterdam_HR--Wi
 	</div>
 	
 <div class="dual">
-		<div style="order: 1;">
+		<div class="image-holder" style="order: 1;">
 			<div class="image" id="PublicationNBV"></div>
 		</div>
 		<div>
@@ -243,7 +262,7 @@ background-image: url("http://2018.igem.org/wiki/images/3/31/T--Rotterdam_HR--Wi
 	</div>
 
 <div class="dual">
-		<div>
+		<div class="image-holder">
 			<div class="image" id="Wikistatistic"></div>
 		</div>
 		<div>
@@ -259,7 +278,7 @@ background-image: url("http://2018.igem.org/wiki/images/3/31/T--Rotterdam_HR--Wi
 	</div>
 
 <div class="dual">
-		<div  style="order: 1;">
+		<div class="image-holder" style="order: 1;">
 			<div class="image" id="CollabUtrecht"></div>
 		</div>
 		<div>
