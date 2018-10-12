@@ -114,6 +114,12 @@
 	padding: 10px;
 }
 
+.card .description p {
+	padding: 10px;
+	font-size: medium !important;
+	text-align: center !important;
+}
+
 .card .number {
 	position: absolute;
 	top: 0;
