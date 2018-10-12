@@ -1,0 +1,28 @@
+<style>
+	.status_cell {
+		display: none !important;
+	}
+	th:nth-child(1),
+	th:nth-child(2),
+	th:nth-child(3) {
+		display: none !important;
+	}
+
+	.pgrouptable.tablesorter {
+		margin: 0 !important;
+	}
+
+	#groupparts {
+		margin: 40px;
+	}
+
+	#groupparts > h1 {
+		text-align: center;
+	}
+</style>
+
+<div id="groupparts">
+	<h1>Loading...</h1>
+</div>
+
+<script>$('#groupparts').load('/cgi/api/groupparts.cgi', { t:'iGEM18', g:'Rotterdam_HR' } );</script>
