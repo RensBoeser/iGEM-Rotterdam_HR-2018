@@ -26,7 +26,8 @@
 .page-sponsors,
 .page-collaborations,
 .page-notebook,
-.page-public_engagement {
+.page-public_engagement,
+.page-human_practices {
 	background: var(--color-secondary);
 }
 .page-software {

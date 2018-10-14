@@ -1,3 +1,7 @@
+table {
+	margin: auto !important;
+}
+
 .cards {
 	display: flex;
 	flex-wrap: wrap;
