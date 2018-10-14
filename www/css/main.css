@@ -21,18 +21,9 @@
   font-size: 46px;
 }
 
-.page-index,
-.page-description,
-.page-sponsors,
-.page-collaborations,
-.page-notebook,
-.page-public_engagement,
-.page-human_practices {
-	background: var(--color-secondary);
-}
-.page-software {
-	background: var(--color-software-secondary);
-}
+.page           { background: var(--color-secondary); }
+.page-team      { background: white !important; }
+.page-software  { background: var(--color-software-secondary) !important; }
 
 /* ----- iGEM STYLE FIXES ----- */
 
