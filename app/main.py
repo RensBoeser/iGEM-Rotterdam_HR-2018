@@ -9,7 +9,7 @@ sys.path.insert(4, os.path.dirname(os.path.realpath(__file__)) + '/iGEM-wiki-api
 from notebookGenerator import NotebookGenerator
 from pageGenerator import PageGenerator
 from getHardwareEntries import GetHardwareEntries as hardwareEntries
-from receiver import GetELabEntries as labEntries
+from elabDecorator import getEntries as labEntries
 # from iGEMAPI import iGEMWIKI
 
 def __main__():
@@ -24,18 +24,18 @@ def __main__():
 	_outputhtml = _dirpath + 'generated html/'
 	_notebookfiles = _libpath + 'notebook files/'
 	
-	# # Get entries
-	# entries = []
-	# entries.append(hardwareEntries(_libpath))
-	# entries.append(labEntries(_libpath))
+	# Get entries
+	entries = []
+	entries.append(hardwareEntries(_libpath))
+	entries.append(labEntries(_libpath))
 
-	# # Generate notebook
-	# start = time.time()
-	# print('Generating notebook page...')
-	# NotebookGenerator(entries, _html, _notebookfiles).GeneratePage()
-	# end = time.time()
-	# print('Generated notebook page [{0}ms]'.format(int((end-start) * 1000)))
-	
+	# Generate notebook
+	start = time.time()
+	print('Generating notebook page...')
+	NotebookGenerator(entries, _html, _notebookfiles).GeneratePage()
+	end = time.time()
+	print('Generated notebook page [{0}ms]'.format(int((end-start) * 1000)))
+
 	# Generate pages
 	start = time.time()
 	print('Writing pages...')

@@ -24,7 +24,11 @@
 			<label class="back" for="switch-{6}">&times;</label>
 		</div>
 		<div class="attendees">{2}</div>
-		<div class="description"><p>{3}</p></div>
+		<div class="description">
+			{3}
+			<p class="experiment"></p>
+			{8}
+		</div>
 	</div>
 
 	<div class="cardform">
