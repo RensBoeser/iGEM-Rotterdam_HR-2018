@@ -124,6 +124,27 @@ table {
 	text-align: center !important;
 }
 
+.card .description p.experiment {
+	border-bottom: white solid 2px;
+}
+
+.card .description p.experiment ~ p > span:first-child,
+.card .description p.experiment ~ p > strong:first-child {
+	font-size: 24px !important;
+}
+
+.card .description span {
+	color: white !important;
+}
+
+.card .description table {
+	background: rgba(0, 0, 0, 0.2) !important;
+}
+
+.card .description table td {
+	color: white;
+}
+
 .card .number {
 	position: absolute;
 	top: 0;
