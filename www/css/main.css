@@ -21,9 +21,9 @@
   font-size: 46px;
 }
 
-.page           { background: var(--color-secondary); }
-.page-team      { background: white !important; }
-.page-software  { background: var(--color-software-secondary) !important; }
+.page { background: var(--color-secondary); }
+.page-team { background: white !important; }
+.page-software, .page-wikistat { background: var(--color-software-secondary) !important; }
 
 /* ----- iGEM STYLE FIXES ----- */
 
@@ -868,3 +868,7 @@ body {
   background-size: cover;
   background-position: center;
 } */
+
+.relevant {
+  margin-top: 100px;
+}

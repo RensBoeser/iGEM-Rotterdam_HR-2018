@@ -4,7 +4,7 @@
     right: -10%;
   }
 
-.text-container h1::after {
+  .text-container h1::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -32,48 +32,131 @@
     <div class="text-container">
       <a name="abstract"></a>
       <h1 class="title" style="font-size: 50px;">The Carbon Monoxide Problem</h1>
-      <p style="text-align: left !important">Carbon monoxide is an odourless, colorless and toxic gas which is known as the silent killer. <img src="http://2018.igem.org/wiki/images/c/c7/T--Rotterdam_HR--CarbonMonoxide.png" style="width: 300px; height: 175px; float:right"> There al already a lot of carbon monoxide detectors for the industrybut they have a lot of interference with hydrogen gas. The detector can't see the difference between carbon monoxide and hydrogen gas, this results in false alarms and unsafe work environments. We decided to build a selective carbon monoxide detector without the interference with hydrogen gas.</p>
+      <p style="text-align: left !important">Carbon monoxide is an odourless, colorless and toxic gas which is known as
+        the silent killer. <img src="http://2018.igem.org/wiki/images/c/c7/T--Rotterdam_HR--CarbonMonoxide.png" style="width: 300px; height: 175px; float:right">
+        There al already a lot of carbon monoxide detectors for the industrybut they have a lot of interference with
+        hydrogen gas. The detector can't see the difference between carbon monoxide and hydrogen gas, this results in
+        false alarms and unsafe work environments. We decided to build a selective carbon monoxide detector without the
+        interference with hydrogen gas.</p>
     </div>
   </div>
 
   <div class="text-container">
     <a name="constructs"></a>
     <h1>How our constructs detect carbon monoxide</h1>
-    <p style="text-align: left !important">In our search <img src="http://2018.igem.org/wiki/images/9/93/T--Rotterdam_HR--CooA.png" style="width: 440px; height: 320px; float:right">to find a means to detect carbon monoxide we learned about the transcription factor CooA, a heme-group containing protein normally made by Rhodospirillum rubrum, which becomes active after binding to carbon monoxide (Shelver et al. 1997). Thus it becomes able to interact with the carbon monoxide regulated transcriptional units cooMKLXUH (also known as pCooM)  and cooFSCTJ (also known as pCooF). Cloning these promoters so that they are able to interact with reporter genes, ensures these reporters are only expressed when carbon monoxide is present.</p>
+    <p style="text-align: left !important">In our search <img src="http://2018.igem.org/wiki/images/9/93/T--Rotterdam_HR--CooA.png"
+        style="width: 440px; height: 320px; float:right">to find a means to detect carbon monoxide we learned about the
+      transcription factor CooA, a heme-group containing protein normally made by Rhodospirillum rubrum, which becomes
+      active after binding to carbon monoxide (Shelver et al. 1997). Thus it becomes able to interact with the carbon
+      monoxide regulated transcriptional units cooMKLXUH (also known as pCooM) and cooFSCTJ (also known as pCooF).
+      Cloning these promoters so that they are able to interact with reporter genes, ensures these reporters are only
+      expressed when carbon monoxide is present.</p>
   </div>
 
   <div class="text-container">
     <a name="constructs and hardware"></a>
-    <h1>How our biological constructs work together with  our hardware</h1>
+    <h1>How our biological constructs work together with our hardware</h1>
     <h2>Gas production</h2>
-    <p style="text-align: left !important">When CO is bound to CooA, the structure of CooA will change and this will bind with a CooA dependent promoter CooF or CooM. By placing a signal generating gene after CooF or CooM, this signal will only be expressed if carbon monoxide is present. </p>
-    <p style="text-align: left !important">We looked into bacteria which give an electrical signal but this is very difficult measuring since bacteria always give some electrical <img src="http://2018.igem.org/wiki/images/4/48/T--Rotterdam_HR--OmzettingPyruvate.png" style="width: 460px; height: 300px; float:right"> signal.</p>
-    <p style="text-align: left !important">After this option we thought of other ways to produce a signal. We found some biobricks (K173003, K173013, K133071, K133116, K173013 etc.) which most likely produce CO2 if the required substrate is present. We used the genes coding for the enzymes: pyruvate decarboxylase (pdc) and alcohol dehydrogenase II (adhB). Pyruvate decarboxylase catalyses pyruvic acid to acetaldehyde and carbon dioxide. Alcohol dehydrogenase II (adhB) catalyses the acetaldehyde reduction to ethanol.</p>
+    <p style="text-align: left !important">When CO is bound to CooA, the structure of CooA will change and this will
+      bind with a CooA dependent promoter CooF or CooM. By placing a signal generating gene after CooF or CooM, this
+      signal will only be expressed if carbon monoxide is present. </p>
+    <p style="text-align: left !important">We looked into bacteria which give an electrical signal but this is very
+      difficult measuring since bacteria always give some electrical <img src="http://2018.igem.org/wiki/images/4/48/T--Rotterdam_HR--OmzettingPyruvate.png"
+        style="width: 460px; height: 300px; float:right"> signal.</p>
+    <p style="text-align: left !important">After this option we thought of other ways to produce a signal. We found
+      some biobricks (K173003, K173013, K133071, K133116, K173013 etc.) which most likely produce CO2 if the required
+      substrate is present. We used the genes coding for the enzymes: pyruvate decarboxylase (pdc) and alcohol
+      dehydrogenase II (adhB). Pyruvate decarboxylase catalyses pyruvic acid to acetaldehyde and carbon dioxide.
+      Alcohol dehydrogenase II (adhB) catalyses the acetaldehyde reduction to ethanol.</p>
     <h2>Gas measurement</h2>
-    <p style="text-align: left !important">Our initial idea was to have the bacteria produce electrons, which could be easily picked up by our hardware. Another upside was the relative short duration of the signal. Sadly we never were able to go through with this idea due to the fact that E.coli produces generates electrons after a (long) acclimation time. We did look to see if we could use the electron production of other Exoelectrogens to our advantage. But all of the bacteria had had these genes in their genome and not in the plasmid. Which made it impossible for us to modify. Due to this and and the uncertainty as to when the electrons are created in E.coli We've decided to drop working with electrons and work with the gas production.</p>
-    <p style="text-align: left !important">To <img src="http://2018.igem.org/wiki/images/d/d3/T--Rotterdam_HR--Testbuis.png" style="width: 440px; height: 360px; float:right">measure the gas production, we collect the gas in a tube filled with medium, and after it hits a specific level of medium displacement, we release it in a controlled manner using a peristaltic pump. By measuring the interval between the tube filling two times, we can determine the amount of gas produced. Because we’re using a peristaltic pump, we can increase the accuracy of the measurement by releasing a smaller amount of gas. This makes the interval shorter, and allows us to make more measurements. For more information, visit our hardware page.</p>
+    <p style="text-align: left !important">Our initial idea was to have the bacteria produce electrons, which could be
+      easily picked up by our hardware. Another upside was the relative short duration of the signal. Sadly we never
+      were able to go through with this idea due to the fact that E.coli produces generates electrons after a (long)
+      acclimation time. We did look to see if we could use the electron production of other Exoelectrogens to our
+      advantage. But all of the bacteria had had these genes in their genome and not in the plasmid. Which made it
+      impossible for us to modify. Due to this and and the uncertainty as to when the electrons are created in E.coli
+      We've decided to drop working with electrons and work with the gas production.</p>
+    <p style="text-align: left !important">To <img src="http://2018.igem.org/wiki/images/d/d3/T--Rotterdam_HR--Testbuis.png"
+        style="width: 440px; height: 360px; float:right">measure the gas production, we collect the gas in a tube
+      filled with medium, and after it hits a specific level of medium displacement, we release it in a controlled
+      manner using a peristaltic pump. By measuring the interval between the tube filling two times, we can determine
+      the amount of gas produced. Because we’re using a peristaltic pump, we can increase the accuracy of the
+      measurement by releasing a smaller amount of gas. This makes the interval shorter, and allows us to make more
+      measurements. For more information, visit our hardware page.</p>
   </div>
 
   <div class="text-container">
     <a name="evironment"></a>
     <h1>How our hardware control the environment</h1>
-    <p>To make sure the only variable controlling the gas production is the concentration of carbon monoxide, we need to keep the other variables constant. To achieve this, we have made a device to keep the temperature stable and a device that will occasionally shake the tube containing the bacteria. This will make sure that the bacteria won’t pile up on the bottom of the tube, which would cause a decrease in gas production.</p>
+    <p>To make sure the only variable controlling the gas production is the concentration of carbon monoxide, we need
+      to keep the other variables constant. To achieve this, we have made a device to keep the temperature stable and a
+      device that will occasionally shake the tube containing the bacteria. This will make sure that the bacteria won’t
+      pile up on the bottom of the tube, which would cause a decrease in gas production.</p>
   </div>
 
   <div class="text-container">
     <a name="killswitch and atp sensor"></a>
     <h1>Things we wanted to build</h1>
     <h2>Killswitch for the safety</h2>
-    <p>To ensure the safety of our end product we wanted to take a look at biological containment. Our eye quickly fell on so called "kill-switches", genetic circuits capable of killing synthetic bacteria when they are not in the presence of certain chemicals.One of the most interesting kill switches we found is the Deadman Kill Switch (Chan et al. 2015), which seemed to be one of the most easily adaptable kill switches at the moment. Though kill switches generally have problem with staying active in successive generations. Considering these kill switches are generally lost upon successive generations (around ~140 generations, which translates to around 3 days using E.coli), we decided not to include a killswitch in our own constructs, though it would be a practical addition if this product would be used in a real environment.</p>
+    <p>To ensure the safety of our end product we wanted to take a look at biological containment. Our eye quickly fell
+      on so called "kill-switches", genetic circuits capable of killing synthetic bacteria when they are not in the
+      presence of certain chemicals.One of the most interesting kill switches we found is the Deadman Kill Switch (Chan
+      et al. 2015), which seemed to be one of the most easily adaptable kill switches at the moment. Though kill
+      switches generally have problem with staying active in successive generations. Considering these kill switches
+      are generally lost upon successive generations (around ~140 generations, which translates to around 3 days using
+      E.coli), we decided not to include a killswitch in our own constructs, though it would be a practical addition if
+      this product would be used in a real environment.</p>
     <h2>ATP sensor for the bacteria</h2>
-    <p>We wanted a way to make sure our bacteria live inside the hardware. We wanted this because a dead cell wouldn't give off a signal, which could lead to a false positive feeling of safety. A way to make sure a cell lives is by using an ATP sensor. A living cell produces ATP which can be used for processes inside the cell. When the bacteria carries an ATP sensor, ATP will bind to the sensor and will produces a fluorescent protein. A living cell will be fluorescent and can be detected. When there is a low concentration of living bacteria, a low output will be generated. By detecting living cells the measured output can be adjusted to a concentration we can link to a concentration of carbon monoxide.</p>
+    <p>We wanted a way to make sure our bacteria live inside the hardware. We wanted this because a dead cell wouldn't
+      give off a signal, which could lead to a false positive feeling of safety. A way to make sure a cell lives is by
+      using an ATP sensor. A living cell produces ATP which can be used for processes inside the cell. When the
+      bacteria carries an ATP sensor, ATP will bind to the sensor and will produces a fluorescent protein. A living
+      cell will be fluorescent and can be detected. When there is a low concentration of living bacteria, a low output
+      will be generated. By detecting living cells the measured output can be adjusted to a concentration we can link
+      to a concentration of carbon monoxide.</p>
   </div>
 
   <div class="text-container">
     <a name="references"></a>
     <h1>References</h1>
-    <p style="text-align: left !important">Shelver, D., Kerby, R. L., He, Y., & Roberts, G. P. (1997). CooA, a CO-sensing transcription factor from Rhodospirillum rubrum, is a CO-binding heme protein. Proceedings of the National Academy of Sciences, 94(21), 11216–11220. doi:10.1073/pnas.94.21.11216.</p>
-    <p style="text-align: left !important">Coyle, C. M., Puranik, M., Youn, H., Nielsen, S. B., Williams, R. D., Kerby, R. L., … Spiro, T. G. (2003). Activation Mechanism of the CO Sensor CooA. Journal of Biological Chemistry, 278(37), 35384–35393. doi:10.1074/jbc.m301000200.</p>
-    <p style="text-align: left !important">Chan, C. T. Y., Lee, J. W., Cameron, D. E., Bashor, C. J., & Collins, J. J. (2015). " Deadman" and "Passcode" microbial kill switches for bacterial containment. Nature Chemical Biology, 12(2), 82–86. doi:10.1038/nchembio.1979. </p>
+    <p style="text-align: left !important">Shelver, D., Kerby, R. L., He, Y., & Roberts, G. P. (1997). CooA, a
+      CO-sensing transcription factor from Rhodospirillum rubrum, is a CO-binding heme protein. Proceedings of the
+      National Academy of Sciences, 94(21), 11216–11220. doi:10.1073/pnas.94.21.11216.</p>
+    <p style="text-align: left !important">Coyle, C. M., Puranik, M., Youn, H., Nielsen, S. B., Williams, R. D., Kerby,
+      R. L., … Spiro, T. G. (2003). Activation Mechanism of the CO Sensor CooA. Journal of Biological Chemistry,
+      278(37), 35384–35393. doi:10.1074/jbc.m301000200.</p>
+    <p style="text-align: left !important">Chan, C. T. Y., Lee, J. W., Cameron, D. E., Bashor, C. J., & Collins, J. J.
+      (2015). " Deadman" and "Passcode" microbial kill switches for bacterial containment. Nature Chemical Biology,
+      12(2), 82–86. doi:10.1038/nchembio.1979. </p>
+  </div>
+</div>
+
+<div class="text-container relevant">
+  <h1>Relevant pages</h1>
+  <div class="nav-cards">
+    <a href="http://2018.igem.org/Team:Rotterdam_HR/Experiments" class="nav-card">
+      <h2>Experiments</h2>
+      <svg viewBox="0 0 24 24">
+        <path d="M7,2V4H8V18A4,4 0 0,0 12,22A4,4 0 0,0 16,18V4H17V2H7M11,16C10.4,16 10,15.6 10,15C10,14.4 10.4,14 11,14C11.6,14 12,14.4 12,15C12,15.6 11.6,16 11,16M13,12C12.4,12 12,11.6 12,11C12,10.4 12.4,10 13,10C13.6,10 14,10.4 14,11C14,11.6 13.6,12 13,12M14,7H10V4H14V7Z" />
+      </svg>
+    </a>
+    <a href="http://2018.igem.org/Team:Rotterdam_HR/Team" class="nav-card">
+			<h2>Team Rotterdam</h2>
+			<svg viewBox="0 0 24 24">
+				<path d="M11.5,1L2,6V8H21V6M16,10V17H19V10M2,22H21V19H2M10,10V17H13V10M4,10V17H7V10H4Z" />
+			</svg>
+		</a>
+    <a href="http://2018.igem.org/Team:Rotterdam_HR/Hardware" class="nav-card">
+			<h2>Hardware</h2>
+			<svg viewBox="0 0 24 24">
+				<path d="M15.9,18.45C17.25,18.45 18.35,17.35 18.35,16C18.35,14.65 17.25,13.55 15.9,13.55C14.54,13.55 13.45,14.65 13.45,16C13.45,17.35 14.54,18.45 15.9,18.45M21.1,16.68L22.58,17.84C22.71,17.95 22.75,18.13 22.66,18.29L21.26,20.71C21.17,20.86 21,20.92 20.83,20.86L19.09,20.16C18.73,20.44 18.33,20.67 17.91,20.85L17.64,22.7C17.62,22.87 17.47,23 17.3,23H14.5C14.32,23 14.18,22.87 14.15,22.7L13.89,20.85C13.46,20.67 13.07,20.44 12.71,20.16L10.96,20.86C10.81,20.92 10.62,20.86 10.54,20.71L9.14,18.29C9.05,18.13 9.09,17.95 9.22,17.84L10.7,16.68L10.65,16L10.7,15.31L9.22,14.16C9.09,14.05 9.05,13.86 9.14,13.71L10.54,11.29C10.62,11.13 10.81,11.07 10.96,11.13L12.71,11.84C13.07,11.56 13.46,11.32 13.89,11.15L14.15,9.29C14.18,9.13 14.32,9 14.5,9H17.3C17.47,9 17.62,9.13 17.64,9.29L17.91,11.15C18.33,11.32 18.73,11.56 19.09,11.84L20.83,11.13C21,11.07 21.17,11.13 21.26,11.29L22.66,13.71C22.75,13.86 22.71,14.05 22.58,14.16L21.1,15.31L21.15,16L21.1,16.68M6.69,8.07C7.56,8.07 8.26,7.37 8.26,6.5C8.26,5.63 7.56,4.92 6.69,4.92A1.58,1.58 0 0,0 5.11,6.5C5.11,7.37 5.82,8.07 6.69,8.07M10.03,6.94L11,7.68C11.07,7.75 11.09,7.87 11.03,7.97L10.13,9.53C10.08,9.63 9.96,9.67 9.86,9.63L8.74,9.18L8,9.62L7.81,10.81C7.79,10.92 7.7,11 7.59,11H5.79C5.67,11 5.58,10.92 5.56,10.81L5.4,9.62L4.64,9.18L3.5,9.63C3.41,9.67 3.3,9.63 3.24,9.53L2.34,7.97C2.28,7.87 2.31,7.75 2.39,7.68L3.34,6.94L3.31,6.5L3.34,6.06L2.39,5.32C2.31,5.25 2.28,5.13 2.34,5.03L3.24,3.47C3.3,3.37 3.41,3.33 3.5,3.37L4.63,3.82L5.4,3.38L5.56,2.19C5.58,2.08 5.67,2 5.79,2H7.59C7.7,2 7.79,2.08 7.81,2.19L8,3.38L8.74,3.82L9.86,3.37C9.96,3.33 10.08,3.37 10.13,3.47L11.03,5.03C11.09,5.13 11.07,5.25 11,5.32L10.03,6.06L10.06,6.5L10.03,6.94Z"></path>
+			</svg>
+		</a>
+    <a href="http://2018.igem.org/Team:Rotterdam_HR/Results" class="nav-card">
+      <h2>Results</h2>
+      <svg viewBox="0 0 24 24">
+        <path d="M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M7,7H17V5H19V19H5V5H7V7M7.5,13.5L9,12L11,14L15.5,9.5L17,11L11,17L7.5,13.5Z" />
+      </svg>
+    </a>
   </div>
 </div>

@@ -1,89 +1,91 @@
 <style>
-div.dual {
-	display: flex;
-	flex-wrap: wrap;
-	margin: 60px 20px;
-	
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-	background: rgba(255, 255, 255, 0.2);
-}
-
-div.dual > div {
-	flex: 1;
-	padding: 40px;
-}
-
-.public-text {
-	max-width: 1000px;
-	margin: auto;
-}
-
-.public-text h1 {
-	margin-bottom: 0 !important;
-	color: var(--color-primary);
-}
-
-.public-text h3 {
-	margin-top: 0 !important;
-	padding-left: 40px !important;
-	color: var(--color-software-secondary);
-}
-
-.public-text p {
-	text-align: justify;
-	color: var(--color-dark) !important;
-	font-size: large !important;
-}
-
-.image {
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	width: 100%;
-	height: 400px;
-	margin: 96px auto 0 auto !important;
-}
-
-#buveco {
-	background-image: url("http://2018.igem.org/wiki/images/e/e9/T--Rotterdam_HR--Buvecotrip.png");
-	background-position: top;
-}
-
-#rivm {
-	background-image: url("http://2018.igem.org/wiki/images/7/7c/T--Rotterdam_HR--RIVMskypemeeting.png");
-}
-
-@media screen and (max-width: 1276px) {
-	.image-holder {
-		order: 1;
-	}
-
-	.dual .my-carousel, .dual .image {
-		min-width: 80vw !important;
-		margin: 20px auto 0 auto !important;
-	}
-
-}
-
-@media screen and (max-width: 700px) {
-	.dual .my-carousel, .dual .image {
-		min-width: 70vw !important;
-	}
-}
-
-@media screen and (max-width: 510px) {
-
 	div.dual {
-		margin: 60px 0;
+		display: flex;
+		flex-wrap: wrap;
+		margin: 60px 20px;
+
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		background: rgba(255, 255, 255, 0.2);
 	}
 
-	div.dual > div {
-		padding: 20px;
+	div.dual>div {
+		flex: 1;
+		padding: 40px;
 	}
-}
 
+	.public-text {
+		max-width: 1000px;
+		margin: auto;
+	}
+
+	.public-text h1 {
+		margin-bottom: 0 !important;
+		color: var(--color-primary);
+	}
+
+	.public-text h3 {
+		margin-top: 0 !important;
+		padding-left: 40px !important;
+		color: var(--color-software-secondary);
+	}
+
+	.public-text p {
+		text-align: justify;
+		color: var(--color-dark) !important;
+		font-size: large !important;
+	}
+
+	.image {
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		width: 100%;
+		height: 400px;
+		margin: 96px auto 0 auto !important;
+	}
+
+	#buveco {
+		background-image: url("http://2018.igem.org/wiki/images/e/e9/T--Rotterdam_HR--Buvecotrip.png");
+		background-position: top;
+	}
+
+	#rivm {
+		background-image: url("http://2018.igem.org/wiki/images/7/7c/T--Rotterdam_HR--RIVMskypemeeting.png");
+	}
+
+	@media screen and (max-width: 1276px) {
+		.image-holder {
+			order: 1;
+		}
+
+		.dual .my-carousel,
+		.dual .image {
+			min-width: 80vw !important;
+			margin: 20px auto 0 auto !important;
+		}
+
+	}
+
+	@media screen and (max-width: 700px) {
+
+		.dual .my-carousel,
+		.dual .image {
+			min-width: 70vw !important;
+		}
+	}
+
+	@media screen and (max-width: 510px) {
+
+		div.dual {
+			margin: 60px 0;
+		}
+
+		div.dual>div {
+			padding: 20px;
+		}
+	}
 </style>
-	
+
 <h1 class="title">Human Practices</h1>
 
 <div class="dual">
@@ -96,15 +98,25 @@ div.dual > div {
 			<h3><i>Gas detection company</i></h3>
 			<h3><i>March 14th 2018 and June 6th 2018</i></h3>
 			<p>
-				Before we chose our project we went to Buveco, a gas detection company, to discuss the inefficiencies with Carbon Monoxide detectors in steel factories. The thing is, all Carbon Monoxide detectors have hydrogen interference. They detect hydrogen and carbon monoxide as the same. If the carbon monoxide detector goes off, there is no telling if the carbon monoxide levels are actually dangerous or that there is just a lot of hydrogen interference.
-				<br><br>Buveco showed us their workplace and how their Carbon Monoxide detector works. With this information of Buveco about hydrogen interference we started to think of a way to make the detector specific for only Carbon Monoxide. We looked for a protein which only binds Carbon Monoxide and found CooA in combination with CooF and CooM promotors. 
-				<br><br>They thought we had a very good idea and they did sponsor us by materials. We received the carbon monoxide detector they sell to factories, CO and hydrogen tanks. This so we can test our own detector.
-				<br><br>Since we’re working with the dangerous gas carbonmonoxide, we got a safety course from one of our main sponsors, Buveco, on how to handle the gas and the tank. Also did we get a working sensor, which can alarm us in case the gas leaks. Furthermore did we get a concentration of CO in the tank, which is not harmful when leaking for 8 hours. Buveco is our most important contact about CO detectors. We learnt a lot from them.
+				Before we chose our project we went to Buveco, a gas detection company, to discuss the inefficiencies with Carbon
+				Monoxide detectors in steel factories. The thing is, all Carbon Monoxide detectors have hydrogen interference. They
+				detect hydrogen and carbon monoxide as the same. If the carbon monoxide detector goes off, there is no telling if
+				the carbon monoxide levels are actually dangerous or that there is just a lot of hydrogen interference.
+				<br><br>Buveco showed us their workplace and how their Carbon Monoxide detector works. With this information of
+				Buveco about hydrogen interference we started to think of a way to make the detector specific for only Carbon
+				Monoxide. We looked for a protein which only binds Carbon Monoxide and found CooA in combination with CooF and CooM
+				promotors.
+				<br><br>They thought we had a very good idea and they did sponsor us by materials. We received the carbon monoxide
+				detector they sell to factories, CO and hydrogen tanks. This so we can test our own detector.
+				<br><br>Since we’re working with the dangerous gas carbonmonoxide, we got a safety course from one of our main
+				sponsors, Buveco, on how to handle the gas and the tank. Also did we get a working sensor, which can alarm us in
+				case the gas leaks. Furthermore did we get a concentration of CO in the tank, which is not harmful when leaking for
+				8 hours. Buveco is our most important contact about CO detectors. We learnt a lot from them.
 			</p>
 		</div>
 	</div>
 </div>
-	
+
 <div class="dual">
 	<div class="image-holder" style="order: 1;">
 		<div class="image" id="rivm"></div>
@@ -114,13 +126,43 @@ div.dual > div {
 			<h1>Rijksinstituut voor Volksgezondheid en Milieu (RIVM)</h1>
 			<h3><i>May 14th 2018</i></h3>
 			<p>
-				Our team member Randall went to the dutch RIVM meeting on the 14th of May. He was a bit overeager (and early) since he was the first student to arrive. 
-				<br>The RIVM meeting is an information day mostly about safety. It was an interesting meeting for the dutch iGEM teams.
-				<br><br>After this we had 2 skype calls with members of the RIVM (June 20th and August 17th). We discussed how we were planning to make our product, and they gave us advice where to think of.
-				<br>We first thought about making a kill switch in our bacteria. But the advice was: you can build a kill switch (which is more difficult to make and you never really know if i works in every bacteria), but you can better build your device so, it can never break. This we will take with us when we are going to build the device.
-				<br><br>We know there are strict rules for bringing genetically modified organisms (GMO’s) outside the laboratory. So they advised us to think of a way to replace the GMO’s in a later stadium of our product, which we maybe have to do if the GMO rules stay the same. 
+				Our team member Randall went to the dutch RIVM meeting on the 14th of May. He was a bit overeager (and early) since
+				he was the first student to arrive.
+				<br>The RIVM meeting is an information day mostly about safety. It was an interesting meeting for the dutch iGEM
+				teams.
+				<br><br>After this we had 2 skype calls with members of the RIVM (June 20th and August 17th). We discussed how we
+				were planning to make our product, and they gave us advice where to think of.
+				<br>We first thought about making a kill switch in our bacteria. But the advice was: you can build a kill switch
+				(which is more difficult to make and you never really know if i works in every bacteria), but you can better build
+				your device so, it can never break. This we will take with us when we are going to build the device.
+				<br><br>We know there are strict rules for bringing genetically modified organisms (GMO’s) outside the laboratory.
+				So they advised us to think of a way to replace the GMO’s in a later stadium of our product, which we maybe have to
+				do if the GMO rules stay the same.
 			</p>
 		</div>
 	</div>
 </div>
 
+<div class="text-container relevant">
+	<h1>Relevant pages</h1>
+	<div class="nav-cards">
+		<a href="http://2018.igem.org/Team:Rotterdam_HR/Description" class="nav-card">
+			<h2>Project Description</h2>
+			<svg viewBox="0 0 24 24">
+				<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+			</svg>
+		</a>
+		<a href="http://2018.igem.org/Team:Rotterdam_HR/Team" class="nav-card">
+			<h2>Team Rotterdam</h2>
+			<svg viewBox="0 0 24 24">
+				<path d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z" />
+			</svg>
+		</a>
+		<a href="http://2018.igem.org/Team:Rotterdam_HR/Outreach" class="nav-card">
+			<h2>Outreach</h2>
+		</a>
+		<a href="http://2018.igem.org/Team:Rotterdam_HR/Public_Engagement" class="nav-card">
+			<h2>Public Engagement</h2>
+		</a>
+	</div>
+</div>
