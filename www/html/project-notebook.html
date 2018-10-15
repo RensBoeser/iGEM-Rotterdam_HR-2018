@@ -125,7 +125,12 @@ table {
 	text-align: center !important;
 }
 
-.card .description p.experiment ~ p > span:nth-child(1) {
+.card .description p.experiment {
+	border-bottom: white solid 2px;
+}
+
+.card .description p.experiment ~ p > span:first-child,
+.card .description p.experiment ~ p > strong:first-child {
 	font-size: 24px !important;
 }
 
@@ -3202,7 +3207,8 @@ The stocks were stored at -80&deg;C in drawer 3, tower 1, drawer&nbsp;</p>
 			<p>For further experiments there is&nbsp;isolated DNA needed of the biobricks J23100, K133071, K173003 and I134353. The DNA is isolated out of the bacteria with the help of a plasmid purifaction kit. After isolation this DNA can be used for digestion and ligation or other experiments.&nbsp;<span style="font-size:12px;">J23100 (from the glycerolstock): 325,59 ng/ul, K173003: 217,06 ng/ul, K133071: 186,79 ng/ul,&nbsp;</span>I13453: 88,18 ng/ul</p>
 
 			<p class="experiment"></p>
-			<p><span style="font-size:14px;"><strong>Experiment 3: Minipreps</strong></span><br>
+			<p><span style="font-size:14px;"><strong>Experiment 3: Minipreps (DNA isolation)</strong></span><br>
+27-07-18<br>
 <br>
 <span style="font-size:12px;">Minipreps of the following biobricks in NEB10B&egrave;ta:</span><br>
 -J23100: Constitutive promoter<br>
@@ -3210,19 +3216,18 @@ The stocks were stored at -80&deg;C in drawer 3, tower 1, drawer&nbsp;</p>
 -K173003: Pyruvate --&gt; acetaldehyde + CO2<br>
 -I134353: Promoter (AraC protein binds with arabinose)<br>
 <br>
-<strong><span style="font-size:14px;">Materials:&nbsp;</span></strong><br>
+<strong><span style="font-size:14px;">Materials&nbsp;</span></strong><br>
 - Mini prep, Plasmid Purification Kit, Machery Michels&nbsp;<br>
 - Eppendorf cups<br>
 - Variable Volume Pipets<br>
 - sterile pipet points<br>
 -Chloramphenicol (40 mg/mL)<br>
 <br>
-<span style="font-size:14px;"><strong>Method:&nbsp;</strong></span><br>
-<span style="font-size:14px;"><strong>Miniprep protocol...??</strong></span><br>
+<span style="font-size:14px;"><strong>Methods&nbsp;<br>
+Miniprep protocol&nbsp;Plasmid Purification Kit, Machery Michels&nbsp;</strong></span><br>
 After the transformation we made an overnight culture from the colonies. The colonies were anted into 20 ml LB and incubated overnight at&nbsp;37&deg;C and 150 rpm. The culture was mini prepped the next day. For isolation, 5,4 ml was added step wise in a 2ml Eppendorf cup. The culture was then centrifuged at &gt;12000x g for 30 seconds. The supernatant was deposed, and the pellet was resupended with A1 buffer and vortexed. To the resuspended culture was <strong><span style="font-size:14px;">then.....???<br>
 <br>
 Results</span></strong><br>
-<br>
 <span style="font-size:12px;">J23100: 325,59 ng/ul<br>
 K173003: 217,06 ng/ul<br>
 K133071: 186,79 ng/ul</span><br>
@@ -3634,9 +3639,163 @@ After the transformation we made an overnight culture from the colonies. The col
 <svg viewBox="0 0 24 24">
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
-			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
+			<h1 class="title">Urea and sodium pyruvate test for resistance E.coli</h1>
 			<h3 class="date">August 10</h3>
 			<label class="back" for="switch-67">&times;</label>
+		</div>
+		<div class="attendees">Randall de Waard | Elise Grootscholten</div>
+		<div class="description">
+			<p><span style="font-size:14px;">Testing different amounts of urea and sodiumpyruvate to know which concentrations the bacteria survive.</span></p>
+
+			<p class="experiment"></p>
+			<p><span style="font-size: 16px;"><strong>Experiment 1:&nbsp;Testing different concentrations of Urea and Sodium pyruvate</strong></span><br>
+<span style="font-size:14px;"><strong>08-08-18</strong></span><br>
+<br>
+<span style="font-size:14px;">Testing different amountsof urea and sodiumpyruvate to know which concentrations the bacteria survive.<br>
+<br>
+-First let the LB agarose heat up (95 degrees Celcius)<br>
+-Second, weigh urea and sodium pyruvate in beakers (see table 1)</span></p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width: 404px;">
+	<tbody>
+		<tr>
+			<td style="width: 122px;"><span style="font-size:14px;"><strong>What</strong></span></td>
+			<td style="width: 113px;"><span style="font-size:14px;"><strong>How much</strong></span></td>
+			<td style="width: 153px;"><span style="font-size:14px;"><strong>Solution</strong></span></td>
+		</tr>
+		<tr>
+			<td style="width: 122px;"><span style="font-size:14px;">Urea</span></td>
+			<td style="width: 113px;"><span style="font-size:14px;">1 g</span></td>
+			<td style="width: 153px;"><span style="font-size:14px;">1 mL purified water</span></td>
+		</tr>
+		<tr>
+			<td style="width: 122px;"><span style="font-size:14px;">Urea</span></td>
+			<td style="width: 113px;"><span style="font-size:14px;">2,4 g</span></td>
+			<td style="width: 153px;"><span style="font-size:14px;">2 mL purified water</span></td>
+		</tr>
+		<tr>
+			<td style="width: 122px;"><span style="font-size:14px;">Urea</span></td>
+			<td style="width: 113px;"><span style="font-size:14px;">4,8 g</span></td>
+			<td style="width: 153px;"><span style="font-size:14px;">4 mL purified water</span></td>
+		</tr>
+		<tr>
+			<td style="width: 122px;"><span style="font-size:14px;">Sodium pyruvate </span></td>
+			<td style="width: 113px;"><span style="font-size:14px;">5,7 mL</span></td>
+			<td style="width: 153px;"><span style="font-size:14px;">None</span></td>
+		</tr>
+	</tbody>
+</table>
+
+<p><span style="font-size:14px;"><em>Table 1: weighing urea and sodium pyruvate for LB agarose plates.</em><br>
+-Purify these substances, so it is free of bacteria. Work&nbsp;beneath&nbsp;the flame and pour it in to plastic 50 mL tubes.<br>
+-Pour the LB agarose in the plastic tubes when it's about 45 degrees Celcius and mix gently.<br>
+-Pour the LB agarose mix in a petridish and wait until it's dry. Do this for all the plastic tubes.<br>
+-Also fill 2 petridishes with LB agarose without other substances (positive and negative control).<br>
+-prick a BL21(DE3) bacteria and put it in a 100 mL erlenmeyer with 20 mL culture medium.<br>
+<br>
+<strong>09-08-18</strong><br>
+<br>
+Pipette 100 ul overnight culture on each plate,&nbsp;except on&nbsp;the negative control,&nbsp;and divide it.&nbsp;(24h 37 degrees Celcius)</span><br>
+<br>
+&nbsp;</p>
+
+<p><span style="font-size:14px;"><strong>Results</strong></span><br>
+&nbsp;</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width: 526px;">
+	<tbody>
+		<tr>
+			<td style="width: 123px;"><span style="font-size:14px;"><strong>What</strong></span></td>
+			<td style="width: 95px;"><span style="font-size:14px;"><strong>How much</strong></span></td>
+			<td style="width: 170px;"><span style="font-size:14px;"><strong>Solution</strong></span></td>
+			<td style="width: 117px;"><span style="font-size:14px;"><strong>Result</strong></span></td>
+		</tr>
+		<tr>
+			<td style="width: 123px;"><span style="font-size:14px;">Urea</span></td>
+			<td style="width: 95px;"><span style="font-size:14px;">1 g</span></td>
+			<td style="width: 170px;"><span style="font-size:14px;">1 mL purified water</span></td>
+			<td style="width: 117px;"><span style="font-size:14px;">Grow</span></td>
+		</tr>
+		<tr>
+			<td style="width: 123px;"><span style="font-size:14px;">Urea</span></td>
+			<td style="width: 95px;"><span style="font-size:14px;">2,4 g</span></td>
+			<td style="width: 170px;"><span style="font-size:14px;">2 mL purified water</span></td>
+			<td style="width: 117px;"><span style="font-size:14px;">No grow</span></td>
+		</tr>
+		<tr>
+			<td style="width: 123px;"><span style="font-size:14px;">Urea</span></td>
+			<td style="width: 95px;"><span style="font-size:14px;">4,8 g</span></td>
+			<td style="width: 170px;"><span style="font-size:14px;">4 mL purified water</span></td>
+			<td style="width: 117px;"><span style="font-size:14px;">No grow</span></td>
+		</tr>
+		<tr>
+			<td style="width: 123px;"><span style="font-size:14px;">Sodium pyruvate</span></td>
+			<td style="width: 95px;"><span style="font-size:14px;">5,7 mL</span></td>
+			<td style="width: 170px;"><span style="font-size:14px;">-</span></td>
+			<td style="width: 117px;"><span style="font-size:14px;">Grow</span></td>
+		</tr>
+		<tr>
+			<td style="width: 123px;"><span style="font-size:14px;">Positive control</span></td>
+			<td style="width: 95px;"><span style="font-size:14px;">-</span></td>
+			<td style="width: 170px;"><span style="font-size:14px;">-</span></td>
+			<td style="width: 117px;"><span style="font-size:14px;">Grow</span></td>
+		</tr>
+		<tr>
+			<td style="width: 123px;"><span style="font-size:14px;">Negative control</span></td>
+			<td style="width: 95px;"><span style="font-size:14px;">-</span></td>
+			<td style="width: 170px;"><span style="font-size:14px;">-</span></td>
+			<td style="width: 117px;"><span style="font-size:14px;">No grow</span></td>
+		</tr>
+	</tbody>
+</table>
+
+<p><span style="font-size:14px;"><em>Table 1: Results experiment 1</em><br>
+<br>
+<strong>Conclusion</strong><br>
+<br>
+More tests will be done with urea and sodiumpyruvate because with 1 g urea the bacteria live and with 2,4 g urea the bacteria die.<br>
+The bacteria survive 5,7 mL sodiumpyruvate so we will test with higher concentrations.</span><br>
+&nbsp;</p>
+
+		</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>01</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Urea and sodium pyruvate test for resistance E.coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-67" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 10</h2>
+	</div>
+
+</div><style>
+	#switch-68:checked ~ #card-68 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-68:checked ~ #card-68 .entryform {
+		display: block;
+	}
+	#switch-68:checked ~ #card-68 .cardform,
+	#switch-68:checked ~ #card-68::before,
+	#switch-68:checked ~ #card-68::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-68" class="switch"></input>
+<div class="card wetlab-card" id="card-68" onclick="">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">August 10</h3>
+			<label class="back" for="switch-68">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
 		<div class="description">
@@ -3904,160 +4063,6 @@ incubation at room-temperature for 20 minutes.
 	<div class="cardform">
 		<div class="number"><b>04</b></div>
 		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Assessing Gas Production BioBricks in E.Coli</h3>
-<svg viewBox="0 0 24 24">
-	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
-</svg>
-		<label for="switch-67" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">August 10</h2>
-	</div>
-
-</div><style>
-	#switch-68:checked ~ #card-68 {
-		width: 100%;
-		height: auto;
-	}
-	#switch-68:checked ~ #card-68 .entryform {
-		display: block;
-	}
-	#switch-68:checked ~ #card-68 .cardform,
-	#switch-68:checked ~ #card-68::before,
-	#switch-68:checked ~ #card-68::after {
-		display: none;
-	}
-</style>
-
-<input type="checkbox" id="switch-68" class="switch"></input>
-<div class="card wetlab-card" id="card-68" onclick="">
-
-	<div class="entryform">
-		<div class="titlebar">
-<svg viewBox="0 0 24 24">
-	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
-</svg>
-			<h1 class="title">Urea and sodium pyruvate test for resistance E.coli</h1>
-			<h3 class="date">August 10</h3>
-			<label class="back" for="switch-68">&times;</label>
-		</div>
-		<div class="attendees">Randall de Waard | Elise Grootscholten</div>
-		<div class="description">
-			<p><span style="font-size:14px;">Testing different amounts of urea and sodiumpyruvate to know which concentrations the bacteria survive.</span></p>
-
-			<p class="experiment"></p>
-			<p><span style="font-size: 16px;"><strong>Experiment 1:&nbsp;Testing different concentrations of Urea and Sodium pyruvate</strong></span><br>
-<span style="font-size:14px;"><strong>08-08-18</strong></span><br>
-<br>
-<span style="font-size:14px;">Testing different amountsof urea and sodiumpyruvate to know which concentrations the bacteria survive.<br>
-<br>
--First let the LB agarose heat up (95 degrees Celcius)<br>
--Second, weigh urea and sodium pyruvate in beakers (see table 1)</span></p>
-
-<table border="1" cellpadding="1" cellspacing="1" style="width: 404px;">
-	<tbody>
-		<tr>
-			<td style="width: 122px;"><span style="font-size:14px;"><strong>What</strong></span></td>
-			<td style="width: 113px;"><span style="font-size:14px;"><strong>How much</strong></span></td>
-			<td style="width: 153px;"><span style="font-size:14px;"><strong>Solution</strong></span></td>
-		</tr>
-		<tr>
-			<td style="width: 122px;"><span style="font-size:14px;">Urea</span></td>
-			<td style="width: 113px;"><span style="font-size:14px;">1 g</span></td>
-			<td style="width: 153px;"><span style="font-size:14px;">1 mL purified water</span></td>
-		</tr>
-		<tr>
-			<td style="width: 122px;"><span style="font-size:14px;">Urea</span></td>
-			<td style="width: 113px;"><span style="font-size:14px;">2,4 g</span></td>
-			<td style="width: 153px;"><span style="font-size:14px;">2 mL purified water</span></td>
-		</tr>
-		<tr>
-			<td style="width: 122px;"><span style="font-size:14px;">Urea</span></td>
-			<td style="width: 113px;"><span style="font-size:14px;">4,8 g</span></td>
-			<td style="width: 153px;"><span style="font-size:14px;">4 mL purified water</span></td>
-		</tr>
-		<tr>
-			<td style="width: 122px;"><span style="font-size:14px;">Sodium pyruvate </span></td>
-			<td style="width: 113px;"><span style="font-size:14px;">5,7 mL</span></td>
-			<td style="width: 153px;"><span style="font-size:14px;">None</span></td>
-		</tr>
-	</tbody>
-</table>
-
-<p><span style="font-size:14px;"><em>Table 1: weighing urea and sodium pyruvate for LB agarose plates.</em><br>
--Purify these substances, so it is free of bacteria. Work&nbsp;beneath&nbsp;the flame and pour it in to plastic 50 mL tubes.<br>
--Pour the LB agarose in the plastic tubes when it's about 45 degrees Celcius and mix gently.<br>
--Pour the LB agarose mix in a petridish and wait until it's dry. Do this for all the plastic tubes.<br>
--Also fill 2 petridishes with LB agarose without other substances (positive and negative control).<br>
--prick a BL21(DE3) bacteria and put it in a 100 mL erlenmeyer with 20 mL culture medium.<br>
-<br>
-<strong>09-08-18</strong><br>
-<br>
-Pipette 100 ul overnight culture on each plate,&nbsp;except on&nbsp;the negative control,&nbsp;and divide it.&nbsp;(24h 37 degrees Celcius)</span><br>
-<br>
-&nbsp;</p>
-
-<p><span style="font-size:14px;"><strong>Results</strong></span><br>
-&nbsp;</p>
-
-<table border="1" cellpadding="1" cellspacing="1" style="width: 526px;">
-	<tbody>
-		<tr>
-			<td style="width: 123px;"><span style="font-size:14px;"><strong>What</strong></span></td>
-			<td style="width: 95px;"><span style="font-size:14px;"><strong>How much</strong></span></td>
-			<td style="width: 170px;"><span style="font-size:14px;"><strong>Solution</strong></span></td>
-			<td style="width: 117px;"><span style="font-size:14px;"><strong>Result</strong></span></td>
-		</tr>
-		<tr>
-			<td style="width: 123px;"><span style="font-size:14px;">Urea</span></td>
-			<td style="width: 95px;"><span style="font-size:14px;">1 g</span></td>
-			<td style="width: 170px;"><span style="font-size:14px;">1 mL purified water</span></td>
-			<td style="width: 117px;"><span style="font-size:14px;">Grow</span></td>
-		</tr>
-		<tr>
-			<td style="width: 123px;"><span style="font-size:14px;">Urea</span></td>
-			<td style="width: 95px;"><span style="font-size:14px;">2,4 g</span></td>
-			<td style="width: 170px;"><span style="font-size:14px;">2 mL purified water</span></td>
-			<td style="width: 117px;"><span style="font-size:14px;">No grow</span></td>
-		</tr>
-		<tr>
-			<td style="width: 123px;"><span style="font-size:14px;">Urea</span></td>
-			<td style="width: 95px;"><span style="font-size:14px;">4,8 g</span></td>
-			<td style="width: 170px;"><span style="font-size:14px;">4 mL purified water</span></td>
-			<td style="width: 117px;"><span style="font-size:14px;">No grow</span></td>
-		</tr>
-		<tr>
-			<td style="width: 123px;"><span style="font-size:14px;">Sodium pyruvate</span></td>
-			<td style="width: 95px;"><span style="font-size:14px;">5,7 mL</span></td>
-			<td style="width: 170px;"><span style="font-size:14px;">-</span></td>
-			<td style="width: 117px;"><span style="font-size:14px;">Grow</span></td>
-		</tr>
-		<tr>
-			<td style="width: 123px;"><span style="font-size:14px;">Positive control</span></td>
-			<td style="width: 95px;"><span style="font-size:14px;">-</span></td>
-			<td style="width: 170px;"><span style="font-size:14px;">-</span></td>
-			<td style="width: 117px;"><span style="font-size:14px;">Grow</span></td>
-		</tr>
-		<tr>
-			<td style="width: 123px;"><span style="font-size:14px;">Negative control</span></td>
-			<td style="width: 95px;"><span style="font-size:14px;">-</span></td>
-			<td style="width: 170px;"><span style="font-size:14px;">-</span></td>
-			<td style="width: 117px;"><span style="font-size:14px;">No grow</span></td>
-		</tr>
-	</tbody>
-</table>
-
-<p><span style="font-size:14px;"><em>Table 1: Results experiment 1</em><br>
-<br>
-<strong>Conclusion</strong><br>
-<br>
-More tests will be done with urea and sodiumpyruvate because with 1 g urea the bacteria live and with 2,4 g urea the bacteria die.<br>
-The bacteria survive 5,7 mL sodiumpyruvate so we will test with higher concentrations.</span><br>
-&nbsp;</p>
-
-		</div>
-	</div>
-
-	<div class="cardform">
-		<div class="number"><b>01</b></div>
-		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Urea and sodium pyruvate test for resistance E.coli</h3>
 <svg viewBox="0 0 24 24">
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
@@ -4404,8 +4409,7 @@ Store at -20 degrees Celcius</p>
 
 			<p class="experiment"></p>
 			<p><span style="font-size: 14px;"><strong>Experiment 1: Gasproduction testing</strong></span><br>
-<br>
-<strong>15-08-18</strong><br>
+15-08-18<br>
 Making a set up for the gas production testing and testing it with NEB10B&egrave;ta with the expected biobricks in it (K133071 + J23100) and a negative control.<br>
 <br>
 <strong>Materials</strong><br>
@@ -4431,7 +4435,7 @@ Then hold it above the 15 mL tube and pull the paper away and let the little tub
 Try to do this so there's no gas in the little tube.<br>
 Now wait until gas is produced.<br>
 <br>
-<strong>16-08-18</strong><br>
+16-08-18<br>
 Making a set up for the gas production testing and testing it with NEB10B&egrave;ta with the expected biobricks in it (K133071 + J23100).<br>
 20 different colonies are tested.<br>
 <br>
@@ -4444,12 +4448,8 @@ Make 700 mL culture medium with 35&nbsp;g urea and 612,5 ul&nbsp;Chloramphenicol
 The culture medium can be used for the 20 different colonies with expected biobricks: K133071 + J23100.</p>
 
 <p>&nbsp;<br>
-<br>
-<br>
-Results<br>
-<br>
-15-08-18<br>
-Gas was let into the little tubes so it was difficult to see whether there was gasproduction or not. Mainly in the negative control this was&nbsp;<br>
+<strong>Results</strong><br>
+Gas was let into the little tubes so it was difficult to see whether there was gasproduction or not. Mainly in the negative control the tubes started with gas in it.<br>
 <br>
 &nbsp;</p>
 
@@ -4490,12 +4490,12 @@ Gas was let into the little tubes so it was difficult to see whether there was g
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 			<h1 class="title">Testing gas production</h1>
-			<h3 class="date">August 23</h3>
+			<h3 class="date">August 22</h3>
 			<label class="back" for="switch-73">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Paul Reusink</div>
 		<div class="description">
-			<p>Making a set up for the gas production testing and testing it with NEB10B&egrave;ta with the expected biobricks in it (K133071 + I13453), (K173003 + J23100), (K173003 + I13453)&nbsp;and a negative control.</p>
+			<p>Making a set up for the gas production testing and testing it with NEB10B&egrave;ta with the expected biobricks in it (K133071 + I13453), (K173003 + J23100), (K173003 + I13453)&nbsp;and a negative control.&nbsp;Colonies 9 and 10 are chosen use for further tests because there was the biggest amount of gas production.</p>
 
 			<p class="experiment"></p>
 			<p><span style="font-size: 14px;"><strong>Experiment 2: Gasproduction testing </strong></span><br>
@@ -4529,7 +4529,7 @@ Colonies 9 and 10 are chosen use for further tests.</p>
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 		<label for="switch-73" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">August 23</h2>
+		<h2 class="date" style="color: white;">August 22</h2>
 	</div>
 
 </div><style>
@@ -4556,7 +4556,7 @@ Colonies 9 and 10 are chosen use for further tests.</p>
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 			<h1 class="title">Testing gas production</h1>
-			<h3 class="date">August 23</h3>
+			<h3 class="date">August 22</h3>
 			<label class="back" for="switch-74">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Paul Reusink</div>
@@ -4594,7 +4594,7 @@ In both the negative controls there's been gas produced. Futher gasproduction te
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 		<label for="switch-74" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">August 23</h2>
+		<h2 class="date" style="color: white;">August 22</h2>
 	</div>
 
 </div><style>
@@ -4621,7 +4621,7 @@ In both the negative controls there's been gas produced. Futher gasproduction te
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 			<h1 class="title">Testing gas production</h1>
-			<h3 class="date">August 23</h3>
+			<h3 class="date">August 24</h3>
 			<label class="back" for="switch-75">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Paul Reusink</div>
@@ -4659,7 +4659,7 @@ Culture medium:<br>
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 		<label for="switch-75" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">August 23</h2>
+		<h2 class="date" style="color: white;">August 24</h2>
 	</div>
 
 </div><style>
@@ -4746,89 +4746,9 @@ See experiment 3<br>
 <svg viewBox="0 0 24 24">
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
-			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
-			<h3 class="date">August 27</h3>
-			<label class="back" for="switch-77">&times;</label>
-		</div>
-		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
-		<div class="description">
-			<p>A miniprep of the biobrick K352002 is made. The concentration is 69,77 ng/ul.</p>
-
-			<p class="experiment"></p>
-			<p><strong>Experiment 9: Minipreps</strong><br>
-28-08-18<br>
-<br>
-<strong>Materials</strong><br>
-See experiment 3<br>
-<br>
-<strong>Methods</strong><br>
-See experiment 3<br>
-Make minipreps of the biobricks K352002, K352003<br>
-<br>
-<strong>Results</strong><br>
-See figure 1<br>
-<br>
-29-08-18<br>
-<strong>Materials</strong><br>
-See experiment 3<br>
-<br>
-<strong>Methods</strong><br>
-See experiment 3<br>
-Make minipreps of the biobrick&nbsp;K352002<br>
-<br>
-<strong>Results</strong><br>
-See figure 2<br>
-<br>
-30-08-18<br>
-<strong>Materials</strong><br>
-See experiment 3<br>
-<br>
-<strong>Methods</strong><br>
-See experiment 3<br>
-Make minipreps of the biobricks K133116 and K173013<br>
-<br>
-<strong>Results</strong><br>
-See image experiment 9</p>
-
-		</div>
-	</div>
-
-	<div class="cardform">
-		<div class="number"><b>09</b></div>
-		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Assessing Gas Production BioBricks in E.Coli</h3>
-<svg viewBox="0 0 24 24">
-	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
-</svg>
-		<label for="switch-77" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">August 27</h2>
-	</div>
-
-</div><style>
-	#switch-78:checked ~ #card-78 {
-		width: 100%;
-		height: auto;
-	}
-	#switch-78:checked ~ #card-78 .entryform {
-		display: block;
-	}
-	#switch-78:checked ~ #card-78 .cardform,
-	#switch-78:checked ~ #card-78::before,
-	#switch-78:checked ~ #card-78::after {
-		display: none;
-	}
-</style>
-
-<input type="checkbox" id="switch-78" class="switch"></input>
-<div class="card wetlab-card" id="card-78" onclick="">
-
-	<div class="entryform">
-		<div class="titlebar">
-<svg viewBox="0 0 24 24">
-	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
-</svg>
 			<h1 class="title">Urea and sodium pyruvate test for resistance E.coli</h1>
 			<h3 class="date">August 28</h3>
-			<label class="back" for="switch-78">&times;</label>
+			<label class="back" for="switch-77">&times;</label>
 		</div>
 		<div class="attendees">Randall de Waard | Elise Grootscholten</div>
 		<div class="description">
@@ -4924,8 +4844,86 @@ For urea is 1 g used/20 mL and for sodiumpyruvate is 6 mL (10mM) or 3 mL (20 mM)
 <svg viewBox="0 0 24 24">
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
-		<label for="switch-78" class="more-info">Show more</label>
+		<label for="switch-77" class="more-info">Show more</label>
 		<h2 class="date" style="color: white;">August 28</h2>
+	</div>
+
+</div><style>
+	#switch-78:checked ~ #card-78 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-78:checked ~ #card-78 .entryform {
+		display: block;
+	}
+	#switch-78:checked ~ #card-78 .cardform,
+	#switch-78:checked ~ #card-78::before,
+	#switch-78:checked ~ #card-78::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-78" class="switch"></input>
+<div class="card wetlab-card" id="card-78" onclick="">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">August 30</h3>
+			<label class="back" for="switch-78">&times;</label>
+		</div>
+		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
+		<div class="description">
+			<p>A miniprep of the biobrick K352002 is made. The concentration is 69,77 ng/ul.</p>
+
+			<p class="experiment"></p>
+			<p><strong>Experiment 9: Minipreps</strong><br>
+28-08-18<br>
+<br>
+<strong>Materials</strong><br>
+See experiment 3<br>
+<br>
+<strong>Methods</strong><br>
+See experiment 3<br>
+Make minipreps of the biobricks K352002, K352003<br>
+<br>
+<strong>Results</strong><br>
+The minipreps can not be used,&nbsp;because washing buffer without ethanol is used. The miniprep of K352002&nbsp;has&nbsp;been done again.<br>
+<br>
+29-08-18<br>
+<strong>Materials</strong><br>
+See experiment 3<br>
+<br>
+<strong>Methods</strong><br>
+See experiment 3<br>
+Make minipreps of the biobrick&nbsp;K352002<br>
+<br>
+<strong>Results</strong><br>
+K352002: 69,77 ng/&mu;L<br>
+<br>
+30-08-18<br>
+<strong>Materials</strong><br>
+See experiment 3<br>
+<br>
+<strong>Methods</strong><br>
+See experiment 3<br>
+Make minipreps of the biobricks K133116 and K173013<br>
+&nbsp;</p>
+
+		</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>09</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Assessing Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-78" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">August 30</h2>
 	</div>
 
 </div><style>
@@ -4952,7 +4950,7 @@ For urea is 1 g used/20 mL and for sodiumpyruvate is 6 mL (10mM) or 3 mL (20 mM)
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
-			<h3 class="date">September 7</h3>
+			<h3 class="date">August 31</h3>
 			<label class="back" for="switch-79">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
@@ -5535,7 +5533,7 @@ Store at -20 degrees Celcius.<br>
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 		<label for="switch-79" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">September 7</h2>
+		<h2 class="date" style="color: white;">August 31</h2>
 	</div>
 
 </div><style>
@@ -5562,7 +5560,7 @@ Store at -20 degrees Celcius.<br>
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
-			<h3 class="date">September 7</h3>
+			<h3 class="date">September 3</h3>
 			<label class="back" for="switch-80">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
@@ -5601,7 +5599,7 @@ There are pink and white colonies present. Only the white colonies will be used 
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 		<label for="switch-80" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">September 7</h2>
+		<h2 class="date" style="color: white;">September 3</h2>
 	</div>
 
 </div><style>
@@ -5628,7 +5626,7 @@ There are pink and white colonies present. Only the white colonies will be used 
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
-			<h3 class="date">September 11</h3>
+			<h3 class="date">September 6</h3>
 			<label class="back" for="switch-81">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
@@ -5795,7 +5793,7 @@ Table 1: list of biobricks of abbreviations<br>
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 		<label for="switch-81" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">September 11</h2>
+		<h2 class="date" style="color: white;">September 6</h2>
 	</div>
 
 </div><style>
@@ -5822,7 +5820,7 @@ Table 1: list of biobricks of abbreviations<br>
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
-			<h3 class="date">September 11</h3>
+			<h3 class="date">September 10</h3>
 			<label class="back" for="switch-82">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
@@ -6384,7 +6382,7 @@ Therefore, Sma was added again and was incubated at 25 degrees Celcius. See resu
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 		<label for="switch-82" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">September 11</h2>
+		<h2 class="date" style="color: white;">September 10</h2>
 	</div>
 
 </div><style>
@@ -6413,6 +6411,66 @@ Therefore, Sma was added again and was incubated at 25 degrees Celcius. See resu
 			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
 			<h3 class="date">September 13</h3>
 			<label class="back" for="switch-83">&times;</label>
+		</div>
+		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
+		<div class="description">
+			<p>Minipreps of the biobrick combinations:&nbsp;K352002+K133116+pSB1K3 (1) and&nbsp;K352003+K133116+pSB1K3 (2) are done. The DNA concentration is for 1:189,3 ng/&mu;l and for 2: 355,3&nbsp;ng/&mu;l.</p>
+
+			<p class="experiment"></p>
+			<p><span style="font-size:14px;"><strong>Experiment 14: Minipreps</strong></span><br>
+13-09-18<br>
+<br>
+Minipreps of the&nbsp;biobrick combinations:&nbsp;K352002+K133116+pSB1K3&nbsp;and&nbsp;K352003+K133116+pSB1K3<br>
+<br>
+<strong>Materials</strong><br>
+See experiment 3<br>
+<br>
+<strong>Methods</strong><br>
+See experiment 3<br>
+<br>
+<strong>Results</strong><br>
+K352002+K133116+pSB1K3: 189,3&nbsp;ng/&mu;l<br>
+K352003+K133116+pSB1K3: 355,3&nbsp;ng/&mu;l</p>
+
+		</div>
+	</div>
+
+	<div class="cardform">
+		<div class="number"><b>14</b></div>
+		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Assessing Gas Production BioBricks in E.Coli</h3>
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+		<label for="switch-83" class="more-info">Show more</label>
+		<h2 class="date" style="color: white;">September 13</h2>
+	</div>
+
+</div><style>
+	#switch-84:checked ~ #card-84 {
+		width: 100%;
+		height: auto;
+	}
+	#switch-84:checked ~ #card-84 .entryform {
+		display: block;
+	}
+	#switch-84:checked ~ #card-84 .cardform,
+	#switch-84:checked ~ #card-84::before,
+	#switch-84:checked ~ #card-84::after {
+		display: none;
+	}
+</style>
+
+<input type="checkbox" id="switch-84" class="switch"></input>
+<div class="card wetlab-card" id="card-84" onclick="">
+
+	<div class="entryform">
+		<div class="titlebar">
+<svg viewBox="0 0 24 24">
+	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
+</svg>
+			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
+			<h3 class="date">September 13</h3>
+			<label class="back" for="switch-84">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
 		<div class="description">
@@ -6502,27 +6560,27 @@ After an our at room temperature the digestions were put in -20 degrees Celcius.
 <svg viewBox="0 0 24 24">
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
-		<label for="switch-83" class="more-info">Show more</label>
+		<label for="switch-84" class="more-info">Show more</label>
 		<h2 class="date" style="color: white;">September 13</h2>
 	</div>
 
 </div><style>
-	#switch-84:checked ~ #card-84 {
+	#switch-85:checked ~ #card-85 {
 		width: 100%;
 		height: auto;
 	}
-	#switch-84:checked ~ #card-84 .entryform {
+	#switch-85:checked ~ #card-85 .entryform {
 		display: block;
 	}
-	#switch-84:checked ~ #card-84 .cardform,
-	#switch-84:checked ~ #card-84::before,
-	#switch-84:checked ~ #card-84::after {
+	#switch-85:checked ~ #card-85 .cardform,
+	#switch-85:checked ~ #card-85::before,
+	#switch-85:checked ~ #card-85::after {
 		display: none;
 	}
 </style>
 
-<input type="checkbox" id="switch-84" class="switch"></input>
-<div class="card wetlab-card" id="card-84" onclick="">
+<input type="checkbox" id="switch-85" class="switch"></input>
+<div class="card wetlab-card" id="card-85" onclick="">
 
 	<div class="entryform">
 		<div class="titlebar">
@@ -6531,7 +6589,7 @@ After an our at room temperature the digestions were put in -20 degrees Celcius.
 </svg>
 			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
 			<h3 class="date">September 14</h3>
-			<label class="back" for="switch-84">&times;</label>
+			<label class="back" for="switch-85">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
 		<div class="description">
@@ -6562,27 +6620,27 @@ L,&nbsp;</p>
 <svg viewBox="0 0 24 24">
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
-		<label for="switch-84" class="more-info">Show more</label>
+		<label for="switch-85" class="more-info">Show more</label>
 		<h2 class="date" style="color: white;">September 14</h2>
 	</div>
 
 </div><style>
-	#switch-85:checked ~ #card-85 {
+	#switch-86:checked ~ #card-86 {
 		width: 100%;
 		height: auto;
 	}
-	#switch-85:checked ~ #card-85 .entryform {
+	#switch-86:checked ~ #card-86 .entryform {
 		display: block;
 	}
-	#switch-85:checked ~ #card-85 .cardform,
-	#switch-85:checked ~ #card-85::before,
-	#switch-85:checked ~ #card-85::after {
+	#switch-86:checked ~ #card-86 .cardform,
+	#switch-86:checked ~ #card-86::before,
+	#switch-86:checked ~ #card-86::after {
 		display: none;
 	}
 </style>
 
-<input type="checkbox" id="switch-85" class="switch"></input>
-<div class="card wetlab-card" id="card-85" onclick="">
+<input type="checkbox" id="switch-86" class="switch"></input>
+<div class="card wetlab-card" id="card-86" onclick="">
 
 	<div class="entryform">
 		<div class="titlebar">
@@ -6591,7 +6649,7 @@ L,&nbsp;</p>
 </svg>
 			<h1 class="title">Testing gas production</h1>
 			<h3 class="date">September 17</h3>
-			<label class="back" for="switch-85">&times;</label>
+			<label class="back" for="switch-86">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Paul Reusink</div>
 		<div class="description">
@@ -6695,66 +6753,6 @@ All the bacteria are de deluted in normal LB agar, LB agar with urea and LB agar
 <svg viewBox="0 0 24 24">
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
-		<label for="switch-85" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">September 17</h2>
-	</div>
-
-</div><style>
-	#switch-86:checked ~ #card-86 {
-		width: 100%;
-		height: auto;
-	}
-	#switch-86:checked ~ #card-86 .entryform {
-		display: block;
-	}
-	#switch-86:checked ~ #card-86 .cardform,
-	#switch-86:checked ~ #card-86::before,
-	#switch-86:checked ~ #card-86::after {
-		display: none;
-	}
-</style>
-
-<input type="checkbox" id="switch-86" class="switch"></input>
-<div class="card wetlab-card" id="card-86" onclick="">
-
-	<div class="entryform">
-		<div class="titlebar">
-<svg viewBox="0 0 24 24">
-	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
-</svg>
-			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
-			<h3 class="date">September 17</h3>
-			<label class="back" for="switch-86">&times;</label>
-		</div>
-		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
-		<div class="description">
-			<p>Minipreps of the biobrick combinations:&nbsp;K352002+K133116+pSB1K3 (1) and&nbsp;K352003+K133116+pSB1K3 (2) are done. The DNA concentration is for 1:189,3 ng/&mu;l and for 2: 355,3&nbsp;ng/&mu;l.</p>
-
-			<p class="experiment"></p>
-			<p><span style="font-size:14px;"><strong>Experiment 14: Minipreps</strong></span><br>
-13-09-18<br>
-<br>
-Minipreps of the&nbsp;biobrick combinations:&nbsp;K352002+K133116+pSB1K3&nbsp;and&nbsp;K352003+K133116+pSB1K3<br>
-<br>
-<strong>Materials</strong><br>
-See experiment 3<br>
-<br>
-<strong>Methods</strong><br>
-See experiment 3<br>
-<br>
-<strong>Results</strong><br>
-K352002+K133116+pSB1K3: 189,3&nbsp;ng/&mu;l<br>
-K352003+K133116+pSB1K3: 355,3&nbsp;ng/&mu;l</p>
-
-		</div>
-	</div>
-
-	<div class="cardform">
-		<div class="number"><b>14</b></div>
-		<h3 class="title" style="color: white; padding: 10px 5px 5px 5px;">Assessing Gas Production BioBricks in E.Coli</h3>
-<svg viewBox="0 0 24 24">
-	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
-</svg>
 		<label for="switch-86" class="more-info">Show more</label>
 		<h2 class="date" style="color: white;">September 17</h2>
 	</div>
@@ -6783,7 +6781,7 @@ K352003+K133116+pSB1K3: 355,3&nbsp;ng/&mu;l</p>
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
-			<h3 class="date">September 20</h3>
+			<h3 class="date">September 21</h3>
 			<label class="back" for="switch-87">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
@@ -6827,7 +6825,7 @@ Thise are: A1, A4, A5, A6, B1, B5, B6 C1, C2, C3, C4, C5, C6, E1, E2, E5, E6, F4
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 		<label for="switch-87" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">September 20</h2>
+		<h2 class="date" style="color: white;">September 21</h2>
 	</div>
 
 </div><style>
@@ -6854,7 +6852,7 @@ Thise are: A1, A4, A5, A6, B1, B5, B6 C1, C2, C3, C4, C5, C6, E1, E2, E5, E6, F4
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
-			<h3 class="date">September 26</h3>
+			<h3 class="date">September 27</h3>
 			<label class="back" for="switch-88">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
@@ -6888,7 +6886,7 @@ Make new overnight cultures of the numbers:&nbsp;A1, A4, A5, A6, B1, B5, B6 C1, 
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 		<label for="switch-88" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">September 26</h2>
+		<h2 class="date" style="color: white;">September 27</h2>
 	</div>
 
 </div><style>
@@ -6969,7 +6967,7 @@ Also make master mixes for the control digestions and code&nbsp;the tubes.<br>
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 			<h1 class="title">Assessing Gas Production BioBricks in E.Coli</h1>
-			<h3 class="date">September 27</h3>
+			<h3 class="date">October 4</h3>
 			<label class="back" for="switch-90">&times;</label>
 		</div>
 		<div class="attendees">Elise Grootscholten | Randall de Waard</div>
@@ -7283,7 +7281,7 @@ Gel 4</p>
 	<path d="M9.46,6.28L11.05,9C8.47,9.26 6.5,11.41 6.5,14A5,5 0 0,0 11.5,19C13.55,19 15.31,17.77 16.08,16H13.5V14H21.5V16H19.25C18.84,17.57 17.97,18.96 16.79,20H19.5V22H3.5V20H6.21C4.55,18.53 3.5,16.39 3.5,14C3.5,10.37 5.96,7.2 9.46,6.28M12.74,2.07L13.5,3.37L14.36,2.87L17.86,8.93L14.39,10.93L10.89,4.87L11.76,4.37L11,3.07L12.74,2.07Z"></path>
 </svg>
 		<label for="switch-90" class="more-info">Show more</label>
-		<h2 class="date" style="color: white;">September 27</h2>
+		<h2 class="date" style="color: white;">October 4</h2>
 	</div>
 
 </div><style>
@@ -7419,38 +7417,48 @@ See figure 1.</p>
 	<tbody>
 		<tr>
 			<td style="width: 88px;"><strong>Number</strong></td>
+			<td style="width: 88px;"><strong>BBa_</strong></td>
 			<td style="width: 105px;"><strong>HB101</strong></td>
 			<td style="width: 113px;"><strong>JM109</strong></td>
 		</tr>
 		<tr>
 			<td style="width: 88px;">J1</td>
+			<td style="width: 88px;">BBa_K2604000</td>
 			<td style="width: 105px;">1x</td>
 			<td style="width: 113px;">1x</td>
 		</tr>
 		<tr>
 			<td style="width: 88px;">I1</td>
+			<td style="width: 88px;">BBa_K2604001</td>
 			<td style="width: 105px;">3x</td>
 			<td style="width: 113px;">3x</td>
 		</tr>
 		<tr>
 			<td style="width: 88px;">D1</td>
+			<td style="width: 88px;">BBa_K2604003</td>
 			<td style="width: 105px;">2x</td>
 			<td style="width: 113px;">2x</td>
 		</tr>
 		<tr>
 			<td style="width: 88px;">B1</td>
+			<td style="width: 88px;">BBa_K2604006</td>
 			<td style="width: 105px;">1x</td>
 			<td style="width: 113px;">1x</td>
 		</tr>
 		<tr>
 			<td style="width: 88px;">B6</td>
+			<td style="width: 88px;">BBa_K2604006</td>
 			<td style="width: 105px;">1x</td>
 			<td style="width: 113px;">1x</td>
 		</tr>
 	</tbody>
 </table>
 
-<p><em>Table 1: Overnight culture scheme.</em></p>
+<p><em>Table 1: Overnight culture scheme.</em><br>
+<br>
+I1, D1 and J1 are tested for the gas productio. The rest is only made for glycerolstocks<br>
+<br>
+We can not say for sure if the PBad promoter and the gas production enzyme pyruvate decarboxylase work. Fot that more gas production test have to be done. Also the negative controls produce gas. This is a problem. The JM109 and HB101 E.coli strains didn't produce gas in experiment .&nbsp;</p>
 
 			<p class="experiment"></p>
 			<p><span style="font-size:14px;"><strong>Experiment 6: Testing gasproduction with our new biobricks.</strong></span><br>
@@ -7463,37 +7471,44 @@ Testing our new biobricks K260401 in JM109 and HB101. As a negative control we u
 -Bacteria on agar plates with the right plasmid<br>
 <br>
 <strong>Methods</strong><br>
-Make overnight cultures of the following strains with the right plasmid:</p>
+Make overnight cultures of the following strains with the right plasmid:<br>
+&nbsp;</p>
 
 <table border="1" cellpadding="1" cellspacing="1" style="width: 322px;">
 	<tbody>
 		<tr>
 			<td style="width: 88px;"><strong>Number</strong></td>
+			<td style="width: 88px;"><strong>BBa_</strong></td>
 			<td style="width: 105px;"><strong>HB101</strong></td>
 			<td style="width: 113px;"><strong>JM109</strong></td>
 		</tr>
 		<tr>
 			<td style="width: 88px;">J1</td>
+			<td style="width: 88px;">BBa_K2604000</td>
 			<td style="width: 105px;">1x</td>
 			<td style="width: 113px;">1x</td>
 		</tr>
 		<tr>
 			<td style="width: 88px;">I1</td>
+			<td style="width: 88px;">BBa_K2604001</td>
 			<td style="width: 105px;">3x</td>
 			<td style="width: 113px;">3x</td>
 		</tr>
 		<tr>
 			<td style="width: 88px;">D1</td>
+			<td style="width: 88px;">BBa_K2604003</td>
 			<td style="width: 105px;">2x</td>
 			<td style="width: 113px;">2x</td>
 		</tr>
 		<tr>
 			<td style="width: 88px;">B1</td>
+			<td style="width: 88px;">BBa_K2604006</td>
 			<td style="width: 105px;">1x</td>
 			<td style="width: 113px;">1x</td>
 		</tr>
 		<tr>
 			<td style="width: 88px;">B6</td>
+			<td style="width: 88px;">BBa_K2604006</td>
 			<td style="width: 105px;">1x</td>
 			<td style="width: 113px;">1x</td>
 		</tr>
@@ -7508,9 +7523,9 @@ LB: 582 mL +18 mL 100 mM sodiumpyruvate and 525 &mu;L kanamycin (40 mg/mL).<br>
 After this the LB is devided in 2. Number 1: 0,5 &mu;L arabinose, number 2: 1,0 &mu;L arabinose.<br>
 The rest is done just like earlier experiments with a total of 20 tubes because everthing is done twice.<br>
 <br>
-Results<br>
-<br>
-&nbsp;
+<strong>Results</strong><br>
+Some of the I1 (BBa_K2604001) JM109 and HB101 bacteria and the negative controls D1 and J1 (BBa_K2604003 and BBa_K2604000) have produced gas over the weekend.<br>
+We can not say for sure if the PBad promoter and the gas production enzyme pyruvate decarboxylase work. Fot that more gas production test have to be done. Also the negative controls produce gas. This is a problem. The JM109 and HB101 E.coli strains didn't produce gas in experiment .&nbsp;
 		</div>
 	</div>
 
