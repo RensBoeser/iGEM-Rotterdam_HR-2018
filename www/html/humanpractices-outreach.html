@@ -1,127 +1,141 @@
 <style>
-.articles {
-	display: flex;
-	flex-wrap: wrap;
-  justify-content: center;
-}
+  .articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-.article {
-  margin: 40px;
-  padding: 40px;
-  box-shadow: 0 0 20px rgba(0,0,0, 0.1);
-	min-width: 600px;
-	max-width: 700px;
-	background: white;
-}
+  .article {
+    margin: 40px;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    min-width: 600px;
+    max-width: 700px;
+    background: white;
+  }
 
-.article > .article-header {
-	display: flex;
-	flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+  .article>.article-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-.article > .article-header > h1, .article > .article-header > h3 {
-  margin: 10px;
-}
+  .article>.article-header>h1,
+  .article>.article-header>h3 {
+    margin: 10px;
+  }
 
-.article > .article-header > h3 {
-  align-self: center;
-}
+  .article>.article-header>h3 {
+    align-self: center;
+  }
 
-.article > .article-header > h1 > a {
-  color: var(--color-primary) !important;
-  text-decoration: none !important;
-	background: none !important;
-	text-align: center !important;
-	display: block;
-}
+  .article>.article-header>h1>a {
+    color: var(--color-primary) !important;
+    text-decoration: none !important;
+    background: none !important;
+    text-align: center !important;
+    display: block;
+  }
 
-.article > .article-header > h1 > a:hover {
-  text-decoration: underline !important;
-}
+  .article>.article-header>h1>a:hover {
+    text-decoration: underline !important;
+  }
 
-.article > .article-image {
-  display: block;
-  width: 100%;
-  height: 500px;
-  padding: 0 !important;
-  background-size: contain !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-color: transparent !important;
-}
+  .article>.article-image {
+    display: block;
+    width: 100%;
+    height: 500px;
+    padding: 0 !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: transparent !important;
+  }
 
-.article p {
-  padding: 10px;
-  font-size: 1.4rem !important;
-}
+  .article p {
+    padding: 10px;
+    font-size: 1.4rem !important;
+  }
 
-#petrochem {
-  background-image: url("http://2018.igem.org/wiki/images/2/22/T--Rotterdam_HR--Petrochem.png") !important;
-}
+  #petrochem {
+    background-image: url("http://2018.igem.org/wiki/images/2/22/T--Rotterdam_HR--Petrochem.png") !important;
+  }
 
-#bionieuws {
-	background-image: url("http://2018.igem.org/wiki/images/d/dd/T--Rotterdam_HR--Bionieuws.jpeg") !important;
-}
+  #bionieuws {
+    background-image: url("http://2018.igem.org/wiki/images/d/dd/T--Rotterdam_HR--Bionieuws.jpeg") !important;
+  }
 
-#heraut {
-	background-image: url("http://2018.igem.org/wiki/images/1/1e/T--Rotterdam_HR--DeHeraut.png") !important;
-}
+  #heraut {
+    background-image: url("http://2018.igem.org/wiki/images/1/1e/T--Rotterdam_HR--DeHeraut.png") !important;
+  }
 
-#NBV {
-	background-image: url("http://2018.igem.org/wiki/images/2/20/T--Rotterdam_HR--NBV.png") !important;
-}
-#profielen {
-  background-image: url("") !important;
-}
+  #NBV {
+    background-image: url("http://2018.igem.org/wiki/images/2/20/T--Rotterdam_HR--NBV.png") !important;
+  }
 
+  #profielen {
+    background-image: url("") !important;
+  }
 </style>
 
 <div class="articles">
-	
-	<div class="article">
+
+  <div class="article">
     <div class="article-header">
       <h1><a href="https://www.petrochem.nl/studenten-bacterien-koolmonoxide/">Published on the Petrochem website</a></h1>
       <h3><i>July 9th 2018</i></h3>
     </div>
     <a href="https://www.petrochem.nl/studenten-bacterien-koolmonoxide/" class="article-image" id="petrochem"></a>
-    <p>We were published at the Petrochem website. Petrochem is a dutch management magazine for the oil- and chemical industry. It contains information about the winning of oil, from bulk chemistry to fine chemicals. We would like to thank petrochem for publishing us on their website!</p>
-	</div>
+    <p>We were published at the Petrochem website. Petrochem is a dutch management magazine for the oil- and chemical
+      industry. It contains information about the winning of oil, from bulk chemistry to fine chemicals. We would like
+      to thank petrochem for publishing us on their website!</p>
+  </div>
 
-	<div class="article">
+  <div class="article">
     <div class="article-header">
       <h1><a href="http://www.bionieuws.nl/">Published in the Bionieuws newsletter</a></h1>
       <h3><i>September 8th 2018</i></h3>
     </div>
     <a href="http://www.bionieuws.nl/" class="article-image" id="bionieuws"></a>
-    <p>We were published in the newsletter of Bionieuws toghether with the other dutch teams! Bionieuws is a dutch newsletter for biologists with scientific news, interviews and articles about life sciences.</p>
-	</div>
+    <p>We were published in the newsletter of Bionieuws toghether with the other dutch teams! Bionieuws is a dutch
+      newsletter for biologists with scientific news, interviews and articles about life sciences.</p>
+  </div>
 
-	<div class="article">
+  <div class="article">
     <div class="article-header">
       <h1><a href="http://www.herautonline.nl/?p=72220">Published in the Heraut newspaper</a></h1>
       <h3><i>September 12th 2018</i></h3>
     </div>
     <a href="http://www.herautonline.nl/?p=72220" class="article-image" id="heraut"></a>
-    <p>We had an interview with De Heraut this is the local newspaper of Lansingerland in Zuid-Holland. Thanks to De Heraut for publishing us in their newspaper and on their website! We really enjoyed the interview and the interest you had in our team. Through this we hope to obtain more connections with stakeholders and possible sponsors. For more information you can look at the website of De heraut by clicking on the article.</p>
-	</div>
-
-	<div class="article">
-    <div class="article-header">
-      <h1><a href="https://nbv.kncv.nl/k/nl/n1099/news/view/141227/104679/igem-team-rotterdam.html">Nederlandse Biotechnologie Vereniging (Dutch Biotechnology Association)</a></h1>
-      <h3><i>September 12th 2018</i></h3>
-    </div>
-    <a href="https://nbv.kncv.nl/k/nl/n1099/news/view/141227/104679/igem-team-rotterdam.html" class="article-image" id="NBV"></a>
-    <p>We, just like all the Dutch iGEM teams, are published on the LinkedIn of the Nederlandse Biotechnologie Vereniging (NBV), their newsletter and the website C2W. C2W is a scientific website with news about Science, Biology and Chemistry. Through this we hope to obtain more connections with stakeholders and possible sponsors. We would like to thank the NBV for publishing us! Click on the link to read the whole article.</p>
+    <p>We had an interview with De Heraut this is the local newspaper of Lansingerland in Zuid-Holland. Thanks to De
+      Heraut for publishing us in their newspaper and on their website! We really enjoyed the interview and the
+      interest you had in our team. Through this we hope to obtain more connections with stakeholders and possible
+      sponsors. For more information you can look at the website of De heraut by clicking on the article.</p>
   </div>
 
   <div class="article">
-      <div class="article-header">
-        <h1><a href="https://profielen.hr.nl/">Published in the school paper 'Profielen'</a></h1>
-        <h3><i>October 12th 2018</i></h3>
-      </div>
-      <a href="https://profielen.hr.nl/" class="article-image" id="profielen"></a>
-      <p>Our team member Elise got interviewed by the school paper "Profielen" of the Hogeschool Rotterdam (not only the University of Applied Sciences). She told in the article about the iGEM competition and explained as easy as possible what synthetic biology is and what we did for our Carbon Monoxide project. We hope a lot of other students got excited about the competition and for the team of next year!</p>
+    <div class="article-header">
+      <h1><a href="https://nbv.kncv.nl/k/nl/n1099/news/view/141227/104679/igem-team-rotterdam.html">Nederlandse
+          Biotechnologie Vereniging (Dutch Biotechnology Association)</a></h1>
+      <h3><i>September 12th 2018</i></h3>
     </div>
+    <a href="https://nbv.kncv.nl/k/nl/n1099/news/view/141227/104679/igem-team-rotterdam.html" class="article-image" id="NBV"></a>
+    <p>We, just like all the Dutch iGEM teams, are published on the LinkedIn of the Nederlandse Biotechnologie
+      Vereniging (NBV), their newsletter and the website C2W. C2W is a scientific website with news about Science,
+      Biology and Chemistry. Through this we hope to obtain more connections with stakeholders and possible sponsors.
+      We would like to thank the NBV for publishing us! Click on the link to read the whole article.</p>
+  </div>
+
+  <div class="article">
+    <div class="article-header">
+      <h1><a href="https://profielen.hr.nl/">Published in the school paper 'Profielen'</a></h1>
+      <h3><i>October 12th 2018</i></h3>
+    </div>
+    <a href="https://profielen.hr.nl/" class="article-image" id="profielen"></a>
+    <p>Our team member Elise got interviewed by the school paper "Profielen" of the Hogeschool Rotterdam (not only the
+      University of Applied Sciences). She told in the article about the iGEM competition and explained as easy as
+      possible what synthetic biology is and what we did for our Carbon Monoxide project. We hope a lot of other
+      students got excited about the competition and for the team of next year!</p>
+  </div>
 </div>

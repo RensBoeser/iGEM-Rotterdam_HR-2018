@@ -1,114 +1,117 @@
 <style>
-div.dual {
-	display: flex;
-	flex-wrap: wrap;
-	margin: 60px 20px;
-	
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-	background: rgba(255, 255, 255, 0.2);
-}
-
-div.dual > div {
-	flex: 1;
-	padding: 40px;
-}
-
-.public-text {
-	max-width: 1000px;
-	margin: auto;
-}
-
-.public-text h1 {
-	margin-bottom: 0 !important;
-	color: var(--color-primary);
-}
-
-.public-text h3 {
-	margin-top: 0 !important;
-	padding-left: 40px !important;
-	color: var(--color-software-secondary);
-}
-
-.public-text p {
-	text-align: justify;
-	color: var(--color-dark) !important;
-	font-size: large !important;
-}
-
-.image {
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	width: 100%;
-	height: 400px;
-	margin: 96px auto 0 auto !important;
-}
-
-#businesscards {
-	background-image: url("http://2018.igem.org/wiki/images/d/dd/T--Rotterdam_HR--businesscard.png");
-	background-size: contain;
-}
-
-#Das {
-	background-image: url("http://2018.igem.org/wiki/images/8/87/T--Rotterdam_HR--DAS.jpeg");
-}
-
-#Nationalecarrierebeurs {
-	background-image: url("http://2018.igem.org/wiki/images/7/7e/T--Rotterdam_HR--Carrierebeurs.jpeg");	
-	background-size: 100%;
-}
-
-#NBC {
-	background-image: url("http://2018.igem.org/wiki/images/3/39/T--Rotterdam_HR--NBCevent.png");
-}
-
-#BCF {
-	background-image: url("http://2018.igem.org/wiki/images/5/58/T--Rotterdam_HR--BCFevent.jpeg");
-}
-#igeminstaww {
-	background-image: url("http://2018.igem.org/wiki/images/a/ae/T--Rotterdam_HR--iGEMteamsworldwide.png");
-}
-
-#Gofundme {
-	background-image: url("http://2018.igem.org/wiki/images/a/a1/T--Rotterdam_HR--GoFundMe.png ");
-	background-size: 100%;
-	height: 200px;
-}
-
-#Wolfertlyceum {
-	background-image: url("http://2018.igem.org/wiki/images/a/af/T--Rotterdam_HR--Wolfertlyceum.png");
-	background-size: contain;
-}
-
-@media screen and (max-width: 1276px) {
-	.image-holder {
-		order: 1;
-	}
-
-	.dual .my-carousel, .dual .image {
-		min-width: 80vw !important;
-		margin: 20px auto 0 auto !important;
-	}
-
-}
-
-@media screen and (max-width: 700px) {
-	.dual .my-carousel, .dual .image {
-		min-width: 70vw !important;
-	}
-}
-
-@media screen and (max-width: 510px) {
-
 	div.dual {
-		margin: 60px 0;
+		display: flex;
+		flex-wrap: wrap;
+		margin: 60px 20px;
+
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		background: rgba(255, 255, 255, 0.2);
 	}
 
-	div.dual > div {
-		padding: 20px;
+	div.dual>div {
+		flex: 1;
+		padding: 40px;
 	}
-}
 
+	.public-text {
+		max-width: 1000px;
+		margin: auto;
+	}
+
+	.public-text h1 {
+		margin-bottom: 0 !important;
+		color: var(--color-primary);
+	}
+
+	.public-text h3 {
+		margin-top: 0 !important;
+		padding-left: 40px !important;
+		color: var(--color-software-secondary);
+	}
+
+	.public-text p {
+		text-align: justify;
+		color: var(--color-dark) !important;
+		font-size: large !important;
+	}
+
+	.image {
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		width: 100%;
+		height: 400px;
+		margin: 96px auto 0 auto !important;
+	}
+
+	#businesscards {
+		background-image: url("http://2018.igem.org/wiki/images/d/dd/T--Rotterdam_HR--businesscard.png");
+		background-size: contain;
+	}
+
+	#Das {
+		background-image: url("http://2018.igem.org/wiki/images/8/87/T--Rotterdam_HR--DAS.jpeg");
+	}
+
+	#Nationalecarrierebeurs {
+		background-image: url("http://2018.igem.org/wiki/images/7/7e/T--Rotterdam_HR--Carrierebeurs.jpeg");
+		background-size: 100%;
+	}
+
+	#NBC {
+		background-image: url("http://2018.igem.org/wiki/images/3/39/T--Rotterdam_HR--NBCevent.png");
+	}
+
+	#BCF {
+		background-image: url("http://2018.igem.org/wiki/images/5/58/T--Rotterdam_HR--BCFevent.jpeg");
+	}
+
+	#igeminstaww {
+		background-image: url("http://2018.igem.org/wiki/images/a/ae/T--Rotterdam_HR--iGEMteamsworldwide.png");
+	}
+
+	#Gofundme {
+		background-image: url("http://2018.igem.org/wiki/images/a/a1/T--Rotterdam_HR--GoFundMe.png ");
+		background-size: 100%;
+		height: 200px;
+	}
+
+	#Wolfertlyceum {
+		background-image: url("http://2018.igem.org/wiki/images/a/af/T--Rotterdam_HR--Wolfertlyceum.png");
+		background-size: contain;
+	}
+
+	@media screen and (max-width: 1276px) {
+		.image-holder {
+			order: 1;
+		}
+
+		.dual .my-carousel,
+		.dual .image {
+			min-width: 80vw !important;
+			margin: 20px auto 0 auto !important;
+		}
+
+	}
+
+	@media screen and (max-width: 700px) {
+
+		.dual .my-carousel,
+		.dual .image {
+			min-width: 70vw !important;
+		}
+	}
+
+	@media screen and (max-width: 510px) {
+
+		div.dual {
+			margin: 60px 0;
+		}
+
+		div.dual>div {
+			padding: 20px;
+		}
+	}
 </style>
 
 <h1 class="title">Public Engagement</h1>
@@ -125,12 +128,13 @@ div.dual > div {
 		<div class="public-text">
 			<h1>Businesscards</h1>
 			<p>
-				We would like thank resolutie van Zijderveld for sponsoring us with 2000 free businesscards. Also for the provided help with designing them.
+				We would like thank resolutie van Zijderveld for sponsoring us with 2000 free businesscards. Also for the provided
+				help with designing them.
 			</p>
 		</div>
 	</div>
 </div>
-	
+
 <div class="dual">
 	<div class="image-holder" style="order: 1;">
 		<div class="image" id="Das"></div>
@@ -140,13 +144,17 @@ div.dual > div {
 			<h1>The Das Conference</h1>
 			<h3><i>March 30th 2018</i></h3>
 			<p>
-				We went to the DAS conference, this conference is a meeting for everyone working inside an institution that provides education for laboratory studies. Our goal on this event was to provide information about iGEM through the Netherlands and make contacts with specialist. These specialist gave mini presentations in which we learned about sensors, chips and chemical processes.  
-				We also present our top 3 ideas by handing out brochures, in which we received feedback and input for improvement our additions. We were very happy to make contacts and carry out the iGEM competition through the Netherlands. 					
+				We went to the DAS conference, this conference is a meeting for everyone working inside an institution that
+				provides education for laboratory studies. Our goal on this event was to provide information about iGEM through the
+				Netherlands and make contacts with specialist. These specialist gave mini presentations in which we learned about
+				sensors, chips and chemical processes.
+				We also present our top 3 ideas by handing out brochures, in which we received feedback and input for improvement
+				our additions. We were very happy to make contacts and carry out the iGEM competition through the Netherlands.
 			</p>
 		</div>
 	</div>
 </div>
-	
+
 <div class="dual">
 	<div class="image-holder">
 		<div class="image" id="Nationalecarrierebeurs"></div>
@@ -156,14 +164,18 @@ div.dual > div {
 			<h1>Nationale carière beurs (National Career fair)</h1>
 			<h3><i>April 6th 2018</i></h3>
 			<p>
-					Today we went to the National Career Event in Amsterdam. This is a big Dutch event where more than 120 employers gather to expose their company to a bigger audience and share contact information with potential recruits and interns. We had hoped to familiarize some relevant companies to iGEM along with trying to attain some sponsors. Sadly the event was primarily focused on IT companies with a very small chemical company presence and nothing biology related. Despite this it was a valuable team bonding experience.					
+				Today we went to the National Career Event in Amsterdam. This is a big Dutch event where more than 120 employers
+				gather to expose their company to a bigger audience and share contact information with potential recruits and
+				interns. We had hoped to familiarize some relevant companies to iGEM along with trying to attain some sponsors.
+				Sadly the event was primarily focused on IT companies with a very small chemical company presence and nothing
+				biology related. Despite this it was a valuable team bonding experience.
 			</p>
 		</div>
 	</div>
 </div>
 
 <div class="dual">
-	<div class="image-holder"  style="order: 1;">
+	<div class="image-holder" style="order: 1;">
 		<div class="image" id="NBC"></div>
 	</div>
 	<div>
@@ -171,7 +183,9 @@ div.dual > div {
 			<h1>The dutch NBC conference</h1>
 			<h3><i>May 22th 2018</i></h3>
 			<p>
-					Also were we present at the dutch NBC conference, where we got the chance to show and tell about our project. During this day several professionals and students working in the biotechnology workfield are connected. They are informed during interactive sessions and get to know all about the latest developments in their workfield.		
+				Also were we present at the dutch NBC conference, where we got the chance to show and tell about our project.
+				During this day several professionals and students working in the biotechnology workfield are connected. They are
+				informed during interactive sessions and get to know all about the latest developments in their workfield.
 			</p>
 		</div>
 	</div>
@@ -182,17 +196,20 @@ div.dual > div {
 	<div class="image-holder">
 		<div class="image" id="BCF"></div>
 	</div>
-	<div  style="order: 1;">
+	<div style="order: 1;">
 		<div class="public-text">
 			<h1>BCF career event</h1>
 			<h3><i>May 24th 2018</i></h3>
 			<p>
-					After we went to the National Career Event in Amsterdam, we thought that it might be helpful if we'd go to more events. Today we went to the BCF (biology, chemistry and pharmacy) in Utrecht to promote our project. The BCF career event is an event just like the one in Amsterdam but only for biology, chemistry and pharmacy. It was a nice day where we shared a lot of our business cards with the present companies.		
+				After we went to the National Career Event in Amsterdam, we thought that it might be helpful if we'd go to more
+				events. Today we went to the BCF (biology, chemistry and pharmacy) in Utrecht to promote our project. The BCF
+				career event is an event just like the one in Amsterdam but only for biology, chemistry and pharmacy. It was a nice
+				day where we shared a lot of our business cards with the present companies.
 			</p>
 		</div>
 	</div>
 </div>
-	
+
 <div class="dual">
 	<div class="image-holder" style="order: 1;">
 		<div class="image" id="igeminstaww"></div>
@@ -202,7 +219,9 @@ div.dual > div {
 			<h1>IGEMteams worldwide account</h1>
 			<h3><i>June 4th until Juni 10th 2018</i></h3>
 			<p>
-				We got control of the iGEM teams worldwide account on instagram for a week (June 4th until June 10th 2018). We did really enjoy it to show the worldwide iGEM teams a little bit of us and our country, of course we hope you enjoyed it as well!		
+				We got control of the iGEM teams worldwide account on instagram for a week (June 4th until June 10th 2018). We did
+				really enjoy it to show the worldwide iGEM teams a little bit of us and our country, of course we hope you enjoyed
+				it as well!
 			</p>
 		</div>
 	</div>
@@ -217,7 +236,8 @@ div.dual > div {
 			<h1>Gofundme</h1>
 			<h3><i>June 4th until Juni 10th 2018</i></h3>
 			<p>
-				We started a go fund me page for anyone who is interested in our project, or just willing to help us pour students out. So go check it out and help us on our way to Boston!
+				We started a go fund me page for anyone who is interested in our project, or just willing to help us pour students
+				out. So go check it out and help us on our way to Boston!
 			</p>
 			<a href="https://www.gofundme.com/igem-team-hogeschool-rotterdam" class="nav-button">GoFundMe page</a>
 		</div>
@@ -233,7 +253,9 @@ div.dual > div {
 			<h1>College at the Wolfert lyceum</h1>
 			<h3><i>After the Giant Jamboree</i></h3>
 			<p>
-					To spread more knowledge on what genetically modified organisms are and what they can do, we decided to do a presentation on a high school. Unfortunately, we’re only going to do the presentation after the Giant Jamboree so we don’t have the photo’s of the event just yet. We are looking forward to give some education!
+				To spread more knowledge on what genetically modified organisms are and what they can do, we decided to do a
+				presentation on a high school. Unfortunately, we’re only going to do the presentation after the Giant Jamboree so
+				we don’t have the photo’s of the event just yet. We are looking forward to give some education!
 			</p>
 		</div>
 	</div>
