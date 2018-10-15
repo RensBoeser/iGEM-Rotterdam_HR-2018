@@ -1,0 +1,113 @@
+<style>
+  h1.title::after {
+    left: -10%;
+    right: -10%;
+  }
+
+  .text-container {
+    position: relative;
+    text-align: center;
+    margin: 0px auto;
+    padding: 10px;
+    max-width: 1000px;
+  }
+
+  .text-container h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -10%;
+    right: -10%;
+    height: 4px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  .dual-text {
+    display: flex;
+  }
+
+  .dual-text>div {
+    flex: 1;
+    padding: 10px 20px;
+    max-width: 700px;
+  }
+
+  .item .title {
+    width: 370px;
+  }
+
+  .item .title ul {
+    padding: 3px 10px;
+    height: 100px;
+  }
+</style>
+
+<h1 class="title">Hardware Overview</h1>
+
+<div>
+  <div class="text-container">
+    <a name="Environmentcontrol"></a>
+    <h1 class="title" style="font-size: 50px;">Enviroment control</h1>
+    <p>To get a reliable carbon monoxide sensor, we need to keep the environment of the bacteria stable. This way the only variable that controls the output is the amount of carbon monoxide.</p>
+  </div>
+
+  <div class="dual-text" style=" border-bottom: rgba(0,0,0,0.1) solid 5px; margin-bottom: 80px;">
+    <div class="text-container">
+      <a name="Temperature controller"></a>
+      <h1>Temperature controller</h1>
+      <p>To control the temperature of the bacteria, we made a temperature controller based on a Peltier element. It can move 150 watts of thermal energy, making it powerful enough to freeze or boil a small volume of water (e.g. 1 mL) in a matter of seconds. Because it’s so powerful, we can use our sensor in a wide range of environments where constant heating or cooling is required to guarantee proper operation.</p>
+    </div>
+
+    <div class="text-container">
+      <a name="Test tube shaker"></a>
+      <h1>Test tube shaker</h1>
+      <p>Another problem we had was that the bacteria would pile up on the bottom of a test tube, inhibiting their operation. To prevent this from happening, we designed and 3d printed a device to shake the test tube. This device is able to shake the tube at a variety of speeds and can either shake continuously or periodically when required.</p>
+    </div>
+  </div>
+
+  <div class="text-container">
+      <a name="CooA"></a>
+      <h1 class="title" style="font-size: 50px;">Gas measurement</h1>
+      <p>To measure the amount of gas produced, we capture the gas in a pipette that has been placed upside down. In this
+        pipette we measure the fluid level at two different points. When the pipette fills up with gas to the lower
+        measurement point, we use a peristaltic pump to dispose it until we reach our upper measurement point. By
+        measuring the time it takes the pipette to fill with gas, we can determine the rate of gas production. For a fast
+        response to gas production, the measurement points can be placed close together (e.g. 1 mm apart) to get a quick
+        and accurate measurement of the gas production.</p>
+  </div>
+
+  <div class="dual-text">
+    <div class="text-container">
+      <a name="fluid level detection"></a>
+      <h1>Fluid level detection</h1>
+      <p>To detect if there is fluid or gas at a specific level in the pipette, we use the conductive property of
+        non-distilled water. Because water is a conductor, albeit a poor conductor, and gas is an isolator. Using this
+        property, we can detect if there is an electrical connection between a measurement probe in the pipette, and a
+        reference probe that has been inserted into the medium.</p>
+      <p>To detect if there is an electrical connection, we use a field effect transistor (FET). This is a special type
+        of transistor that unlike ‘regular’ bipolar junction transistors (BJT) don’t require an electrical current to
+        switch on, but just a small voltage. Because of this property, it doesn’t matter that the water has a very high
+        resistance, as there is virtually no current flowing.</p>
+    </div>
+
+    <div class="text-container">
+      <a name="peristalticpump"></a>
+      <h1>Peristaltic pump</h1>
+      <p>To accurately pump the gas out of the pipette, a crucial part to making the measurement automated, we designed
+        and 3d printed a peristaltic pump. The design uses easily accessible off-the shelf parts in combination with 3d
+        printed parts to create an accessible pump that can easily reach sub microliter accuracy.</p>
+      <p>To achieve this accuracy, we started with a stepper motor, which can move in steps of 1.8 degrees. This type
+        of motor can be controlled very precisely. With the most common driver chip, the Allegro A4988, which supports
+        16x 'microstepping'. It can move in steps of 0.1125 degrees. On top of that we built two planetary reduction
+        drives, this is a type of gearbox that is very compact. Each of the reduction drives slows the output of the
+        motor four times, thereby increasing the power and resolution of the motor by four times. After these
+        gearboxes, it can move in steps as little as 0.028125 degrees.</p>
+      <p>On top of these gearboxes we made the actual peristaltic pump, by making two mating pieces which have a cavity
+        the silicone hose fits trough. A third rotating part compresses the hose at multiple points, creating the
+        peristaltic movement that makes this pump work.</p>
+    </div>
+  </div>
+  
+
+</div>
