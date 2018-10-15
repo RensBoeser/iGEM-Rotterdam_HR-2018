@@ -1,0 +1,56 @@
+<style>
+    h1.title::after {
+      left: -10%;
+      right: -10%;
+    }
+  
+    .text-container {
+      position: relative;
+      text-align: center;
+      margin: 0px auto;
+      padding: 10px;
+      max-width: 1000px;
+    }
+  
+    .text-container h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -10%;
+      right: -10%;
+      height: 4px;
+      border-radius: 2px;
+      background: currentColor;
+    }
+  
+    .item .title {
+      width: 370px;
+    }
+  
+    .item .title ul {
+      padding: 3px 10px;
+      height: 100px;
+    }
+  </style>
+  
+  <h1 class="title">Hardware: Temperature Controller</h1>
+  
+  <div>
+    <div class="text-container">
+      <a name="Theidea"></a>
+      <h1 class="title" style="font-size: 50px;">The idea</h1>
+      <p>To make sure the only thing influencing the gas production from the bacteria is the amount of carbon monoxide, we wanted to make a temperature controller. This will keep the temperature stable independent of the temperature outside the system (within a reasonable range, &plusmn;70 degrees Celius of target temperature). To achieve this, we used a peltier element with a control system of our own design.</p>
+    </div>
+  
+    <div class="text-container">
+      <a name="Architecture"></a>
+      <h1>Architecture</h1>
+      <p>Building a complex system like a temperature controller is easier said than done. So, we first design the architecture of the system, thereby dividing the system into smaller parts and the interfaces between these parts. These parts can then be designed individually, as long as you keep their interfaces in mind, and be assembled afterwards.</p>
+    </div>
+  
+    <div class="text-container">
+      <a name="Peltier element"></a>
+      <h1>Peltier element</h1>
+      <p>The first step was selecting the peltier element, since all other parameters of the design depend on the specifications of this element. But first, WTF is a peltier element? A peltier element is an element that can move thermal energy by using electricity. As a side effect it also generate its own heat on the "hot" side. We selected an element that is capable of moving a 150 watts of thermal energy, the TEC1-12715. To work at full power, it requires 15 Amps at 15 Volts. This means it will also produce 225 watts of thermal energy. The combined thermal energy will be produced at the hot side is 375 watts. This means that when you’re cooling the test tube, you also have to cool the peltier element.</p>
+    </div>
+  </div>
