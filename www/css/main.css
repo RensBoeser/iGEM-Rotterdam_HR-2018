@@ -22,7 +22,6 @@
 }
 
 .page { background: var(--color-secondary); }
-.page-team { background: white !important; }
 .page-software, .page-wikistat { background: var(--color-software-secondary) !important; }
 
 /* ----- iGEM STYLE FIXES ----- */
@@ -43,7 +42,6 @@ ul {
 }
 
 #bodyContent a[href ^="https://"], .link-https {
-  background: whitesmoke;
   padding: 5px 0;
 }
 

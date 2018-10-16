@@ -1,9 +1,7 @@
 /* ------ TEAMLEDEN CSS ------ */
-.team-members {
-	background: white;
-}
 h1 {
-	background: whitesmoke;
+	background: var(--color-primary);
+	color: white;
 	text-align: center;
 	padding: 20px 0;
 	margin: 20px 0;
@@ -53,7 +51,7 @@ h1 {
 .item .title {
 	margin: 10px 0;
 	padding: 5px 0;
-	background: whitesmoke;
+	background: rgba(255,255,255,0.7) !important;
 	display: flex;
 	color: black;
 	text-decoration: none;
