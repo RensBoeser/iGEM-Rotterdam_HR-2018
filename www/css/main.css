@@ -6,7 +6,8 @@
 	--color-dark: rgb(50, 50, 50);
 
 	--color-wetlab: #1B5E20;
-	--color-hardware: #3949AB;
+  --color-hardware: #3949AB;
+  --color-hardware-secondary: #C5CAE9;
 	--color-software: #424242;
 	--color-software-secondary: #a1a1a1;
 }
@@ -22,7 +23,11 @@
 }
 
 .page { background: var(--color-secondary); }
-.page-software, .page-wikistat { background: var(--color-software-secondary) !important; }
+.page-software,
+.page-wikistat { background: var(--color-software-secondary) !important; }
+.page-hardware,
+.page-peristalticpump,
+.page-temperaturecontroller { background: var(--color-hardware-secondary) !important; }
 
 /* ----- iGEM STYLE FIXES ----- */
 
@@ -553,6 +558,9 @@ body {
   text-decoration: none !important;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1) !important;
   font-size: 20px !important;
+  display: block;
+  width: fit-content;
+  margin: 10px auto;
 }
 
 .nav-button::before {
