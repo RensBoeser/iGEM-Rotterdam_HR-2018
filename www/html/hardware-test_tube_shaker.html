@@ -40,6 +40,26 @@
 		padding: 3px 10px;
 		height: 100px;
 	}
+
+	#c1 .carousel__slide:nth-of-type(1),
+#c1.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(1) {
+  background-image: url("http://2018.igem.org/wiki/images/c/c2/T--Rotterdam_HR--hardwarep1.png");
+  background-size: cover;
+  background-position: center;
+}
+#c1 .carousel__slide:nth-of-type(2),
+#c1.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(2) {
+  background-image: url("http://2018.igem.org/wiki/images/f/fd/T--Rotterdam_HR--hardwarep2.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+#c1 .carousel__slide:nth-of-type(3),
+#c1.carousel--thumb .carousel__indicators .carousel__indicator:nth-of-type(3) {
+  background-image: url("http://2018.igem.org/wiki/images/8/89/T--Rotterdam_HR--hardwarep3.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
 </style>
 
 <h1 class="title">Hardware: Test Tube Shaker</h1>
@@ -86,6 +106,37 @@
 			The video underneath shows the test tube shaker in action.</p>
 	</div>
 </div>
+
+	<div class="image-holder">
+		<form action="">
+			<ul class="carousel my-carousel carousel--thumb" style="margin-top: 0px !important" id="c1">
+				<input class="carousel__activator" type="radio" id="K" name="thumb" checked="checked" />
+				<input class="carousel__activator" type="radio" id="L" name="thumb" />
+				<input class="carousel__activator" type="radio" id="M" name="thumb" />
+				<div class="carousel__controls">
+					<label class="carousel__control carousel__control--forward" for="L"></label>
+				</div>
+				<div class="carousel__controls">
+					<label class="carousel__control carousel__control--backward" for="K"></label>
+					<label class="carousel__control carousel__control--forward" for="M"></label>
+				</div>
+				<div class="carousel__controls">
+					<label class="carousel__control carousel__control--backward" for="L"></label>
+				</div>
+				<li class="carousel__slide">
+				</li>
+				<li class="carousel__slide">
+				</li>
+				<li class="carousel__slide">
+				</li>
+				<div class="carousel__indicators">
+					<label class="carousel__indicator" for="K"></label>
+					<label class="carousel__indicator" for="L"></label>
+					<label class="carousel__indicator" for="M"></label>
+				</div>
+			</ul>
+		</form>
+	</div>
 
 <div class="text-container relevant">
   <h1>Relevant pages</h1>
