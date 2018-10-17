@@ -1,8 +1,11 @@
 <style>
 	.title {
+		background: var(--color-software) !important;
+	}
+
+	.text-container {
 		color: white;
-		background: var(--color-software);
-		padding: 10px 20px;
+		border-bottom: rgba(0,0,0,0.1) solid 5px;
 	}
 
 	.filters {
@@ -19,6 +22,7 @@
 	table {
 		font-family: candara;
 		border-collapse: collapse;
+		margin: auto !important;
 	}
 
 	td, th {
@@ -38,20 +42,38 @@
 	}
 </style>
 
-<div id="pagestats">
-	<h1 class="title">Team page statistics</h1>
-	<form class="filters" name="myForm">
-		<b>Team name:</b>
-		<input type="text" name="teamName" id="teamName">
-		<b>Subpage name:</b>
-		<input type="text" name="pageName" id="pageName">
-		<b>Search limit:</b>
-		<input type="number" name="limit" id="formLimit">
-		<input type="submit" value="Submit">
-	</form>
+<h1 class="title">Wiki Page Statistics</h1>
 
-	<div id="rankings"></div>
-
-	<script src="http://2018.igem.org/Template:Rotterdam_HR/js/topPages?action=raw&ctype=text/javascript"></script>
-	<script>getData()</script>
+<div class="text-container">
+  <p>
+    As a team interested in building a good wiki we liked to know which iGEM team pages were the most popular.
+    To get the best data for inspiration, we made a web application for ranking all teampages by views.
+    Using this application we can search for the current best pages.
+    There is even an option to filter for a certain team and/or subpage.
+    Of course, this application is now publically available on our wiki!
+    We find this application helpful and we hope other iGEM teams will use it to better their own wiki.
+  </p>
+  <p>
+    We are currently storing all viewdata of the day on a remote server. In a future update, we want to use this
+		gathered data to show graphs and other analytics. All if we have the time to build such a program.<br>
+		If you are interested, you can check the daily viewdata of each teampage (and total views of a team) using a small python
+    application we made <a href="https://github.com/RensBoeser/Page-viewdata-analyser" target="_blank">here</a>. Or if
+    you are a programmer and would like to make your own tool for it, you can find the raw viewdata <a target="_blank"
+      href="http://www.tevd.nl:81/">here (JSON format)</a>.
+  </p>
 </div>
+
+<form class="filters" name="myForm">
+	<b>Team name:</b>
+	<input type="text" name="teamName" id="teamName">
+	<b>Subpage name:</b>
+	<input type="text" name="pageName" id="pageName">
+	<b>Search limit:</b>
+	<input type="number" name="limit" id="formLimit">
+	<input type="submit" value="Submit">
+</form>
+
+<div id="rankings"></div>
+
+<script src="http://2018.igem.org/Template:Rotterdam_HR/js/topPages?action=raw&ctype=text/javascript"></script>
+<script>getData()</script>
