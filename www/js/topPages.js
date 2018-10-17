@@ -49,9 +49,11 @@ function getData() {
 				var views = temp.slice(temp.indexOf("</a>‏‎ (") + 8, temp.indexOf(" views")).replace(",", "");
 
 				// Check if the page is not an iGEM example page
-				if (teamName.toLowerCase().indexOf("example") == -1 ||
-						pageName.toLowerCase().indexOf("style") == -1 ||
-						pageName.toLowerCase().indexOf("css") == -1) {
+				if (teamName.toLowerCase().indexOf("example") == -1 &&
+						pageName.toLowerCase().indexOf("style") == -1 &&
+						pageName.toLowerCase().indexOf("css") == -1 &&
+						pageName.toLowerCase().indexOf("js") == -1 &&
+						pageName.toLowerCase().indexOf("scripts") == -1) {
 					rankings[entry] = { teamName: teamName, pageName: pageName, views: views, url: url };
 					entry++;
 				}
