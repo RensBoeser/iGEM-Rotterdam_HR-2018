@@ -27,9 +27,9 @@
 .page-software,
 .page-wikistat { background: var(--color-software-secondary) !important; }
 .page-hardware,
-.page-peristalticpump,
-.page-testtubeshaker,
-.page-temperaturecontroller { background: var(--color-hardware-secondary) !important; }
+.page-peristaltic_pump,
+.page-test_tube_shaker,
+.page-temperature_controller { background: var(--color-hardware-secondary) !important; }
 
 /* ----- iGEM STYLE FIXES ----- */
 
