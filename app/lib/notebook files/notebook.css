@@ -1,3 +1,17 @@
+div.notebook-image {
+  display: block !important;
+  width: 400px !important;
+  margin: auto !important;
+}
+
+div.notebook-image div.image-holder {
+  width: 400px !important;
+  height: 400px !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
 table {
 	margin: auto !important;
 }
@@ -116,12 +130,14 @@ table {
 
 .card .description {
 	padding: 10px;
+	color: white !important;
 }
 
 .card .description p {
 	padding: 10px;
 	font-size: medium !important;
 	text-align: center !important;
+	color: white !important;
 }
 
 .card .description p.experiment {
