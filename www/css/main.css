@@ -1,15 +1,16 @@
 /* ----- color palet ----- */
 
 :root {
-	--color-primary: #1B5E20;
-	--color-secondary: #C8E6C9;
-	--color-dark: rgb(50, 50, 50);
+  --color-primary: #1B5E20;
+  --color-secondary: #C8E6C9;
+  --color-dark: rgb(50, 50, 50);
+  --color-red: #E57373;
 
-	--color-wetlab: #1B5E20;
+  --color-wetlab: #1B5E20;
   --color-hardware: #3949AB;
   --color-hardware-secondary: #C5CAE9;
-	--color-software: #424242;
-	--color-software-secondary: #a1a1a1;
+  --color-software: #424242;
+  --color-software-secondary: #a1a1a1;
 }
 
 /* ------ PAGE ------ */
@@ -916,4 +917,28 @@ body {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
+}
+
+.nomination {
+  max-width: 800px;
+  padding: 20px 32px;
+  border: white solid 4px;
+  border-radius: 8px;
+  margin: 20px auto;
+  background: #E57373;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  display: flex;
+}
+
+.nomination p, .nomination h2 {
+  color: white;
+  text-align: center !important;
+}
+
+.nomination p {
+  font-size: medium !important;
+}
+
+.nomination a.nav-button {
+  background: rgba(0, 0, 0, 0.5) !important;
 }
