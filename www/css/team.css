@@ -31,7 +31,7 @@ h1 {
 	margin: 0 auto;
 }
 .item {
-	transition: 0.2s;
+	transition: 200ms;
 	margin: 10px;
 	padding: 10px;
 }
@@ -46,7 +46,8 @@ h1 {
 	width: 320px;
 	height: 320px;
 	border-radius: 50%;
-	transition: 0.2s;
+	transition: all 200ms,
+							background-image 200ms 500ms;
 }
 .item .title {
 	margin: 10px 0;
@@ -137,5 +138,43 @@ h1 {
 }
 .item #esra {
 	background: url('http://2018.igem.org/wiki/images/d/d4/T--Rotterdam_HR--esra.jpeg');
+	background-size: 100%;
+}
+
+.item:hover #mei-ju {
+	background: url('http://2018.igem.org/wiki/images/a/a5/T--Rotterdam_HR--mei-ju-extra.jpg');
+	background-size: 100%;
+}
+.item:hover #mike {
+	background: url('http://2018.igem.org/wiki/images/8/8b/T--Rotterdam_HR--Mike-extra.jpeg');
+	background-size: 100%;
+}
+.item #rens:hover {
+	background: url('http://2018.igem.org/wiki/images/c/cc/T--Rotterdam_HR--rens-extra.jpeg');
+	background-size: 100%;
+}
+.item:hover #dustin {
+	background: url('http://2018.igem.org/wiki/images/1/12/T--Rotterdam_HR--dustin-extra.jpeg');
+	background-size: 100%;
+}
+.item:hover #suzanne {
+	background: url('http://2018.igem.org/wiki/images/8/82/T--Rotterdam_HR--suzanne-extra.jpeg');
+	background-size: 100%;
+}
+.item:hover #randall {
+	background: url('http://2018.igem.org/wiki/images/1/10/T--Rotterdam_HR--randall-extra.jpeg');
+	background-size: 100%;
+}
+
+.item:hover #loraine {
+	background: url('http://2018.igem.org/wiki/images/c/cb/T--Rotterdam_HR--loraine-extra.jpeg');
+	background-size: 100%;
+}
+.item:hover #tom {
+	background: url('http://2018.igem.org/wiki/images/9/92/T--Rotterdam_HR--tom-extra.jpeg');
+	background-size: 100%;
+}
+.item:hover #elise {
+	background: url('http://2018.igem.org/wiki/images/8/87/T--Rotterdam_HR--elise-extra.jpeg');
 	background-size: 100%;
 }
